@@ -32,7 +32,14 @@
         <%@ include file="header2.jsp" %>
         <div class="jumbotron">
             <div class="container">
-                <h1>Hello, world!</h1>
+                <%
+                    String nome = (String)request.getAttribute("nome");
+                    if(nome != null) {
+                        out.print("<h1>Hello, " + nome+"!<h1>");
+                    } else {
+                        out.print("<h1>Hello, world!<h1>");
+                    }
+                %>
                 <p>This is a spike for J2EE simple web app</p>
                 <p><a href="BookServlet?action=vis" class="btn btn-primary btn-lg" role="button">Aggiungi Libro &raquo;</a></p>
                 <p><a href="BookServlet?action=list" class="btn btn-primary btn-lg" role="button">Visualizza Libri &raquo;</a></p>
