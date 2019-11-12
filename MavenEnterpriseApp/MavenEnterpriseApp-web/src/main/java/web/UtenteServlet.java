@@ -36,18 +36,22 @@ public class UtenteServlet extends HttpServlet {
             String nome = request.getParameter("nome");
             String cognome = request.getParameter("cognome");
             String email = request.getParameter("email");
+            String psw = request.getParameter("psw");
 
-            System.out.println(nome);
-            System.out.println(cognome);
-            System.out.println(email);
-
-            utenteManager.addUtente(nome, cognome, email);
+            utenteManager.addUtente(nome, cognome, email, psw);
             
             rd = getServletContext().getRequestDispatcher("/index.jsp");
             rd.forward(request, response);
         } else if(action.equals("signin")) {
-            
-        } else if(action.equals("signinVis")) {
+            String email = request.getParameter("email");
+            String psw = request.getParameter("psw");
+            String nome = utenteManager.loginUtente(email, psw);
+            if(nome != null) {
+                rd = getServletContext().getRequestDispatcher("/index.jsp");
+                request.setAttribute("nome", nome);
+                rd.forward(request, response);
+            }
+        } else if(action.equals("registerVis")) {
             rd = getServletContext().getRequestDispatcher("/registrazione.jsp");
             rd.forward(request, response);
         }

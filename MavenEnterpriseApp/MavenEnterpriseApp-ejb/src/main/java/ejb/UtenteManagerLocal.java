@@ -14,6 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface UtenteManagerLocal {
-    void addUtente(String nome, String cognome, String email);
+    void addUtente(String nome, String cognome, String email, String psw);
     List<Utente> getUtenti();
+    String loginUtente(String email, String psw);
 }

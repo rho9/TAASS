@@ -19,15 +19,15 @@ import javax.persistence.Id;
 public class Utente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     
+    @Id
+    private String email;
+        
     private String nome;
-
     private String cognome;
     private String psw;
-
+    
+    
     /**
      * Get the value of psw
      *
@@ -63,8 +63,6 @@ public class Utente implements Serializable {
     public void setCognome(String cognome) {
         this.cognome = cognome;
     }
-
-    private String email;
 
     /**
      * Get the value of email
@@ -102,19 +100,10 @@ public class Utente implements Serializable {
         this.nome = nome;
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +114,7 @@ public class Utente implements Serializable {
             return false;
         }
         Utente other = (Utente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
             return false;
         }
         return true;
@@ -133,7 +122,7 @@ public class Utente implements Serializable {
 
     @Override
     public String toString() {
-        return "ejb.User[ id=" + id + " ]";
+        return "ejb.User[ email=" + email + " ]";
     }
     
 }

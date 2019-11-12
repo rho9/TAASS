@@ -40,12 +40,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right" role="form" action="UtenteServlet">
-                        <input type="hidden" name="action" value="signinVis">
+                        <input type="hidden" name="action" value="registerVis">
                         <button type="submit" class="btn btn-success">Registrazione</button>
                     </form>
-                    <form class="navbar-form navbar-right" role="form" action="ServletControllerM">
+                    <form class="navbar-form navbar-right" role="form" action="UtenteServlet">
                         <div class="form-group">
-                            <input type="hidden" name="action" value="addBook">
+                            <input type="hidden" name="action" value="signin">
                             <input type="email" placeholder="Email" class="form-control"  name="email">
                         </div>
                         <div class="form-group">

@@ -24,16 +24,23 @@ public class UtenteManager implements UtenteManagerLocal {
     // "Insert Code > Add Business Method")
 
     @Override
-    public void addUtente(String nome, String cognome, String email) {
+    public void addUtente(String nome, String cognome, String email, String psw) {
         Utente u = new Utente();
         u.setNome(nome);
         u.setCognome(cognome);
         u.setEmail(email);
+        u.setPsw(psw);
         utenteFacade.create(u);
     }
 
     @Override
     public List<Utente> getUtenti() {
         return utenteFacade.findAll();
+    }
+
+    @Override
+    public String loginUtente(String email, String psw) {
+        Utente u = utenteFacade.find(email);
+        return u == null ? null : u.getNome();
     }
 }
