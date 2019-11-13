@@ -49,7 +49,6 @@
                             <th>Indice</th>
                             <th>Titolo</th>
                             <th>Autore</th>
-                            <th>Anno di Pubblicazione</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,7 +57,6 @@
                             <td><%=i%></td>                           
                             <td><%=lA[i].getTitle()%></td>
                             <td><%=lA[i].getAuthor()%></td>
-                            <td>Call in to confirm</td>
                         </tr>
                         <% }%> 
                     </tbody>
