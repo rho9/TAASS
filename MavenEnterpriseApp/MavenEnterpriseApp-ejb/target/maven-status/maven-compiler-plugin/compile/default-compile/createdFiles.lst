@@ -6,6 +6,7 @@ com\mycompany\BookFacade.class
 com\mycompany\NewsEntityFacade.class
 com\mycompany\UtenteFacade.class
 ejb\BookManagerLocal.class
+ejb\BiblioService.class
 ejb\NewsEntity_.class
 ejb\NewMessage.class
 ejb\BookManager.class

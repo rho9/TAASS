@@ -15,21 +15,15 @@ import javax.jws.WebParam;
 
 /**
  *
- * @author giovanna
+ * @author Davide
  */
-@WebService(serviceName = "WebServiceBiblio")
+@WebService(serviceName = "BiblioService")
 @Stateless()
-public class WebServiceBiblio {
+public class BiblioService {
 
     @EJB
     private BookManagerLocal ejbRef;// Add business logic below. (Right-click in editor and choose
     // "Web Service > Add Operation"
-
-    @WebMethod(operationName = "addBook")
-    @Oneway
-    public void addBook(@WebParam(name = "title") String title, @WebParam(name = "author") String author) {
-        ejbRef.addBook(title, author);
-    }
 
     @WebMethod(operationName = "getBooks")
     public List<Book> getBooks() {
