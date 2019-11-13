@@ -7,6 +7,7 @@ package com.mycompany.cliente;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +23,7 @@ import javax.xml.ws.WebServiceRef;
 public class TryServlet extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/BiblioService/BiblioService.wsdl")
-    private com.mycompany.cliente.BiblioService_Service service;
+    private BiblioService_Service service;
 
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -38,14 +39,14 @@ public class TryServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet TryServlet at " + request.getContextPath() + "</h1>");
             try { // Call Web Service Operation
-                com.mycompany.cliente.BiblioService port = service.getBiblioServicePort();
+                BiblioService port = service.getBiblioServicePort();
                 // TODO process result here
-                java.util.List<com.mycompany.cliente.Book> result = port.getBooks();
+                List<Book> result = port.getBooks();
                 out.println("<table>");
                 out.println("<tr>");
                 out.println("<td><b>Titolo</b></td><td><b>Autore</b></td>");
                 out.println("</tr>");
-                for(com.mycompany.cliente.Book b : result) {
+                for(Book b : result) {
                     out.println("<tr>");
                     out.println("<td>" + b.getTitle() + "</td><td>" + b.getAuthor() + "</td>");
                     out.println("</tr>");
