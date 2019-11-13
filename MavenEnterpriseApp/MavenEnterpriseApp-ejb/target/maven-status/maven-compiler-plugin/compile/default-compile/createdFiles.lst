@@ -13,7 +13,6 @@ ejb\BookManager.class
 ejb\UtenteManager.class
 com\mycompany\BookFacadeLocal.class
 ejb\Book_.class
-ejb\WebServiceBiblio.class
 com\mycompany\NewSessionBean.class
 com\mycompany\AbstractFacade.class
 com\mycompany\UtenteFacadeLocal.class
