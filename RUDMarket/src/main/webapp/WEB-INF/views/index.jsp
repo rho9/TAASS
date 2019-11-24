@@ -21,5 +21,7 @@
       </table>
     </form>
   </div>
+  <p>Go to <a href="/user">User</a></p>
+  <p>Go to <a href="/admin">Admin</a></p>
 </body>
 </html>
