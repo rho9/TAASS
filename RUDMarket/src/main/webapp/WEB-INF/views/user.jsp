@@ -10,6 +10,7 @@
 <h1>Java Boss: Spring Boot - MVC web application</h1>
 <hr>
 <h1>Welcome User</h1>
+<p><a href="/">Home</a></p>
 <a href="/logout">Logout</a>
 </body>
 </html>

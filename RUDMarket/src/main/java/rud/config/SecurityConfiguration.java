@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/user").hasAnyRole("ADMIN", "USER")
 				.antMatchers("/", "/rest/**", "/catalogo/**").permitAll()
 				.and()
-				.formLogin()
+				.formLogin().loginPage("/login")
 				.and()
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
 	}
