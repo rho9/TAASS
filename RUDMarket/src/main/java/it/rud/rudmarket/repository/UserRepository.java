@@ -1,9 +1,8 @@
-package rud.repository;
+package it.rud.rudmarket.repository;
 
 
-import rud.model.User;
+import it.rud.rudmarket.model.User;
 
 public interface UserRepository {
-
 	User findByUsername(String username);
 }

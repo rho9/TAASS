@@ -1,6 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ page import="rud.model.Sezione" %>
+<%@ page import="it.rud.rudmarket.model.Sezione" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,6 @@
     </tr>
     <%}%>
 </table>
-
+<a href="/">Home</a>
 </body>
 </html>

@@ -1,6 +1,7 @@
-package rud.database;
+package it.rud.rudmarket.database;
 
-import rud.model.Sezione;
+
+import it.rud.rudmarket.model.Sezione;
 
 import java.util.ArrayList;
 import java.util.List;

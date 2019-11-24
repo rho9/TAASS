@@ -1,12 +1,12 @@
-package rud.controller;
+package it.rud.rudmarket.controller;
 
+import it.rud.rudmarket.database.CatalogoDatabase;
+import it.rud.rudmarket.database.CatalogoHibernateDatabase;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import rud.database.CatalogoDatabase;
-import rud.database.CatalogoHibernateDatabase;
 
 @Controller
 @RequestMapping("/catalogo")

@@ -1,4 +1,4 @@
-package rud.model;
+package it.rud.rudmarket.model;
 
 // quello che è presente nel database
 public class User {

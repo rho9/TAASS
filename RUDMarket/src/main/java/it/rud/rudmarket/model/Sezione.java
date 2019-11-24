@@ -1,4 +1,4 @@
-package rud.model;
+package it.rud.rudmarket.model;
 
 public class Sezione {
 	private String nome;

@@ -1,4 +1,4 @@
-package rud.config;
+package it.rud.rudmarket.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

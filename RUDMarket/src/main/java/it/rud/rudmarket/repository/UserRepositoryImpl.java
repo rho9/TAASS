@@ -1,7 +1,7 @@
-package rud.repository;
+package it.rud.rudmarket.repository;
 
+import it.rud.rudmarket.model.User;
 import org.springframework.stereotype.Component;
-import rud.model.User;
 
 import java.util.ArrayList;
 import java.util.List;

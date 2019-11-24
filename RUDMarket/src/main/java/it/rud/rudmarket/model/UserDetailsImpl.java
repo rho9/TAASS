@@ -1,4 +1,4 @@
-package rud.model;
+package it.rud.rudmarket.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
