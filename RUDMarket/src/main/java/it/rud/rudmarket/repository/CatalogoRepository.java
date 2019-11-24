@@ -1,4 +1,4 @@
-package it.rud.rudmarket.database;
+package it.rud.rudmarket.repository;
 
 
 import it.rud.rudmarket.model.Sezione;
@@ -6,6 +6,6 @@ import it.rud.rudmarket.model.Sezione;
 import java.util.List;
 
 
-public interface CatalogoDatabase {
+public interface CatalogoRepository {
 	List<Sezione> findAllSezioni();
 }

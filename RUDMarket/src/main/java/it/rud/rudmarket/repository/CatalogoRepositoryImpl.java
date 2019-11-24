@@ -1,4 +1,4 @@
-package it.rud.rudmarket.database;
+package it.rud.rudmarket.repository;
 
 
 import it.rud.rudmarket.model.Sezione;
@@ -6,7 +6,7 @@ import it.rud.rudmarket.model.Sezione;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CatalogoHibernateDatabase implements CatalogoDatabase {
+public class CatalogoRepositoryImpl implements CatalogoRepository {
 	@Override
 	public List<Sezione> findAllSezioni() {
 		List<Sezione> sezioneList = new ArrayList<>();
