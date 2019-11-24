@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserRepositoryImpl implements UserRepository {
+public abstract class UserRepositoryImpl implements UserRepository {
 	@Override
 	public User findByUsername(String username) {
 		List<User> users = this.getUsers();

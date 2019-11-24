@@ -1,8 +1,15 @@
 package it.rud.rudmarket.model;
 
+import javax.persistence.*;
+
 // quello che è presente nel database
+@Entity
 public class User {
-	private String username, password, roles;
+
+	@Id
+	private String username;
+	private String password;
+	private String roles;
 
 	public User(String username, String password, String roles) {
 		this.username = username;
