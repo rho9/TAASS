@@ -30,4 +30,10 @@ public class IndexController {
 		ModelAndView modelAndView = new ModelAndView("login");
 		return modelAndView;
 	}
+
+	@GetMapping("/error")
+	public ModelAndView error() {
+		ModelAndView modelAndView = new ModelAndView("error");
+		return modelAndView;
+	}
 }

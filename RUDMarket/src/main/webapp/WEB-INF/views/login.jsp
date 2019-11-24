@@ -3,7 +3,7 @@
     <title>Please Login</title>
 </head>
 <body>
-<div">
+<div>
     <form action="/login" method="post">
         <fieldset>
             <legend>Effettuare il Login</legend>
