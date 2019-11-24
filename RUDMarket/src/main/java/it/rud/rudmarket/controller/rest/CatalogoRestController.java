@@ -1,10 +1,10 @@
-package rud.controller.rest;
+package it.rud.rudmarket.controller.rest;
 
+import it.rud.rudmarket.database.CatalogoDatabase;
+import it.rud.rudmarket.database.CatalogoHibernateDatabase;
+import it.rud.rudmarket.model.Sezione;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import rud.database.CatalogoDatabase;
-import rud.database.CatalogoHibernateDatabase;
-import rud.model.Sezione;
 
 import java.util.List;
 
