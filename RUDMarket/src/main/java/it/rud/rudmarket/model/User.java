@@ -11,6 +11,10 @@ public class User {
 	private String password;
 	private String roles;
 
+	public User() {
+		this(null, null, null);
+	}
+
 	public User(String username, String password, String roles) {
 		this.username = username;
 		this.password = password;
