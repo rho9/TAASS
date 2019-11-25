@@ -1,8 +1,8 @@
 package it.rud.rudmarket.controller.rest;
 
 import it.rud.rudmarket.repository.CatalogoRepository;
-import it.rud.rudmarket.repository.CatalogoRepositoryImpl;
 import it.rud.rudmarket.model.Sezione;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,9 +12,11 @@ import java.util.List;
 @RequestMapping("/rest/catalogo")
 public class CatalogoRestController {
 
+	@Autowired
+	CatalogoRepository catalogoRepository;
+
 	@RequestMapping("/findAllSezioni")
 	public List<Sezione> findAllSezioni() {
-		CatalogoRepository catalogoRepository = new CatalogoRepositoryImpl();
-		return catalogoRepository.findAllSezioni();
+		return catalogoRepository.findAll();
 	}
 }

@@ -4,7 +4,7 @@
 </head>
 <body>
 <div>
-<form action="/doRegister" method="post">
+<form action="/register/doRegister" method="post">
     <fieldset>
         <legend>Effettuare la Registrazione</legend>
         <table>
