@@ -11,6 +11,7 @@
 <hr>
 <h1>Welcome Admin</h1>
 <p><a href="/">Home</a></p>
+<p><a href="/gestione/viewProdotto">Aggiungi Prodotto</a></p>
 <a href="/logout">Logout</a>
 </body>
 </html>

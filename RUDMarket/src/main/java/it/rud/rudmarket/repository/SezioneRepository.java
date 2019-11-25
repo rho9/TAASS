@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 
-public interface CatalogoRepository extends JpaRepository<Sezione, String> {
+public interface SezioneRepository extends JpaRepository<Sezione, String> {
 
 }

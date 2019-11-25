@@ -19,13 +19,13 @@ public class RegisterController {
     @Qualifier("udsi")
     RUDUserDetailsService rudUserDetailsService;
 
-    @GetMapping("/viewRegister")
+    @RequestMapping("/viewRegister")
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView("register");
         return modelAndView;
     }
 
-    @PostMapping("/doRegister")
+    @RequestMapping("/doRegister")
     public ModelAndView doRegister(@RequestParam(name="username") String username, @RequestParam(name="password") String password) {
         ModelAndView modelAndView = new ModelAndView("index");
 

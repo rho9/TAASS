@@ -22,7 +22,7 @@
     </form>
   </div>
   <p>Go to <a href="/user">User</a></p>
-  <p>Go to <a href="/admin">Admin</a></p>
+  <p>Go to <a href="/gestione/viewAdmin">Admin</a></p>
   <p>Go to <a href="/register/viewRegister">Register</a></p>
 </body>
 </html>

@@ -1,4 +1,8 @@
 package it.rud.rudmarket.repository;
 
-public interface ProdottoRepository {
+import it.rud.rudmarket.model.Prodotto;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProdottoRepository extends JpaRepository<Prodotto, String> {
+
 }
