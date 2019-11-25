@@ -1,12 +1,10 @@
 package it.rud.rudmarket.service;
 
-import it.rud.rudmarket.model.Prodotto;
 import it.rud.rudmarket.model.User;
 import it.rud.rudmarket.model.UserDetailsImpl;
 import it.rud.rudmarket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
