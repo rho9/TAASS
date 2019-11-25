@@ -7,6 +7,8 @@ import it.rud.rudmarket.repository.SezioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ProdottoServiceImpl implements ProdottoService {
 
@@ -17,11 +19,18 @@ public class ProdottoServiceImpl implements ProdottoService {
 	SezioneRepository sezioneRepository;
 
 	@Override
-	public void addProdotto(String nomeProdotto, String nomeSezione) {
+	public boolean addProdotto(String nomeProdotto, String nomeSezione) {
+		Optional<Prodotto> prodottoOptional = prodottoRepository.findById(nomeProdotto);
+
+		if (prodottoOptional.isPresent()) {
+			return false;
+		}
+
 		Prodotto prodotto = new Prodotto(nomeProdotto);
 		prodottoRepository.saveAndFlush(prodotto);
 		Sezione sezione = sezioneRepository.findById(nomeSezione).get();
 		sezione.getProdottoList().add(prodotto);
 		sezioneRepository.saveAndFlush(sezione);
+		return true;
 	}
 }

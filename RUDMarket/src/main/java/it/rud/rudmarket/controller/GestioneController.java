@@ -35,7 +35,10 @@ public class GestioneController {
 
 	@RequestMapping("/doAddProdotto")
 	public String doAddProdotto(@RequestParam(name="nomeProdotto") String nomeProdotto, @RequestParam(name="nomeSezione") String nomeSezione) {
-		prodottoService.addProdotto(nomeProdotto, nomeSezione);
-		return "forward:/gestione/viewProdotto";
+		if (prodottoService.addProdotto(nomeProdotto, nomeSezione)) {
+			return "forward:/gestione/viewProdotto";
+		} else {
+			return "forward:/error";
+		}
 	}
 }

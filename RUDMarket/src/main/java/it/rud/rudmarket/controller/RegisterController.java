@@ -26,11 +26,11 @@ public class RegisterController {
     }
 
     @RequestMapping("/doRegister")
-    public ModelAndView doRegister(@RequestParam(name="username") String username, @RequestParam(name="password") String password) {
-        ModelAndView modelAndView = new ModelAndView("index");
-
-        rudUserDetailsService.createUser(username, password);
-
-        return modelAndView;
+    public String doRegister(@RequestParam(name="username") String username, @RequestParam(name="password") String password) {
+        if (rudUserDetailsService.createUser(username, password)) {
+            return "forward:/";
+        } else {
+          return "forward:/error";
+        }
     }
 }

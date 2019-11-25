@@ -1,5 +1,6 @@
 package it.rud.rudmarket.service;
 
+import it.rud.rudmarket.model.Prodotto;
 import it.rud.rudmarket.model.User;
 import it.rud.rudmarket.model.UserDetailsImpl;
 import it.rud.rudmarket.repository.UserRepository;
@@ -8,6 +9,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 // classe che implementa la logica di recupero delle info dello user dal database (per ora è fittizio)
 @Service(value = "udsi")
@@ -29,7 +32,14 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 	}
 
 	@Override
-	public void createUser(String username, String password) {
+	public boolean createUser(String username, String password) {
+		Optional<User> userOptional = userRepository.findById(username);
+
+		if (userOptional.isPresent()) {
+			return false;
+		}
+		
 		userRepository.saveAndFlush(new User(username, password, "user"));
+		return true;
 	}
 }
