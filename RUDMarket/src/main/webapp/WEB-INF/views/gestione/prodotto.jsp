@@ -3,7 +3,7 @@
 <%@ page import="it.rud.rudmarket.model.Sezione" %>
 <html>
 <head>
-    <title>Please register</title>
+    <title>Please enter product</title>
 </head>
 <body>
 <% List cList = (ArrayList)request.getAttribute("sezioni"); %>

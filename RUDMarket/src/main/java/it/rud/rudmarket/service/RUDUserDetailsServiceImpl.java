@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 // classe che implementa la logica di recupero delle info dello user dal database (per ora è fittizio)
@@ -40,6 +42,24 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 		}
 		
 		userRepository.saveAndFlush(new User(username, password, "user"));
+		return true;
+	}
+
+	@Override
+	public List<String> getUserUsername() {
+		List<String> result = new ArrayList<>();
+		List<User> users = userRepository.findAll();
+		for(User u : users){
+			result.add(u.getUsername());
+		}
+		return result;
+	}
+
+	@Override
+	public boolean upgradeRole(String username) {
+		User user = userRepository.findById(username).get();
+		user.setRoles("admin");
+		userRepository.saveAndFlush(user);
 		return true;
 	}
 }
