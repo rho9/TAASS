@@ -13,9 +13,16 @@ public class User {
 	private String password;
 	private String roles;
 
-	@OneToMany(targetEntity = Promozione.class)
-	@JoinColumn(name = "promozione_id")
-	private List<Promozione> promozioneList;
+	@ManyToMany
+	@JoinTable(
+			name = "promozione",
+			joinColumns = @JoinColumn(name = "user_email"),
+			inverseJoinColumns = @JoinColumn(name = "prodotto_nomeMarca")
+	)
+	List<Prodotto> prodottiPromozioni;
+
+	@OneToMany(mappedBy = "user")
+	List<Promozione> promozioni;
 
 	public User() {
 		this(null, null, null, null, null, null);
@@ -76,5 +83,13 @@ public class User {
 
 	public void setRoles(String roles) {
 		this.roles = roles;
+	}
+
+	public List<Promozione> getPromozioni() {
+		return promozioni;
+	}
+
+	public void setPromozioni(List<Promozione> promozioni) {
+		this.promozioni = promozioni;
 	}
 }

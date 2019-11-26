@@ -10,6 +10,7 @@ public class Sezione {
 	private String nomeSezione;
 
 	@OneToMany(targetEntity = Prodotto.class)
+	@JoinColumn(name = "nomeSezione")
 	private List<Prodotto> prodottoList;
 
 	public Sezione() {
