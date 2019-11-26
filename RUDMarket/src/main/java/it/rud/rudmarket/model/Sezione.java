@@ -1,9 +1,6 @@
 package it.rud.rudmarket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -13,7 +10,14 @@ public class Sezione {
 	private String nome;
 
 	@OneToMany(targetEntity = Prodotto.class)
-	@JoinColumn(name = "sezione_name")
+	@JoinColumns({
+			@JoinColumn(
+					name = "nome_prodotto",
+					referencedColumnName = "nome_prodotto"),
+			@JoinColumn(
+					name = "marca_prodotto",
+					referencedColumnName = "marca_prodotto")
+	})
 	private List<Prodotto> prodottoList;
 
 
