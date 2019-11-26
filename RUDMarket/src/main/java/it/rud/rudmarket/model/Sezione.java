@@ -1,37 +1,48 @@
 package it.rud.rudmarket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 public class Sezione {
 
 	@Id
-	private String nome;
+	private String nomeSezione;
+
+	private String img;
 
 	@OneToMany(targetEntity = Prodotto.class)
-	@JoinColumn(name = "sezione_name")
+	@JoinColumn(name = "nomeSezione")
 	private List<Prodotto> prodottoList;
 
+	@ManyToMany(mappedBy = "catalogo")
+	private List<Supermercato> supermercatoList;
 
 	public Sezione() {
-		this(null, null);
+		this(null, null, null, null);
 	}
 
-	public Sezione(String nome, List<Prodotto> prodottoList) {
-		this.nome = nome;
+	public Sezione(String nomeSezione, String img, List<Prodotto> prodottoList, List<Supermercato> supermercatoList) {
+		this.nomeSezione = nomeSezione;
+		this.img = img;
 		this.prodottoList = prodottoList;
+		this.supermercatoList = supermercatoList;
 	}
 
-	public String getNome() {
-		return nome;
+	public List<Supermercato> getSupermercatoList() {
+		return supermercatoList;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setSupermercatoList(List<Supermercato> supermercatoList) {
+		this.supermercatoList = supermercatoList;
+	}
+
+	public String getNomeSezione() {
+		return nomeSezione;
+	}
+
+	public void setNomeSezione(String nomeSezione) {
+		this.nomeSezione = nomeSezione;
 	}
 
 	public List getProdottoList() {
@@ -40,5 +51,13 @@ public class Sezione {
 
 	public void setProdottoList(List<Prodotto> prodottoList) {
 		this.prodottoList = prodottoList;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 }

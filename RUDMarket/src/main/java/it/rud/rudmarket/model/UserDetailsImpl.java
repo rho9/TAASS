@@ -11,11 +11,14 @@ import java.util.List;
 
 public class UserDetailsImpl implements UserDetails {
 
-	private String username, password;
+	private String email, nome, cognome, ncarta, password;
 	private List<GrantedAuthority> authorities;
 
 	public UserDetailsImpl(User user) {
-		this.username = user.getUsername();
+		this.email = user.getEmail();
+		this.nome = user.getNome();
+		this.cognome = user.getCognome();
+		this.ncarta = user.getNcarta();
 		this.password = user.getPassword();
 
 		List<GrantedAuthority> list = new ArrayList<>();
@@ -40,7 +43,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.username;
+		return this.email;
 	}
 
 	@Override

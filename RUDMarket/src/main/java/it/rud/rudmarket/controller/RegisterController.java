@@ -23,8 +23,12 @@ public class RegisterController {
     }
 
     @RequestMapping("/doRegister")
-    public String doRegister(@RequestParam(name="username") String username, @RequestParam(name="password") String password) {
-        if (rudUserDetailsService.createUser(username, password)) {
+    public String doRegister(
+            @RequestParam(name = "email") String email,
+            @RequestParam(name = "nome") String nome,
+            @RequestParam(name = "cognome") String cognome,
+            @RequestParam(name = "password") String password) {
+        if (rudUserDetailsService.createUser(email, nome, cognome, null, password)) {
             return "forward:/";
         } else {
           return "forward:/error";

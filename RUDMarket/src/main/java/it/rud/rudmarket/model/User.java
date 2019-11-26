@@ -1,32 +1,72 @@
 package it.rud.rudmarket.model;
 
 import javax.persistence.*;
+import java.util.List;
 
-// quello che è presente nel database
 @Entity
 public class User {
 
 	@Id
-	private String username;
+	private String email;
+	private String nome, cognome;
+	private String ncarta;
 	private String password;
 	private String roles;
 
+	@ManyToMany
+	@JoinTable(
+			name = "promozione",
+			joinColumns = @JoinColumn(name = "user_email"),
+			inverseJoinColumns = @JoinColumn(name = "prodotto_nomeMarca")
+	)
+	List<Prodotto> prodottiPromozioni;
+
+	@OneToMany(mappedBy = "user")
+	List<Promozione> promozioni;
+
 	public User() {
-		this(null, null, null);
+		this(null, null, null, null, null, null);
 	}
 
-	public User(String username, String password, String roles) {
-		this.username = username;
+	public User(String email, String nome, String cognome, String ncarta, String password, String roles) {
+		this.email = email;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.ncarta = ncarta;
 		this.password = password;
 		this.roles = roles;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+
+	public String getNcarta() {
+		return ncarta;
+	}
+
+	public void setNcarta(String ncarta) {
+		this.ncarta = ncarta;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -43,5 +83,13 @@ public class User {
 
 	public void setRoles(String roles) {
 		this.roles = roles;
+	}
+
+	public List<Promozione> getPromozioni() {
+		return promozioni;
+	}
+
+	public void setPromozioni(List<Promozione> promozioni) {
+		this.promozioni = promozioni;
 	}
 }

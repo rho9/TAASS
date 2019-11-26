@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 
 public interface RUDUserDetailsService extends UserDetailsService {
-    boolean createUser(String username, String password);
+    boolean createUser(String email, String nome, String cognome, String ncarta, String password);
     List<String> getUserUsername();
     boolean upgradeRole(String username);
 }

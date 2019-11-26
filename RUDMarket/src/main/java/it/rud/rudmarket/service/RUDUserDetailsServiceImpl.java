@@ -20,11 +20,11 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 	UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(userName);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(email);
 		if(user==null)
 			try {
-				throw new UsernameNotFoundException("Not found: " + userName);
+				throw new UsernameNotFoundException("Not found: " + email);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -32,14 +32,14 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 	}
 
 	@Override
-	public boolean createUser(String username, String password) {
-		Optional<User> userOptional = userRepository.findById(username);
+	public boolean createUser(String email, String nome, String cognome, String ncarta, String password) {
+		Optional<User> userOptional = userRepository.findById(email);
 
 		if (userOptional.isPresent()) {
 			return false;
 		}
 		
-		userRepository.saveAndFlush(new User(username, password, "user"));
+		userRepository.saveAndFlush(new User(email, nome, cognome, 	ncarta, password, "user"));
 		return true;
 	}
 
@@ -48,7 +48,7 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 		List<String> result = new ArrayList<>();
 		List<User> users = userRepository.findAll();
 		for(User u : users){
-			result.add(u.getUsername());
+			result.add(u.getEmail());
 		}
 		return result;
 	}
