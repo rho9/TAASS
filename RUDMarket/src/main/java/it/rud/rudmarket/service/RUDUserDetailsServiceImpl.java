@@ -20,11 +20,11 @@ public class RUDUserDetailsServiceImpl implements RUDUserDetailsService {
 	UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(userName);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(email);
 		if(user==null)
 			try {
-				throw new UsernameNotFoundException("Not found: " + userName);
+				throw new UsernameNotFoundException("Not found: " + email);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

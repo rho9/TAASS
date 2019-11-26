@@ -7,35 +7,26 @@ import java.util.List;
 public class Sezione {
 
 	@Id
-	private String nome;
+	private String nomeSezione;
 
 	@OneToMany(targetEntity = Prodotto.class)
-	@JoinColumns({
-			@JoinColumn(
-					name = "nome_prodotto",
-					referencedColumnName = "nome_prodotto"),
-			@JoinColumn(
-					name = "marca_prodotto",
-					referencedColumnName = "marca_prodotto")
-	})
 	private List<Prodotto> prodottoList;
-
 
 	public Sezione() {
 		this(null, null);
 	}
 
-	public Sezione(String nome, List<Prodotto> prodottoList) {
-		this.nome = nome;
+	public Sezione(String nomeSezione, List<Prodotto> prodottoList) {
+		this.nomeSezione = nomeSezione;
 		this.prodottoList = prodottoList;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeSezione() {
+		return nomeSezione;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeSezione(String nomeSezione) {
+		this.nomeSezione = nomeSezione;
 	}
 
 	public List getProdottoList() {

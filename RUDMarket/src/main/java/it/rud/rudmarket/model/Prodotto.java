@@ -1,5 +1,7 @@
 package it.rud.rudmarket.model;
 
+import it.rud.rudmarket.model.ids.ProdottoID;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,31 +10,23 @@ import javax.persistence.Id;
 public class Prodotto {
 
     @EmbeddedId
-    private String id;
-
-    private String nome;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private ProdottoID idProdotto;
+    private int prezzo;
 
     public Prodotto() {
-        this(null);
-    }
+    	this(null, null, 0);
+	}
 
-    public Prodotto(String nome) {
-        this.nome = nome;
-    }
+	public Prodotto(String nomeProdotto, String marcaProdotto, int prezzo) {
+    	this.idProdotto = new ProdottoID(nomeProdotto, marcaProdotto);
+    	this.prezzo = prezzo;
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public ProdottoID getIdProdotto() {
+		return idProdotto;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setIdProdotto(ProdottoID idProdotto) {
+		this.idProdotto = idProdotto;
+	}
 }

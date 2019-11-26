@@ -19,14 +19,14 @@ public class ProdottoServiceImpl implements ProdottoService {
 	SezioneRepository sezioneRepository;
 
 	@Override
-	public boolean addProdotto(String nomeProdotto, String nomeSezione) {
+	public boolean addProdotto(String nomeProdotto, String marcaProdotto, int prezzo, String nomeSezione) {
 		Optional<Prodotto> prodottoOptional = prodottoRepository.findById(nomeProdotto);
 
 		if (prodottoOptional.isPresent()) {
 			return false;
 		}
 
-		Prodotto prodotto = new Prodotto(nomeProdotto);
+		Prodotto prodotto = new Prodotto(nomeProdotto, marcaProdotto, prezzo);
 		prodottoRepository.saveAndFlush(prodotto);
 		Sezione sezione = sezioneRepository.findById(nomeSezione).get();
 		sezione.getProdottoList().add(prodotto);

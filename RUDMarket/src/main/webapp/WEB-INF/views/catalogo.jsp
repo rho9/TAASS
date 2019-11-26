@@ -19,7 +19,7 @@
     <%
         for(int i = 0; i< cList.size(); i++){%>
     <tr>
-        <td><%= ((Sezione) cList.get(i)).getNome() %></td>
+        <td><%= ((Sezione) cList.get(i)).getNomeSezione() %></td>
     </tr>
     <%}%>
 </table>

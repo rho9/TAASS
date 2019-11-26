@@ -16,6 +16,12 @@
                     <td>Nome:</td><td><input type="text" name="nomeProdotto"/></td>
                 </tr>
                 <tr>
+                    <td>Marca:</td><td><input type="text" name="marcaProdotto"/></td>
+                </tr>
+                <tr>
+                    <td>Prezzo:</td><td><input type="number" name="prezzo"/></td>
+                </tr>
+                <tr>
                     <td>Sezione:</td>
                     <td>
                         <select name="nomeSezione">
@@ -23,7 +29,7 @@
                                 for(int i = 0; i< cList.size(); i++){
                                 	Sezione sezione = (Sezione) cList.get(i);
                             %>
-                                <option value="<%= sezione.getNome() %>"><%= sezione.getNome() %></option>
+                                <option value="<%= sezione.getNomeSezione() %>"><%= sezione.getNomeSezione() %></option>
                             <%}%>
                         </select>
                     </td>

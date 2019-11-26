@@ -7,15 +7,15 @@ import javax.persistence.Id;
 public class Promozione {
 
 	@Id
-	private int id;
+	private int idPromozione;
 	private int sconto;
 
 	public Promozione() {
 		this(-1, -1);
 	}
 
-	public Promozione(int id, int sconto) {
-		this.id = id;
+	public Promozione(int idPromozione, int sconto) {
+		this.idPromozione = idPromozione;
 		this.sconto = sconto;
 	}
 

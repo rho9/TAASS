@@ -9,7 +9,13 @@
         <legend>Effettuare la Registrazione</legend>
         <table>
             <tr>
-                <td>Username:</td><td><input type="text" id="username" name="username"/></td>
+                <td>Email:</td><td><input type="text" id="email" name="email"/></td>
+            </tr>
+            <tr>
+                <td>Nome:</td><td><input type="text" id="nome" name="nome"/></td>
+            </tr>
+            <tr>
+                <td>Cognome:</td><td><input type="text" id="cognome" name="cognome"/></td>
             </tr>
             <tr>
                 <td>Password:</td><td><input type="password" id="password" name="password"/></td>
