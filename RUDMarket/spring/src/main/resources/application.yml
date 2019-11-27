@@ -17,13 +17,12 @@ spring:
         client:
           registration:
             google:
-              clientId: 49663318929-ug600dl3dca3b8r3pgfdbl83b9j23b05.apps.googleusercontent.com
-              clientSecret: oQxikQfX7aduJgj8k4v-yn1F
+              clientId: 49663318929-q6h728odgptsngggnffs2pt0ft3ir4hp.apps.googleusercontent.com
+              clientSecret: WTsn_zgHdb7WEIfkHYGVvahL
               redirectUriTemplate: "{baseUrl}/oauth2/callback/{registrationId}"
               scope:
                 - email
                 - profile
-                - openid
             facebook:
               clientId: 121189305185277
               clientSecret: 42ffe5aa7379e8326387e0fe16f34132
