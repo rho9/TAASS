@@ -17,6 +17,9 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String surname;
+
     @Email
     @Column(nullable = false)
     private String email;
@@ -28,6 +31,12 @@ public class User {
 
     @JsonIgnore
     private String password;
+
+    @Column(nullable = false)
+    private String ncard;
+
+    @Column(nullable = false)
+    private String roles;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -97,5 +106,29 @@ public class User {
 
     public void setProviderId(String providerId) {
         this.providerId = providerId;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getNcard() {
+        return ncard;
+    }
+
+    public void setNcard(String ncard) {
+        this.ncard = ncard;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
