@@ -7,9 +7,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties(AppProperties.class)
-public class EatFoodPostApplication {
-
+public class RUDMarketApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(EatFoodPostApplication.class, args);
+		SpringApplication.run(RUDMarketApplication.class, args);
 	}
 }
