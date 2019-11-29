@@ -55,9 +55,7 @@ class SignupForm extends Component {
         super(props);
         this.state = {
             name: '',
-            surname: '',
             email: '',
-            ncard: '',
             password: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -97,11 +95,6 @@ class SignupForm extends Component {
                         value={this.state.name} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <input type="text" name="surname"
-                           className="form-control" placeholder="Surname"
-                           value={this.state.surname} onChange={this.handleInputChange} required/>
-                </div>
-                <div className="form-item">
                     <input type="email" name="email" 
                         className="form-control" placeholder="Email"
                         value={this.state.email} onChange={this.handleInputChange} required/>
@@ -110,11 +103,6 @@ class SignupForm extends Component {
                     <input type="password" name="password" 
                         className="form-control" placeholder="Password"
                         value={this.state.password} onChange={this.handleInputChange} required/>
-                </div>
-                <div className="form-item">
-                    <input type="text" name="ncard"
-                           className="form-control" placeholder="Numero carta"
-                           value={this.state.ncard} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
                     <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>

@@ -49,3 +49,11 @@ export function signup(signupRequest) {
         body: JSON.stringify(signupRequest)
     });
 }
+
+export function addRecipe(addRecipeRequest){
+    return request({
+        url: API_BASE_URL + "/recipe/addFromUser",
+        method: 'POST',
+        body: JSON.stringify(addRecipeRequest) 
+    });
+}
