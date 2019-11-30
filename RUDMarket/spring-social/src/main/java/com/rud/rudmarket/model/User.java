@@ -17,6 +17,8 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    private String surname;
+
     @Email
     @Column(nullable = false)
     private String email;
@@ -34,6 +36,34 @@ public class User {
     private AuthProvider provider;
 
     private String providerId;
+
+    private String ncarta;
+
+    private String role;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getNcarta() {
+        return ncarta;
+    }
+
+    public void setNcarta(String ncarta) {
+        this.ncarta = ncarta;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;

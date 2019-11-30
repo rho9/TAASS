@@ -15,8 +15,18 @@ public class SignUpRequest {
     @Email
     private String email;
 
+    private String surname;
+
     @NotBlank
     private String password;
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
     public String getName() {
         return name;

@@ -55,6 +55,7 @@ class SignupForm extends Component {
         super(props);
         this.state = {
             name: '',
+            surname: '',
             email: '',
             password: ''
         }
@@ -64,7 +65,8 @@ class SignupForm extends Component {
 
     handleInputChange(event) {
         const target = event.target;
-        const inputName = target.name;        
+        const inputName = target.name;
+        const inputSurname = target.surname;
         const inputValue = target.value;
 
         this.setState({
@@ -91,8 +93,13 @@ class SignupForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="form-item">
                     <input type="text" name="name" 
-                        className="form-control" placeholder="Name"
+                        className="form-control" placeholder="Nome"
                         value={this.state.name} onChange={this.handleInputChange} required/>
+                </div>
+                <div className="form-item">
+                    <input type="text" name="surname"
+                           className="form-control" placeholder="Cognome"
+                           value={this.state.surname} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
                     <input type="email" name="email" 
