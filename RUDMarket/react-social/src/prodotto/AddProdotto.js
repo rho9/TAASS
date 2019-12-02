@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { addRecipe } from '../util/APIUtils';
+import { addProdotto } from '../util/APIUtils';
 import Alert from 'react-s-alert';
-/*import './Profile.css';*/
 
-class AddRecipe extends Component {
+class AddProdotto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            steps: ''
+            nome: '',
+            marca: ''
         }
         console.log(props);
 
@@ -18,23 +17,22 @@ class AddRecipe extends Component {
     }
 
     handleChangeTitle(event) {
-        this.setState({title: event.target.value});
+        this.setState({nome: event.target.value});
     }
     
     handleChangeSteps(event) {
-        this.setState({steps: event.target.value});
+        this.setState({marca: event.target.value});
     }
 
     handleSubmit(event) {
-        alert("È stato inserito una ricetta: " + this.state.title + this.state.steps);
+        alert("È stato inserito un prodotto: " + this.state.nome + " " + this.state.marca);
         
         event.preventDefault();
 
-        const addRecipeRequest = Object.assign({}, this.state);
-        addRecipe(addRecipeRequest)
+        const addProdottoRequest = Object.assign({}, this.state);
+        addProdotto(addProdottoRequest)
             .then(response => {
-                Alert.success("Ricetta aggiunta correttamente!");
-                //this.props.history.push("/profile");
+                Alert.success("Prodotto aggiunto correttamente!");
             }).catch(error => {
                 Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            
             });
@@ -44,23 +42,23 @@ class AddRecipe extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                Nome ricetta:  
+                Nome Prodotto:
                 <input
                     type="text"
-                    value={this.state.title}
+                    value={this.state.nome}
                     onChange={this.handleChangeTitle}/>
                 </label>
                 <label>
-                Steps: 
+                Marca Prodotto:
                 <input
                     type="text"
-                    value={this.state.steps}
+                    value={this.state.marca}
                     onChange={this.handleChangeSteps}/>
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Aggiungi" />
             </form>
         );
     }
 }
 
-export default AddRecipe
+export default AddProdotto
