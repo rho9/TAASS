@@ -1,9 +1,7 @@
 package com.rud.rudmarket.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Prodotto {
@@ -12,6 +10,12 @@ public class Prodotto {
 	private Long id;
 
 	private String nome, marca;
+
+	@OneToMany(mappedBy = "prodotto")
+	List<Sconto> scontoList;
+
+	@OneToMany(mappedBy = "prodotto")
+	List<Ordine> ordineList;
 
 	public Long getId() {
 		return id;
