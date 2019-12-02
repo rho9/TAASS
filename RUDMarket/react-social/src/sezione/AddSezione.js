@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { addSezione } from '../util/APIUtils';
-import SezioniCombo from "./SezioniCombo";
 import Alert from 'react-s-alert';
+import SezioniList from "./SezioniList";
 
 class AddSezione extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class AddSezione extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         fetch('http://localhost:8080/sezione/getSezioni')
             .then(res => res.json())
             .then((data) => {
@@ -54,6 +54,7 @@ class AddSezione extends Component {
                     </label>
                     <input type="submit" value="Aggiungi"/>
                 </form>
+                <SezioniList sezioni={this.state.sezioni} />
             </div>
         );
     }
