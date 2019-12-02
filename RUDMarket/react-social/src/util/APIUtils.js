@@ -50,10 +50,18 @@ export function signup(signupRequest) {
     });
 }
 
-export function addRecipe(addRecipeRequest){
+export function addProdotto(addProdottoRequest){
     return request({
-        url: API_BASE_URL + "/recipe/addFromUser",
+        url: API_BASE_URL + "/prodotto/addProdotto",
         method: 'POST',
-        body: JSON.stringify(addRecipeRequest) 
+        body: JSON.stringify(addProdottoRequest)
+    });
+}
+
+export function addSezione(addSezioneRequest){
+    return request({
+        url: API_BASE_URL + "/sezione/addSezione",
+        method: 'POST',
+        body: JSON.stringify(addSezioneRequest)
     });
 }

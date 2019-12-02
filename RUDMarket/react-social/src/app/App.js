@@ -8,7 +8,7 @@ import Home from '../home/Home';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
-import AddRecipe from '../recipe/AddRecipe';
+import AddProdotto from '../prodotto/AddProdotto';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -19,6 +19,7 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
+import AddSezione from "../sezione/AddSezione";
 
 class App extends Component {
   constructor(props) {
@@ -80,8 +81,10 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>           
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
-            <PrivateRoute path="/recipe/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-              component={AddRecipe}></PrivateRoute>
+            <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+              component={AddProdotto}></PrivateRoute>
+            <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={AddSezione}></PrivateRoute>
             <Route path="/login"
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"

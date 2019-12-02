@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {
+@Table(name = "utente", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
 })
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -40,6 +41,12 @@ public class User {
     private String ncarta;
 
     private String role;
+
+    @OneToMany(mappedBy = "user")
+    List<Sconto> scontoList;
+
+    @OneToMany(mappedBy = "user")
+    List<Ordine> ordineList;
 
     public String getSurname() {
         return surname;
@@ -127,5 +134,13 @@ public class User {
 
     public void setProviderId(String providerId) {
         this.providerId = providerId;
+    }
+
+    public List<Sconto> getScontoList() {
+        return scontoList;
+    }
+
+    public void setScontoList(List<Sconto> scontoList) {
+        this.scontoList = scontoList;
     }
 }
