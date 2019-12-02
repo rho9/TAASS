@@ -12,7 +12,7 @@ class AppHeader extends Component {
                     </div>
                     <div className="app-options">
                         <nav className="app-nav">
-                                { this.props.authenticated ? (
+                                { this.props.authenticated && this.props.currentUser.role == "ADMIN" ? (
                                     <ul>
                                         <li>
                                             <NavLink to="/profile">Profile</NavLink>
@@ -27,13 +27,22 @@ class AppHeader extends Component {
                                             <a onClick={this.props.onLogout}>Logout</a>
                                         </li>
                                     </ul>
-                                ): (
+                                ): this.props.authenticated && this.props.currentUser.role == "USER" ? (
                                     <ul>
                                         <li>
-                                            <NavLink to="/login">Login</NavLink>        
+                                            <NavLink to="/profile">Profile</NavLink>
                                         </li>
                                         <li>
-                                            <NavLink to="/signup">Signup</NavLink>        
+                                            <a onClick={this.props.onLogout}>Logout</a>
+                                        </li>
+                                    </ul>
+                                ) : (
+                                    <ul>
+                                        <li>
+                                            <NavLink to="/login">Login</NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink to="/signup">Signup</NavLink>
                                         </li>
                                     </ul>
                                 )}
