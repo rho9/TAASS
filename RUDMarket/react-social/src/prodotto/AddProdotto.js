@@ -25,14 +25,13 @@ class AddProdotto extends Component {
     }
 
     handleSubmit(event) {
-        alert("È stato inserito un prodotto: " + this.state.nome + " " + this.state.marca);
-        
         event.preventDefault();
 
         const addProdottoRequest = Object.assign({}, this.state);
         addProdotto(addProdottoRequest)
             .then(response => {
                 Alert.success("Prodotto aggiunto correttamente!");
+
             }).catch(error => {
                 Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            
             });
@@ -45,6 +44,7 @@ class AddProdotto extends Component {
                 Nome Prodotto:
                 <input
                     type="text"
+                    ref="nomeForm"
                     value={this.state.nome}
                     onChange={this.handleChangeTitle}/>
                 </label>
@@ -52,10 +52,11 @@ class AddProdotto extends Component {
                 Marca Prodotto:
                 <input
                     type="text"
+                    ref="marcaForm"
                     value={this.state.marca}
                     onChange={this.handleChangeSteps}/>
                 </label>
-                <input type="submit" value="Aggiungi" />
+                <input type="submit" value="Aggiungi"/>
             </form>
         );
     }
