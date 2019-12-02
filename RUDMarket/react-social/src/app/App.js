@@ -19,6 +19,7 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
+import AddSezione from "../sezione/AddSezione";
 
 class App extends Component {
   constructor(props) {
@@ -82,6 +83,8 @@ class App extends Component {
               component={Profile}></PrivateRoute>
             <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={AddProdotto}></PrivateRoute>
+            <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={AddSezione}></PrivateRoute>
             <Route path="/login"
               render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"

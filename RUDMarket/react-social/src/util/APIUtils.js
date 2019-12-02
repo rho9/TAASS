@@ -57,3 +57,11 @@ export function addProdotto(addProdottoRequest){
         body: JSON.stringify(addProdottoRequest)
     });
 }
+
+export function addSezione(addSezioneRequest){
+    return request({
+        url: API_BASE_URL + "/sezione/addSezione",
+        method: 'POST',
+        body: JSON.stringify(addSezioneRequest)
+    });
+}

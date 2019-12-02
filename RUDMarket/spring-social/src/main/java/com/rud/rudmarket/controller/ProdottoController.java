@@ -7,18 +7,18 @@ import com.rud.rudmarket.repository.UserRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/prodotto")
 public class ProdottoController {
 
-    /*@Autowired
-    private UserRepository userRepository;*/
     @Autowired
     private ProdottoRepository prodottoRepository;
 
-    @PostMapping("/prodotto/addProdotto")
-    //@PreAuthorize("hasRole('USER')")
+    @PostMapping("/addProdotto")
+    //@PreAuthorize("hasRole('ADMIN')")
     public Prodotto addProdotto(@CurrentUser UserPrincipal userPrincipal, @RequestBody ProdottoForm prodottoForm) {
 
         /* User currentUser = userRepository.findById(userPrincipal.getId())

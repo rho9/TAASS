@@ -1,36 +1,30 @@
 import React, { Component } from 'react';
-import { addProdotto } from '../util/APIUtils';
+import { addSezione } from '../util/APIUtils';
 import Alert from 'react-s-alert';
 
-class AddProdotto extends Component {
+class AddSezione extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nome: '',
-            marca: ''
+            nome: ''
         }
         console.log(props);
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
-        this.handleChangeSteps = this.handleChangeSteps.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeTitle(event) {
         this.setState({nome: event.target.value});
     }
-    
-    handleChangeSteps(event) {
-        this.setState({marca: event.target.value});
-    }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        const addProdottoRequest = Object.assign({}, this.state);
-        addProdotto(addProdottoRequest)
+        const addSezioneRequest = Object.assign({}, this.state);
+        addSezione(addSezioneRequest)
             .then(response => {
-                Alert.success("Prodotto aggiunto correttamente!");
+                Alert.success("Sezione aggiunta correttamente!");
 
             }).catch(error => {
                 Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            
@@ -41,18 +35,11 @@ class AddProdotto extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <label>
-                Nome Prodotto:
+                Nome Sezione:
                 <input
                     type="text"
                     value={this.state.nome}
                     onChange={this.handleChangeTitle}/>
-                </label>
-                <label>
-                Marca Prodotto:
-                <input
-                    type="text"
-                    value={this.state.marca}
-                    onChange={this.handleChangeSteps}/>
                 </label>
                 <input type="submit" value="Aggiungi"/>
             </form>
@@ -60,4 +47,4 @@ class AddProdotto extends Component {
     }
 }
 
-export default AddProdotto
+export default AddSezione
