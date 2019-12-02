@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { addProdotto } from '../util/APIUtils';
 import Alert from 'react-s-alert';
-import SezioniCombo from "../sezione/SezioniCombo";
 
 class AddProdotto extends Component {
     constructor(props) {
