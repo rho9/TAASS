@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { addSezione } from '../util/APIUtils';
-import Sezioni from "./Sezioni";
+import SezioniCombo from "./SezioniCombo";
 import Alert from 'react-s-alert';
 
 class AddSezione extends Component {
@@ -54,7 +54,6 @@ class AddSezione extends Component {
                     </label>
                     <input type="submit" value="Aggiungi"/>
                 </form>
-            <Sezioni sezioni={this.state.sezioni}/>
             </div>
         );
     }

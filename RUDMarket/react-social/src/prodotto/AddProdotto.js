@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
 import { addProdotto } from '../util/APIUtils';
 import Alert from 'react-s-alert';
+import SezioniCombo from "../sezione/SezioniCombo";
 
 class AddProdotto extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nome: '',
-            marca: ''
+            marca: '',
+            sezioni: [],
+            selectedSezione: '',
+            validationError: ''
         }
         console.log(props);
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleChangeSteps = this.handleChangeSteps.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        fetch("http://localhost:8080/sezione/getSezioni")
+            .then((response) => {
+                return response.json();
+            })
+            .then(data => {
+                let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
+                this.setState({ sezioni: [{value: '', display: '(Seleziona la Sezione del Prodotto)'}].concat(sezioniFromApi) });
+            }).catch(error => {
+            console.log(error);
+        });
     }
 
     handleChangeTitle(event) {
@@ -54,6 +71,10 @@ class AddProdotto extends Component {
                     value={this.state.marca}
                     onChange={this.handleChangeSteps}/>
                 </label>
+                <select value={this.state.selectedSezione}
+                        onChange={(e) => this.setState({selectedSezione: e.target.value})}>
+                    {this.state.sezioni.map((sezione) => <option key={sezione.value} value={sezione.value}>{sezione.display}</option>)}
+                </select>
                 <input type="submit" value="Aggiungi"/>
             </form>
         );

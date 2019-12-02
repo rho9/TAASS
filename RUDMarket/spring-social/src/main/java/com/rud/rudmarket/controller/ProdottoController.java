@@ -1,14 +1,16 @@
 package com.rud.rudmarket.controller;
 
 import com.rud.rudmarket.model.Prodotto;
+import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
-import com.rud.rudmarket.repository.UserRepository;
+import com.rud.rudmarket.repository.SezioneRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/prodotto")
@@ -17,24 +19,27 @@ public class ProdottoController {
     @Autowired
     private ProdottoRepository prodottoRepository;
 
+    @Autowired
+    private SezioneRepository sezioneRepository;
+
     @PostMapping("/addProdotto")
     //@PreAuthorize("hasRole('ADMIN')")
-    public Prodotto addProdotto(@CurrentUser UserPrincipal userPrincipal, @RequestBody ProdottoForm prodottoForm) {
+    public Prodotto addProdotto(/*@CurrentUser UserPrincipal userPrincipal,*/ @RequestBody ProdottoForm prodottoForm) throws Exception {
+        if (prodottoForm.getSelectedSezione() != null) {
+            Prodotto prodotto = new Prodotto();
+            prodotto.setNome(prodottoForm.getNome());
+            prodotto.setMarca(prodottoForm.getMarca());
+            prodottoRepository.save(prodotto);
 
-        /* User currentUser = userRepository.findById(userPrincipal.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userPrincipal.getId()));
-        Recipe newRecipe = new Recipe();
-        newRecipe.setUser(currentUser);
-        newRecipe.setTitle(recipeForm.getTitle());
-        newRecipe.setSteps(recipeForm.getSteps());
-        newRecipe.setDate(new Date());
-        prodottoRepository.save(newRecipe);
-        return newRecipe;*/
+            Sezione sezione = sezioneRepository.findById(prodottoForm.getSelectedSezione()).get();
+            List<Prodotto> prodottoList = sezione.getProdottoList();
+            prodottoList.add(prodotto);
+            sezione.setProdottoList(prodottoList);
+            sezioneRepository.save(sezione);
 
-        Prodotto prodotto = new Prodotto();
-        prodotto.setNome(prodottoForm.getNome());
-        prodotto.setMarca(prodottoForm.getMarca());
-        prodottoRepository.save(prodotto);
-        return prodotto;
+            return prodotto;
+        }
+
+        throw new Exception("La sezione inserita non è corretta!");
     }
 }

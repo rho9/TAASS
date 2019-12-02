@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Sezioni = ({ sezioni }) => {
+const SezioniList = ({ sezioni }) => {
     return (
         <div>
             <h1>Sezioni presenti</h1>
@@ -15,4 +15,4 @@ const Sezioni = ({ sezioni }) => {
     )
 };
 
-export default Sezioni
+export default SezioniList
