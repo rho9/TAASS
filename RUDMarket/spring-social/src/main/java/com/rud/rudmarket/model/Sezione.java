@@ -14,7 +14,10 @@ public class Sezione {
 
 	@OneToMany
 	@JoinColumn(name = "sezione_id")
-	List<Prodotto> prodottoList = new ArrayList<>();
+	List<Prodotto> prodottoList;
+
+	@ManyToMany(mappedBy = "sezioneList")
+	List<Supermercato> supermercatoList;
 
 	public Long getId() {
 		return id;
@@ -38,5 +41,13 @@ public class Sezione {
 
 	public void setProdottoList(List<Prodotto> prodottoList) {
 		this.prodottoList = prodottoList;
+	}
+
+	public List<Supermercato> getSupermercatoList() {
+		return supermercatoList;
+	}
+
+	public void setSupermercatoList(List<Supermercato> supermercatoList) {
+		this.supermercatoList = supermercatoList;
 	}
 }
