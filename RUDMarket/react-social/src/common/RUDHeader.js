@@ -11,7 +11,7 @@ class RUDHeader extends Component {
                     <div className="row">
                         <div className="col">
                             <div className="app-branding">
-                                <Link to="/" className="app-title">RUD Market</Link>
+                                <Link to="/" className="app-title">RUDMarket</Link>
                             </div>
                         </div>
                         <div className="col">
