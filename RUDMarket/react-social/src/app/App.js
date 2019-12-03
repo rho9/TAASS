@@ -19,6 +19,8 @@ import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
+import '../home/jumbotron.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import AddSezione from "../sezione/AddSezione";
 
 class App extends Component {
@@ -59,7 +61,7 @@ class App extends Component {
       authenticated: false,
       currentUser: null
     });
-    Alert.success("You're safely logged out!");
+    window.location.href = "/";
   }
 
   componentDidMount() {
@@ -71,7 +73,34 @@ class App extends Component {
       return <LoadingIndicator />
     }
 
-    return (
+    return(
+      <body>
+        <RUDHeader authenticated={this.state.authenticated} currentUser={this.state.currentUser} onLogout={this.handleLogout} />
+
+        <div className="app-body">
+          <Switch>
+            <Route exact path="/" component={Home}></Route>
+            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={Profile}></PrivateRoute>
+            <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={AddProdotto}></PrivateRoute>
+            <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={AddSezione}></PrivateRoute>
+            <Route path="/login"
+                   render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
+            <Route path="/signup"
+                   render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
+            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route component={NotFound}></Route>
+          </Switch>
+        </div>
+        <footer className="container">
+          <p>&copy; Powered by RUD 2019/2020</p>
+        </footer>
+      </body>
+    );
+
+    /*return (
       <div className="app">
         <div className="app-top-box">
           <RUDHeader authenticated={this.state.authenticated} currentUser={this.state.currentUser} onLogout={this.handleLogout} />
@@ -97,7 +126,7 @@ class App extends Component {
           timeout = {3000}
           position='top-right' effect='slide' offset={65} />
       </div>
-    );
+    );*/
   }
 }
 

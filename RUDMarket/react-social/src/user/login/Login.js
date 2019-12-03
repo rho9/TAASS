@@ -117,7 +117,7 @@ class LoginForm extends Component {
                         value={this.state.password} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary">Login</button>
+                    <button type="submit" className="btn btn-block btn-warning">Login</button>
                 </div>
             </form>                    
         );

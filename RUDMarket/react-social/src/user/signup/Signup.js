@@ -112,7 +112,7 @@ class SignupForm extends Component {
                         value={this.state.password} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary" >Registrati</button>
+                    <button type="submit" className="btn btn-block btn-warning" >Registrati</button>
                 </div>
             </form>                    
 
