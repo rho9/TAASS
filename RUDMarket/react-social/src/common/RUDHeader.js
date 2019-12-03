@@ -16,13 +16,13 @@ class RUDHeader extends Component {
                         <form className="form-inline mt-2 mt-md-0">
                             { this.props.authenticated ? (
                                 <form>
-                                    <a type="button" className="btn btn-warning" href="/profile">MyRUD</a>
+                                    <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
                             ) : (
                                 <form>
-                                    <a type="button" className="btn btn-warning" href="/profile">MyRUD</a>
-                                    <a type="button" className="btn btn-warning" href="/signup">Registrazione</a>
+                                    <NavLink className="btn btn-warning" to="/login">MyRUD</NavLink>
+                                    <NavLink className="btn btn-warning" to="/signup">Registrazione</NavLink>
                                 </form>
                             )}
                         </form>
