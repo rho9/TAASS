@@ -15,13 +15,13 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
-import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import '../home/jumbotron.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import AddSezione from "../sezione/AddSezione";
+import Catalogo from "../catalogo/Catalogo";
 
 class App extends Component {
   constructor(props) {
@@ -80,6 +80,7 @@ class App extends Component {
         <div className="app-body">
           <Switch>
             <Route exact path="/" component={Home}></Route>
+            <Route path="/catalogo" component={Catalogo}></Route>
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Profile}></PrivateRoute>
             <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}

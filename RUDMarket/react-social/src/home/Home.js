@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Home.css';
+import {NavLink} from "react-router-dom";
 
 class Home extends Component {
     render() {
@@ -9,7 +10,7 @@ class Home extends Component {
                     <div className="container">
                         <h1 className="display-3">Benvenuto in RUDMarket!</h1>
                         <p>Una vasta scelta di prodotti ti aspetta!</p>
-                        <p><a className="btn btn-warning btn-lg" href="#" role="button">Sfoglia il catalogo &raquo;</a>
+                        <p><a className="btn btn-warning btn-lg" href="/catalogo" role="button">Sfoglia il catalogo &raquo;</a>
                         </p>
                     </div>
                 </div>
@@ -21,7 +22,7 @@ class Home extends Component {
                             <p>Scopri gli sconti a te dedicati accedendo all'area personale di RUDMarket. Offerte per te
                                 ogni
                                 giorno!</p>
-                            <p><a className="btn btn-warning" href="#" role="button">Accedi a MyRUD &raquo;</a></p>
+                            <p><NavLink className="btn btn-warning" to="/profile">Accedi a MyRUD &raquo;</NavLink></p>
                         </div>
                         <div className="col-md-4">
                             <h2>Dove trovarci</h2>
