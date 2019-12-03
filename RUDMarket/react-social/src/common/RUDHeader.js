@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './AppHeader.css';
+import './RUDHeader.css'
 
-class AppHeader extends Component {
+class RUDHeader extends Component {
     render() {
         return (
             <header className="app-header">
                 <div className="container">
                     <div className="app-branding">
-                        <Link to="/" className="app-title">Spring Social</Link>
+                        <Link to="/" className="app-title">RUD Market</Link>
                     </div>
                     <div className="app-options">
                         <nav className="app-nav">
@@ -48,10 +49,28 @@ class AppHeader extends Component {
                                 )}
                         </nav>
                     </div>
+                    <div className="row">
+                        <div className="col">
+                            <div className="btn-group-nav">
+                                <button className="button">Home</button>
+                                <button className="button">Catalogo</button>
+                                <button className="button">Promozioni</button>
+                                <button className="button">Dove Siamo</button>
+                                <button className="button">Contattaci</button>
+                            </div>
+                        </div>
+                        <div className="col-6">
+                            <article>
+                                <h1>Eventi</h1>
+                            </article>
+                        </div>
+                        <div className="col">
+                        </div>
+                    </div>
                 </div>
             </header>
         )
     }
 }
 
-export default AppHeader;
+export default RUDHeader;
