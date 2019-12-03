@@ -21,7 +21,7 @@ class Signup extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-content">
-                    <h1 className="signup-title">Signup with SpringSocial</h1>
+                    <h1 className="signup-title">Signup with RUD Market</h1>
                     <SocialSignup />
                     <div className="or-separator">
                         <span className="or-text">OR</span>
@@ -58,7 +58,7 @@ class SignupForm extends Component {
             surname: '',
             email: '',
             password: ''
-        }
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -66,7 +66,7 @@ class SignupForm extends Component {
     handleInputChange(event) {
         const target = event.target;
         const inputName = target.name;
-        const inputSurname = target.surname;
+        const inputSurname = target.surname; //TODO Remove if not used
         const inputValue = target.value;
 
         this.setState({

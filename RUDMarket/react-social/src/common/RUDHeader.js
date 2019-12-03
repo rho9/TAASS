@@ -8,19 +8,19 @@ class RUDHeader extends Component {
         return (
             <header className="app-header">
                 <div className="container">
-                    <div class="row">
-                        <div class="col">
+                    <div className="row">
+                        <div className="col">
                             <div className="app-branding">
                                 <Link to="/" className="app-title">RUD Market</Link>
                             </div>
                         </div>
-                        <div class="col">
+                        <div className="col">
 
                         </div>
-                        <div class="col">
+                        <div className="col">
                             <div className="app-options">
                                 <nav className="app-nav">
-                                    { this.props.authenticated && this.props.currentUser.role == "ADMIN" ? (
+                                    { this.props.authenticated && this.props.currentUser.role === "ADMIN" ? (
                                         <ul>
                                             <li>
                                                 <NavLink to="/profile">Profile</NavLink>
@@ -35,7 +35,7 @@ class RUDHeader extends Component {
                                                 <a onClick={this.props.onLogout}>Logout</a>
                                             </li>
                                         </ul>
-                                    ): this.props.authenticated && this.props.currentUser.role == "USER" ? (
+                                    ): this.props.authenticated && this.props.currentUser.role === "USER" ? (
                                         <ul>
                                             <li>
                                                 <NavLink to="/profile">Profile</NavLink>
