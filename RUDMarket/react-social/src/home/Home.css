@@ -6,6 +6,10 @@ body {
     background: darkgreen;
 }
 
-.navbar-brand{
-    color: darkorange;
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover{
+    color: #ffc107;
 }

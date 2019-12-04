@@ -22,6 +22,7 @@ class RUDHeader extends Component {
                             ) : (
                                 <form>
                                     <NavLink className="btn btn-warning" to="/login">MyRUD</NavLink>
+                                    &nbsp;
                                     <NavLink className="btn btn-warning" to="/signup">Registrazione</NavLink>
                                 </form>
                             )}
