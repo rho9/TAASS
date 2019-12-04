@@ -21,13 +21,13 @@ class Signup extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-content">
-                    <h1 className="signup-title">Signup with SpringSocial</h1>
+                    <h1 className="signup-title">Registrazione a RUDMarket</h1>
                     <SocialSignup />
                     <div className="or-separator">
-                        <span className="or-text">OR</span>
+                        <span className="or-text">Oppure</span>
                     </div>
                     <SignupForm {...this.props} />
-                    <span className="login-link">Already have an account? <Link to="/login">Login!</Link></span>
+                    <span className="login-link">Hai già un account? <Link to="/login">Login!</Link></span>
                 </div>
             </div>
         );
@@ -40,11 +40,11 @@ class SocialSignup extends Component {
         return (
             <div className="social-signup">
                 <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-                    <img src={googleLogo} alt="Google" /> Sign up with Google</a>
+                    <img src={googleLogo} alt="Google" /> Registrazione con Google</a>
                 <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                    <img src={fbLogo} alt="Facebook" /> Sign up with Facebook</a>
+                    <img src={fbLogo} alt="Facebook" /> Registrazione con Facebook</a>
                 <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
-                    <img src={githubLogo} alt="Github" /> Sign up with Github</a>
+                    <img src={githubLogo} alt="Github" /> Registrazione con Github</a>
             </div>
         );
     }
@@ -58,7 +58,7 @@ class SignupForm extends Component {
             surname: '',
             email: '',
             password: ''
-        }
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -66,7 +66,7 @@ class SignupForm extends Component {
     handleInputChange(event) {
         const target = event.target;
         const inputName = target.name;
-        const inputSurname = target.surname;
+        const inputSurname = target.surname; //TODO Remove if not used
         const inputValue = target.value;
 
         this.setState({
@@ -112,7 +112,7 @@ class SignupForm extends Component {
                         value={this.state.password} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
+                    <button type="submit" className="btn btn-block btn-warning" >Registrati</button>
                 </div>
             </form>                    
 

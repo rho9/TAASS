@@ -26,7 +26,7 @@ class AddProdotto extends Component {
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona la Sezione del Prodotto)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [{value: '', display: '(Seleziona la Sezione del Sezione)'}].concat(sezioniFromApi) });
             }).catch(error => {
             console.log(error);
         });
@@ -46,7 +46,7 @@ class AddProdotto extends Component {
         const addProdottoRequest = Object.assign({}, this.state);
         addProdotto(addProdottoRequest)
             .then(response => {
-                Alert.success("Prodotto aggiunto correttamente!");
+                Alert.success("Sezione aggiunto correttamente!");
 
             }).catch(error => {
                 Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            

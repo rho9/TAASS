@@ -10,6 +10,7 @@ public class Prodotto {
 	private Long id;
 
 	private String nome, marca;
+	private int prezzo;
 
 	@OneToMany(mappedBy = "prodotto")
 	List<Sconto> scontoList;
@@ -35,6 +36,30 @@ public class Prodotto {
 
 	public String getMarca() {
 		return marca;
+	}
+
+	public int getPrezzo() {
+		return prezzo;
+	}
+
+	public void setPrezzo(int prezzo) {
+		this.prezzo = prezzo;
+	}
+
+	public List<Sconto> getScontoList() {
+		return scontoList;
+	}
+
+	public void setScontoList(List<Sconto> scontoList) {
+		this.scontoList = scontoList;
+	}
+
+	public List<Ordine> getOrdineList() {
+		return ordineList;
+	}
+
+	public void setOrdineList(List<Ordine> ordineList) {
+		this.ordineList = ordineList;
 	}
 
 	public void setMarca(String marca) {

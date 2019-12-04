@@ -8,6 +8,7 @@
     line-height: 60px;
     vertical-align: middle;
     font-size: 1.35em;
+    color: rgb(253, 130, 81);
 }
 
 .app-branding {
@@ -39,9 +40,35 @@
 }
 
 .app-nav ul li a:hover {
-    color: #0f96f6;
+    color: rgb(253, 130, 81);
 }
 
 .app-nav ul li a.active {
-    color: #0f96f6;
+    color: rgb(253, 130, 81);
+}
+
+.app-header .container .btn-group-nav .button {
+    background-color: rgb(223, 237, 214);
+    border: 1px solid black;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.app-header .container .btn-group-nav .button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.app-header .container .btn-group-nav .button:hover {
+    background-color: rgb(174, 222, 148);
+}
+
+.app-header .container .btn-group-nav .button:active {
+    background-color: rgb(174, 222, 148);
 }
