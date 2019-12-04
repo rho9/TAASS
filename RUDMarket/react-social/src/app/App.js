@@ -22,6 +22,7 @@ import '../home/jumbotron.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import AddSezione from "../sezione/AddSezione";
 import Catalogo from "../catalogo/Catalogo";
+import Sezione from "../catalogo/Sezione";
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +82,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route path="/catalogo" component={Catalogo}></Route>
+              <Route path="/sezione" component={Sezione}></Route>
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Profile}></PrivateRoute>
             <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}

@@ -52,7 +52,7 @@ class RUDHeader extends Component {
                                                 <NavLink to="/profile">Profile</NavLink>
                                             </li>
                                             <li>
-                                                <NavLink to="/prodotto/add">Prodotto</NavLink>
+                                                <NavLink to="/prodotto/add">Sezione</NavLink>
                                             </li>
                                             <li>
                                                 <NavLink to="/sezione/add">Sezione</NavLink>

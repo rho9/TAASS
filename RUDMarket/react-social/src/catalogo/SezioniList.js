@@ -1,4 +1,6 @@
 import React from 'react'
+import {NavLink} from "react-router-dom";
+import Sezione from "./Sezione";
 
 const SezioniList = ({ sezioni }) => {
     return(
@@ -10,9 +12,14 @@ const SezioniList = ({ sezioni }) => {
                             <p className="card-text">{sezione.nome}</p>
                             <div className="d-flex justify-content-between align-items-center">
                                 <div className="btn-group">
-                                    <button type="button"
-                                            className="btn btn-sm btn-warning">Visualizza
-                                    </button>
+                                    <NavLink className="btn btn-warning" to={
+                                        {
+                                            pathname: "/sezione",
+                                            sezioneProps: {
+                                                nomeSezione: sezione.nome
+                                            }
+                                        }
+                                    }>Visualizza</NavLink>
                                 </div>
                             </div>
                         </div>
