@@ -17,6 +17,7 @@ class RUDHeader extends Component {
                             { this.props.authenticated ? (
                                 <form>
                                     <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
+                                    &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
                             ) : (
