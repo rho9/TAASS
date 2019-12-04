@@ -1,15 +1,13 @@
 package com.rud.rudmarket.controller;
 
+import com.rud.rudmarket.model.Prodotto;
 import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.form.SezioneForm;
 import com.rud.rudmarket.repository.SezioneRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +25,13 @@ public class SezioneController {
 		sezione.setNome(sezioneForm.getNome());
 		sezioneRepository.save(sezione);
 		return sezione;
+	}
+
+	@RequestMapping("/getProdottiByIdSezione")
+	public List<Prodotto> getProdottiByIdSezione(@RequestBody String body) {
+		Long id = Long.parseLong(body.split("=")[1]);
+		Sezione sezione = sezioneRepository.findById(id).get();
+		return sezione.getProdottoList();
 	}
 
 	@RequestMapping("/getSezioni")

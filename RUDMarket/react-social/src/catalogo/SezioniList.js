@@ -15,7 +15,7 @@ const SezioniList = ({ sezioni }) => {
                                         {
                                             pathname: "/sezione",
                                             nomeSezione: sezione.nome,
-                                            prodottoList: sezione.prodottoList
+                                            idSezione: sezione.id
                                         }
                                     }>
 
