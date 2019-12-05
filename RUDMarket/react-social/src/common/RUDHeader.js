@@ -14,7 +14,15 @@ class RUDHeader extends Component {
                         <ul className="navbar-nav mr-auto">
                         </ul>
                         <form className="form-inline mt-2 mt-md-0">
-                            { this.props.authenticated ? (
+                            { this.props.authenticated && this.props.currentUser.role === "ADMIN" ? (
+                                <form>
+                                    <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
+                                    &nbsp;
+                                    <NavLink className="btn btn-warning" to="/gestione">Gestione</NavLink>
+                                    &nbsp;
+                                    <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
+                                </form>
+                            ) : this.props.authenticated && this.props.currentUser.role === "USER" ? (
                                 <form>
                                     <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
                                     &nbsp;
