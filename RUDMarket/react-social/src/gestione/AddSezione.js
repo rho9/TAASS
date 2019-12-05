@@ -7,8 +7,7 @@ class AddSezione extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nome: '',
-            sezioni: []
+            nomeSezione: '',
         }
         console.log(props);
 
@@ -16,16 +15,8 @@ class AddSezione extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        fetch('http://localhost:8080/sezione/getSezioni')
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ sezioni: data })
-            })
-    }
-
     handleChangeTitle(event) {
-        this.setState({nome: event.target.value});
+        this.setState({nomeSezione: event.target.value});
     }
 
     handleSubmit(event) {
@@ -34,7 +25,6 @@ class AddSezione extends Component {
         const addSezioneRequest = Object.assign({}, this.state);
         addSezione(addSezioneRequest)
             .then(response => {
-                Alert.success("Sezione aggiunta correttamente!");
 
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
@@ -49,11 +39,15 @@ class AddSezione extends Component {
                 </div>
                 <div className="row">
                     <div className="col-md-8 order-md-1">
-                        <form className="needs-validation" noValidate>
+                        <form onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="firstName">Nome Sezione</label>
-                                    <input type="text" className="form-control" placeholder="" value="" required/>
+                                    <input type="text" className="form-control"
+                                           name="nomeSezione"
+                                           value={this.state.nomeSezione}
+                                           onChange={this.handleChangeTitle}
+                                           required/>
                                     <div className="invalid-feedback">
                                         È necessario inserire il nome di una sezione
                                     </div>

@@ -1,13 +1,13 @@
 package com.rud.rudmarket.model.form;
 
 public class SezioneForm {
-	private String nome;
+	private String nomeSezione;
 
-	public String getNome() {
-		return nome;
+	public String getNomeSezione() {
+		return nomeSezione;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setNomeSezione(String nomeSezione) {
+		this.nomeSezione = nomeSezione;
 	}
 }
