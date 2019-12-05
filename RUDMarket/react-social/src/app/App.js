@@ -20,9 +20,11 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import '../home/jumbotron.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import AddSezione from "../sezione/AddSezione";
+import AddSezione from "../gestione/AddSezione";
 import Catalogo from "../catalogo/Catalogo";
 import Sezione from "../catalogo/Sezione";
+import Gestione from "../gestione/Gestione";
+import AdminRoute from "../common/AdminRoute";
 
 class App extends Component {
   constructor(props) {
@@ -85,6 +87,10 @@ class App extends Component {
               <Route path="/sezione" component={Sezione}></Route>
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Profile}></PrivateRoute>
+            <AdminRoute path="/gestione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={Gestione}></AdminRoute>
+            <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                        component={AddSezione}></AdminRoute>
             <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={AddProdotto}></PrivateRoute>
             <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}

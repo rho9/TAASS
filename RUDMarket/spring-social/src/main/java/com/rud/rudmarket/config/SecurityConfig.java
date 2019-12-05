@@ -114,6 +114,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/sezione/getSezioni",
 							"/sezione/getProdottiByIdSezione")
                         .permitAll()
+                    .antMatchers("/gestione/**")
+                        .hasRole("ADMIN")
                     .anyRequest()
                         .authenticated()
                     .and()
