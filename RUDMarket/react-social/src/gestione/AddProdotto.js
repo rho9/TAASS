@@ -101,9 +101,10 @@ class AddProdotto extends Component {
                                     <div className="custom-control custom-checkbox">
                                         <input type="checkbox" className="custom-control-input"
                                                name="alKg"
-                                               value={this.state.alkg}
-                                               onClick={(e) => this.setState({alkg: e.target.value})} />
-                                        <label className="custom-control-label" >Prezzo al KG</label>
+                                               id="kgCheck"
+                                               checked={this.state.alkg}
+                                               onChange={(e) => this.setState({alkg: e.target.checked})} />
+                                        <label className="custom-control-label" htmlFor="kgCheck">Prezzo al KG</label>
                                     </div>
                                 </div>
                             </div>
