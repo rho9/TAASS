@@ -10,7 +10,13 @@ const ProdottoList = ({ prodotti }) => {
                         <h4 className="my-0 font-weight-normal">{prodotto.nome}</h4>
                     </div>
                     <div className="card-body">
-                        <h1 className="card-title pricing-card-title">€{prodotto.prezzo} <small className="text-muted">/ kg</small></h1>
+                        <h1 className="card-title pricing-card-title">€{prodotto.prezzo} {
+                            prodotto.atKg ? (
+                                <small className="text-muted">/ kg</small>
+                            ) : (
+                                <small className="text-muted"></small>
+                            )
+                        }</h1>
                         <ul className="list-unstyled mt-3 mb-4">
                             <li>{prodotto.marca}</li>
                         </ul>

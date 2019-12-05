@@ -5,8 +5,6 @@ import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.SezioneRepository;
-import com.rud.rudmarket.security.CurrentUser;
-import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -31,6 +29,7 @@ public class ProdottoController {
             prodotto.setNome(prodottoForm.getNome());
             prodotto.setMarca(prodottoForm.getMarca());
             prodotto.setPrezzo(Integer.parseInt(prodottoForm.getPrezzo()));
+            prodotto.setAtKg(prodottoForm.getAlKg().equals("true"));
             prodottoRepository.save(prodotto);
 
             Sezione sezione = sezioneRepository.findById(prodottoForm.getSelectedSezione()).get();

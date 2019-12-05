@@ -10,7 +10,7 @@ class AddProdotto extends Component {
             nome: '',
             marca: '',
             prezzo: '',
-            alkg: false,
+            atKg: false,
             sezioni: [],
             selectedSezione: '',
             validationError: ''
@@ -102,8 +102,8 @@ class AddProdotto extends Component {
                                         <input type="checkbox" className="custom-control-input"
                                                name="alKg"
                                                id="kgCheck"
-                                               checked={this.state.alkg}
-                                               onChange={(e) => this.setState({alkg: e.target.checked})} />
+                                               checked={this.state.atKg}
+                                               onChange={(e) => this.setState({atKg: e.target.checked})} />
                                         <label className="custom-control-label" htmlFor="kgCheck">Prezzo al KG</label>
                                     </div>
                                 </div>
