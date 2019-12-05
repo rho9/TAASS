@@ -3,6 +3,15 @@ package com.rud.rudmarket.model.form;
 public class ProdottoForm {
     private String nome, marca, prezzo;
     private Long selectedSezione;
+    private boolean atKg;
+
+    public boolean isAtKg() {
+        return atKg;
+    }
+
+    public void setAtKg(boolean atKg) {
+        this.atKg = atKg;
+    }
 
     public String getPrezzo() {
         return prezzo;
