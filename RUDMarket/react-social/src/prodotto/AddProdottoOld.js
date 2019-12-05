@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { addProdotto } from '../util/APIUtils';
 import Alert from 'react-s-alert';
 
-class AddProdotto extends Component {
+class AddProdottoOld extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -80,4 +80,4 @@ class AddProdotto extends Component {
     }
 }
 
-export default AddProdotto
+export default AddProdottoOld

@@ -8,7 +8,6 @@ import Home from '../home/Home';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
 import Profile from '../user/profile/Profile';
-import AddProdotto from '../prodotto/AddProdotto';
 import OAuth2RedirectHandler from '../user/oauth2/OAuth2RedirectHandler';
 import NotFound from '../common/NotFound';
 import LoadingIndicator from '../common/LoadingIndicator';
@@ -21,6 +20,7 @@ import './App.css';
 import '../home/jumbotron.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import AddSezione from "../gestione/AddSezione";
+import AddProdotto from "../gestione/AddProdotto";
 import Catalogo from "../catalogo/Catalogo";
 import Sezione from "../catalogo/Sezione";
 import Gestione from "../gestione/Gestione";
@@ -91,8 +91,8 @@ class App extends Component {
                           component={Gestione}></AdminRoute>
             <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                         component={AddSezione}></AdminRoute>
-            <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                          component={AddProdotto}></PrivateRoute>
+            <AdminRoute path="/addProdotto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                        component={AddProdotto}></AdminRoute>
             <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={AddSezione}></PrivateRoute>
             <Route path="/login"
