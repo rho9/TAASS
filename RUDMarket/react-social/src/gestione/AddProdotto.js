@@ -34,7 +34,7 @@ class AddProdotto extends Component {
     }
 
     handleChangeTitle(event) {
-        this.setState({nomeProdotto: event.target.value});
+        this.setState({nome: event.target.value});
     }
 
     handleSubmit(event) {
@@ -63,7 +63,7 @@ class AddProdotto extends Component {
                                     <label htmlFor="firstName">Nome Prodotto</label>
                                     <input type="text" className="form-control"
                                            name="nomeSezione"
-                                           value={this.state.nomeProdotto}
+                                           value={this.state.nome}
                                            onChange={this.handleChangeTitle}
                                            required/>
                                     <div className="invalid-feedback">
@@ -77,8 +77,8 @@ class AddProdotto extends Component {
                                     <div className="input-group">
                                         <input type="text" className="form-control"
                                                name="nomeSezione"
-                                               value={this.state.nomeSezione}
-                                               onChange={this.handleChangeTitle}
+                                               value={this.state.marca}
+                                               onChange={(e) => this.setState({marca: e.target.value})}
                                                required/>
                                     </div>
                                 </div>
@@ -89,8 +89,8 @@ class AddProdotto extends Component {
                                     <div className="input-group">
                                         <input type="text" className="form-control"
                                                name="nomeSezione"
-                                               value={this.state.nomeSezione}
-                                               onChange={this.handleChangeTitle}
+                                               value={this.state.prezzo}
+                                               onChange={(e) => this.setState({prezzo: e.target.value})}
                                                required/>
                                     </div>
                                 </div>

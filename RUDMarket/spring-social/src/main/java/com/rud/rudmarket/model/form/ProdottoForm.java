@@ -1,8 +1,16 @@
 package com.rud.rudmarket.model.form;
 
 public class ProdottoForm {
-    private String nome, marca;
+    private String nome, marca, prezzo;
     private Long selectedSezione;
+
+    public String getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(String prezzo) {
+        this.prezzo = prezzo;
+    }
 
     public Long getSelectedSezione() {
         return selectedSezione;
