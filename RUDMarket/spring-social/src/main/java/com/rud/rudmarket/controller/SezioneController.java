@@ -7,6 +7,7 @@ import com.rud.rudmarket.repository.SezioneRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,10 +20,10 @@ public class SezioneController {
 	SezioneRepository sezioneRepository;
 
 	@PostMapping("/addSezione")
-	//@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Sezione addSezione(@CurrentUser UserPrincipal userPrincipal, @RequestBody SezioneForm sezioneForm) {
 		Sezione sezione = new Sezione();
-		sezione.setNome(sezioneForm.getNome());
+		sezione.setNome(sezioneForm.getNomeSezione());
 		sezioneRepository.save(sezione);
 		return sezione;
 	}

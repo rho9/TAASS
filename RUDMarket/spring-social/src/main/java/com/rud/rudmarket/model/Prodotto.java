@@ -11,6 +11,15 @@ public class Prodotto {
 
 	private String nome, marca;
 	private int prezzo;
+	private boolean atKg;
+
+	public boolean isAtKg() {
+		return atKg;
+	}
+
+	public void setAtKg(boolean atKg) {
+		this.atKg = atKg;
+	}
 
 	@OneToMany(mappedBy = "prodotto")
 	List<Sconto> scontoList;
