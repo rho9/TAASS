@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Sezione.css';
-import {Link} from "react-router-dom";
 import ProdottoList from "./ProdottoList";
 
 class Sezione extends Component {
@@ -29,6 +28,7 @@ class Sezione extends Component {
             <body>
                 <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                     <h1 className="display-4">{this.props.location.nomeSezione}</h1>
+                    <a href="/catalogo" className="btn btn-warning">Torna al Catalogo</a>
                 </div>
 
                 <div className="container">
