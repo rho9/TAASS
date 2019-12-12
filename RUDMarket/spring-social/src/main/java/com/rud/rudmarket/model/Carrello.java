@@ -1,6 +1,7 @@
 package com.rud.rudmarket.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Carrello {
@@ -11,6 +12,9 @@ public class Carrello {
 
 	@OneToOne(mappedBy = "carrello")
 	private User user;
+
+	@ManyToMany(mappedBy = "carrelloList")
+	List<Prodotto> prodottoList;
 
 	public Long getId() {
 		return id;

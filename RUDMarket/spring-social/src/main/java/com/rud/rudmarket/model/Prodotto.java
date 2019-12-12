@@ -13,6 +13,14 @@ public class Prodotto {
 	private int prezzo;
 	private boolean atKg;
 
+	@ManyToMany
+	@JoinTable(
+			name = "ProdottoCarrello",
+			joinColumns = @JoinColumn(name = "prodotto_id"),
+			inverseJoinColumns = @JoinColumn(name = "carrello_id")
+	)
+	List<Carrello> carrelloList;
+
 	public boolean isAtKg() {
 		return atKg;
 	}
