@@ -20,11 +20,15 @@ class RUDHeader extends Component {
                                     &nbsp;
                                     <NavLink className="btn btn-warning" to="/gestione">Gestione</NavLink>
                                     &nbsp;
+                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
+                                    &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
                             ) : this.props.authenticated && this.props.currentUser.role === "USER" ? (
                                 <form>
                                     <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
+                                    &nbsp;
+                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
                                     &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
