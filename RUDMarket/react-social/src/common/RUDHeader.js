@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './AppHeader.css';
-import './RUDHeader.css'
+import './RUDHeader.css';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 class RUDHeader extends Component {
     render() {
@@ -32,6 +33,10 @@ class RUDHeader extends Component {
                                     <NavLink className="btn btn-warning" to="/login">MyRUD</NavLink>
                                     &nbsp;
                                     <NavLink className="btn btn-warning" to="/signup">Registrazione</NavLink>
+                                    {/* &nbsp;
+                                    <NavLink to="/signup"><ShoppingCartIcon style={{color: '#ffc107'}} /></NavLink>*/}
+                                    &nbsp;
+                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
                                 </form>
                             )}
                         </form>
