@@ -88,6 +88,8 @@ class App extends Component {
               <Route path="/sezione" component={Sezione}></Route>
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Profile}></PrivateRoute>
+            <PrivateRoute path="/carrello" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={Carrello}></PrivateRoute>
             <AdminRoute path="/gestione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Gestione}></AdminRoute>
             <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
