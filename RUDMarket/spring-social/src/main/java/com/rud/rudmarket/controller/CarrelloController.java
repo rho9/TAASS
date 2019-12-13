@@ -1,23 +1,29 @@
 package com.rud.rudmarket.controller;
 
 import com.rud.rudmarket.model.Prodotto;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.rud.rudmarket.model.Sezione;
+import com.rud.rudmarket.model.form.SezioneForm;
+import com.rud.rudmarket.repository.SezioneRepository;
+import com.rud.rudmarket.security.CurrentUser;
+import com.rud.rudmarket.security.UserPrincipal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/carrello")
 public class CarrelloController {
 
-    @RequestMapping("/getProdottiInCarrello")
-    public List<Prodotto> getProdottiInCarrello() {
-        List<Prodotto> prodotti = null;
-        Prodotto test = new Prodotto();
-        test.setNome("nome_test");
-        test.setMarca("marca_test");
-        test.setPrezzo(5);
-        prodotti.add(test);
-        return prodotti;
-    }
+	@GetMapping("/getProdottiInCarrello")
+	public List<Prodotto> getProdottiInCarrello(@CurrentUser UserPrincipal userPrincipal) {
+		System.out.println(userPrincipal);
+		List<Prodotto> prodottoList = new ArrayList<>();
+		Prodotto prodotto = new Prodotto();
+		prodotto.setNome("Nome");
+		prodottoList.add(prodotto);
+		return prodottoList;
+	}
 }

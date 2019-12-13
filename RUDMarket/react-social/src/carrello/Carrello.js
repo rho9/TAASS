@@ -15,6 +15,7 @@ class Carrello extends Component {
         fetch('http://localhost:8080/carrello/getProdottiInCarrello')
             .then(res => res.json())
             .then((data) => {
+                alert(data)
                 this.setState({ prodottiInCarrello: data })
             })
     }
