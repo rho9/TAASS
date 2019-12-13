@@ -12,10 +12,12 @@ class Carrello extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/carrello/getProdottiInCarrello')
+        fetch('http://localhost:8080/carrello/getProdottiInCarrello', {
+            method: 'POST',
+            body: "userEmail=" + this.props.currentUser.email
+        })
             .then(res => res.json())
             .then((data) => {
-                alert(data)
                 this.setState({ prodottiInCarrello: data })
             })
     }
