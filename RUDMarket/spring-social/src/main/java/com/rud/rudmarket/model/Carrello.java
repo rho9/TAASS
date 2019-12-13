@@ -23,4 +23,20 @@ public class Carrello {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Prodotto> getProdottoList() {
+		return prodottoList;
+	}
+
+	public void setProdottoList(List<Prodotto> prodottoList) {
+		this.prodottoList = prodottoList;
+	}
 }
