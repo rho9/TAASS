@@ -20,7 +20,7 @@ class RUDHeader extends Component {
                                     &nbsp;
                                     <NavLink className="btn btn-warning" to="/gestione">Gestione</NavLink>
                                     &nbsp;
-                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
                                     &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
@@ -28,7 +28,7 @@ class RUDHeader extends Component {
                                 <form>
                                     <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
                                     &nbsp;
-                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
                                     &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
@@ -40,7 +40,7 @@ class RUDHeader extends Component {
                                     {/* &nbsp;
                                     <NavLink to="/signup"><ShoppingCartIcon style={{color: '#ffc107'}} /></NavLink>*/}
                                     &nbsp;
-                                    <NavLink className="btn btn-warning" to="/#"><ShoppingCartIcon /></NavLink>
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
                                 </form>
                             )}
                         </form>
