@@ -48,9 +48,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Ordine> ordineList;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "carrello_id", referencedColumnName = "id")
-    private Carrello carrello;
+    @ManyToMany(mappedBy = "carrelloUtenti")
+    List<Prodotto> carrelloList;
 
     public List<Ordine> getOrdineList() {
         return ordineList;
@@ -60,16 +59,16 @@ public class User {
         this.ordineList = ordineList;
     }
 
-    public Carrello getCarrello() {
-        return carrello;
-    }
-
-    public void setCarrello(Carrello carrello) {
-        this.carrello = carrello;
-    }
-
     public String getSurname() {
         return surname;
+    }
+
+    public List<Prodotto> getCarrelloList() {
+        return carrelloList;
+    }
+
+    public void setCarrelloList(List<Prodotto> carrelloList) {
+        this.carrelloList = carrelloList;
     }
 
     public void setSurname(String surname) {

@@ -15,11 +15,19 @@ public class Prodotto {
 
 	@ManyToMany
 	@JoinTable(
-			name = "ProdottoCarrello",
+			name = "Carrello",
 			joinColumns = @JoinColumn(name = "prodotto_id"),
-			inverseJoinColumns = @JoinColumn(name = "carrello_id")
+			inverseJoinColumns = @JoinColumn(name = "utente_id")
 	)
-	List<Carrello> carrelloList;
+	List<User> carrelloUtenti;
+
+	public List<User> getCarrelloUtenti() {
+		return carrelloUtenti;
+	}
+
+	public void setCarrelloUtenti(List<User> carrelloUtenti) {
+		this.carrelloUtenti = carrelloUtenti;
+	}
 
 	public boolean isAtKg() {
 		return atKg;
