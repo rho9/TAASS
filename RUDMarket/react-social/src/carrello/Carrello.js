@@ -1,40 +1,43 @@
 import React, { Component } from 'react';
 import './Carrello.css'
 
-import SezioniList from "./SezioniList";
-
 class Carrello extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sezioni: []
-        }
-    }
-
-    componentDidMount() {
-        fetch('http://localhost:8080/sezione/getSezioni')
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ sezioni: data })
-            })
-    }
-
     render() {
         return (
-            <main role="main">
-                <section class="jumbotron text-center">
-                    <div className="container">
-                        <h1 className="jumbotron-heading">Catalogo</h1>
-                        <p className="lead text-muted">Sfoglia il catalogo alla ricerca di deliziosi prodotti!</p>
-                    </div>
-                </section>
-
-                <div className="album py-5 bg-light">
-                    <div className="container">
-                        <SezioniList sezioni={this.state.sezioni} />
-                    </div>
-                </div>
-            </main>
+            <body>
+            <section class="jumbotron text-center">
+            <h2>Il tuo RUDCarrello</h2>
+            <div className="table-responsive">
+                <table className="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th>Quantità</th>
+                        <th>Prodotto</th>
+                        <th>Marca</th>
+                        <th>Prezzo unitario</th>
+                        <th>Prezzo totale</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1,001</td>
+                        <td>Lorem</td>
+                        <td>ipsum</td>
+                        <td>dolor</td>
+                        <td>sit</td>
+                    </tr>
+                    <tr>
+                        <td>1,002</td>
+                        <td>amet</td>
+                        <td>consectetur</td>
+                        <td>adipiscing</td>
+                        <td>elit</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </section>
+            </body>
         );
     }
 }
