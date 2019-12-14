@@ -28,12 +28,14 @@ class Carrello extends Component {
                 <table className="table table-striped table-sm">
                     <thead>
                     <tr>
+                        <th>Quantità</th>
                         <th>Prodotto</th>
+                        <th>Marca</th>
+                        <th>Prezzo unitario</th>
+                        <th>Prezzo totale</th>
                     </tr>
                     </thead>
-                    <tbody>
                     <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
-                    </tbody>
                 </table>
             </div>
             </section>

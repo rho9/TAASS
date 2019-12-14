@@ -3,11 +3,17 @@ import './Carrello.css'
 
 const ProdottiInCarrello = ({ prodottiInCarrello }) => {
     return(
-        <tr>
+        <tbody>
             {prodottiInCarrello.map((prodotto) => (
-                <th>{prodotto.nome}</th>
+                <tr>
+                    <th>1</th>
+                    <th>{prodotto.nome}</th>
+                    <th>{prodotto.marca}</th>
+                    <th>{prodotto.prezzo}</th>
+                    <th>{prodotto.prezzo}</th>
+                </tr>
             ))}
-        </tr>
+        </tbody>
     );
 };
 

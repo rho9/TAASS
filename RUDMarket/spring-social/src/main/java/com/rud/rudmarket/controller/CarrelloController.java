@@ -51,12 +51,15 @@ public class CarrelloController {
   	}
     
 	@RequestMapping("/getProdottiInCarrello")
-	public List<Prodotto> getProdottiInCarrello(@CurrentUser UserPrincipal userPrincipal) {
-		System.out.println(userPrincipal.getEmail());
+	public List<Prodotto> getProdottiInCarrello() {
+		List<Carrello> carrelloList = new ArrayList<>();
 		List<Prodotto> prodottoList = new ArrayList<>();
 		Prodotto prodotto = new Prodotto();
-		prodotto.setNome("Nome1_TEST");
-		prodottoList.add(prodotto);
+		carrelloList = carrelloRepository.findAll();
+		for(Carrello c : carrelloList){
+			prodotto = c.getProdotto();
+			prodottoList.add(prodotto);
+		}
 		return prodottoList;
 	}
 }
