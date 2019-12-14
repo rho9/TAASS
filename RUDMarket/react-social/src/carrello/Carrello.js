@@ -38,6 +38,13 @@ class Carrello extends Component {
                     </tr>
                     </thead>
                     <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Totale</th>
+                    </tr>
                 </table>
             </div>
             <div className="text-right">
