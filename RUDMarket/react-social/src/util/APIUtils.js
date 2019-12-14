@@ -65,3 +65,11 @@ export function addSezione(addSezioneRequest){
         body: JSON.stringify(addSezioneRequest)
     });
 }
+
+export function addProdottoInCarrello(addProdottoInCarrelloRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/addProdottoInCarrello",
+        method: 'POST',
+        body: JSON.stringify(addProdottoInCarrelloRequest)
+    });
+}
