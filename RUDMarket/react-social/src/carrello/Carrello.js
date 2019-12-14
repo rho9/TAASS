@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Carrello.css'
 
 import ProdottiInCarrello from "./ProdottiInCarrello";
+import {getProdottiInCarrello} from "../util/APIUtils";
 
 class Carrello extends Component {
     constructor(props) {
@@ -9,16 +10,12 @@ class Carrello extends Component {
         this.state = {
             prodottiInCarrello: []
         }
-    }
 
-    componentDidMount() {
-        fetch('http://localhost:8080/carrello/getProdottiInCarrello', {
-            method: 'POST',
-            body: "userEmail=" + this.props.currentUser.email
-        })
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ prodottiInCarrello: data })
+        getProdottiInCarrello()
+            .then(response => {
+                this.setState({
+                    prodottiInCarrello: response
+                });
             })
     }
 
