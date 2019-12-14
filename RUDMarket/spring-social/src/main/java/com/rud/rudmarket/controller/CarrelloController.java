@@ -65,4 +65,14 @@ public class CarrelloController {
 		}
 		return prodottoList;
 	}
+
+	@RequestMapping("/getCostoTotale")
+	public double getCostoTotale(@CurrentUser UserPrincipal userPrincipal){
+		List<Prodotto> prodottoList = getProdottiInCarrello(userPrincipal);
+		double costoTotale = 0;
+		for(Prodotto prodotto : prodottoList){
+			costoTotale += prodotto.getPrezzo();
+		}
+		return costoTotale;
+	}
 }

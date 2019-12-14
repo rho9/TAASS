@@ -3,6 +3,8 @@ import './Carrello.css'
 
 import ProdottiInCarrello from "./ProdottiInCarrello";
 import {getProdottiInCarrello} from "../util/APIUtils";
+import CostoTotale from "./CostoTotale";
+import {getCostoTotale} from "../util/APIUtils";
 import {NavLink} from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
@@ -10,13 +12,21 @@ class Carrello extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            prodottiInCarrello: []
+            prodottiInCarrello: [],
+            costoTotale: 0
         }
 
         getProdottiInCarrello()
             .then(response => {
                 this.setState({
                     prodottiInCarrello: response
+                });
+            })
+
+        getCostoTotale()
+            .then(response => {
+                this.setState({
+                    costoTotale: response
                 });
             })
     }
@@ -38,13 +48,7 @@ class Carrello extends Component {
                     </tr>
                     </thead>
                     <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>Totale</th>
-                    </tr>
+                    <CostoTotale costoTotale={this.state.costoTotale}/>
                 </table>
             </div>
             <div className="text-right">

@@ -81,3 +81,11 @@ export function getProdottiInCarrello(getProdottiInCarrelloRequest){
         body: JSON.stringify(getProdottiInCarrelloRequest)
     });
 }
+
+export function getCostoTotale(getCostoTotaleRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/getCostoTotale",
+        method: 'GET',
+        body: JSON.stringify(getCostoTotaleRequest)
+    });
+}
