@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
 import './Carrello.css'
 
+import ProdottiInCarrello from "./ProdottiInCarrello";
+
 class Carrello extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            prodottiInCarrello: []
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:8080/carrello/getProdottiInCarrello', {
+            method: 'POST',
+            body: "userEmail=" + this.props.currentUser.email
+        })
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({ prodottiInCarrello: data })
+            })
+    }
+
     render() {
         return (
             <body>
@@ -11,28 +31,11 @@ class Carrello extends Component {
                 <table className="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <th>Quantità</th>
                         <th>Prodotto</th>
-                        <th>Marca</th>
-                        <th>Prezzo unitario</th>
-                        <th>Prezzo totale</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1,001</td>
-                        <td>Lorem</td>
-                        <td>ipsum</td>
-                        <td>dolor</td>
-                        <td>sit</td>
-                    </tr>
-                    <tr>
-                        <td>1,002</td>
-                        <td>amet</td>
-                        <td>consectetur</td>
-                        <td>adipiscing</td>
-                        <td>elit</td>
-                    </tr>
+                    <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
                     </tbody>
                 </table>
             </div>
