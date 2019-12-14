@@ -3,6 +3,8 @@ import './Carrello.css'
 
 import ProdottiInCarrello from "./ProdottiInCarrello";
 import {getProdottiInCarrello} from "../util/APIUtils";
+import {NavLink} from "react-router-dom";
+import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 class Carrello extends Component {
     constructor(props) {
@@ -37,6 +39,9 @@ class Carrello extends Component {
                     </thead>
                     <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
                 </table>
+            </div>
+            <div className="text-right">
+                <button class="button pagabutton">Paga</button>
             </div>
             </section>
             </body>
