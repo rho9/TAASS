@@ -52,7 +52,7 @@ class Carrello extends Component {
                 </table>
             </div>
             <div className="text-right">
-                <button class="button pagabutton">Paga</button>
+                <button class="btn btn-warning">Paga</button>
             </div>
             </section>
             </body>
