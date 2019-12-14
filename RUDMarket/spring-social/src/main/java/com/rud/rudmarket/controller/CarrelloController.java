@@ -1,8 +1,10 @@
 package com.rud.rudmarket.controller;
 
+import com.rud.rudmarket.model.Carrello;
 import com.rud.rudmarket.model.Prodotto;
 import com.rud.rudmarket.model.User;
 import com.rud.rudmarket.model.form.ProdottoInCarrelloForm;
+import com.rud.rudmarket.repository.CarrelloRepository;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.UserRepository;
 import com.rud.rudmarket.security.CurrentUser;
@@ -26,19 +28,24 @@ public class CarrelloController {
 	@Autowired
 	ProdottoRepository prodottoRepository;
 
+	@Autowired
+	CarrelloRepository carrelloRepository;
+
 	@PostMapping("/addProdottoInCarrello")
 	public boolean addProdottoInCarrello(@CurrentUser UserPrincipal userPrincipal, @RequestBody ProdottoInCarrelloForm prodottoInCarrelloForm) {
 		System.out.println(userPrincipal.getEmail() + " " + prodottoInCarrelloForm.getIdProdotto());
+
 		String userEmail = userPrincipal.getEmail();
 		Long idProdotto = Long.parseLong(prodottoInCarrelloForm.getIdProdotto());
 
 		User user = userRepository.findByEmail(userEmail).get();
 		Prodotto prodotto = prodottoRepository.findById(idProdotto).get();
-		List<User> users = prodotto.getCarrelloUtenti();
-		users.add(user);
-		prodotto.setCarrelloUtenti(users);
 
-		prodottoRepository.save(prodotto);
+		Carrello carrello = new Carrello();
+		carrello.setUser(user);
+		carrello.setProdotto(prodotto);
+
+		carrelloRepository.save(carrello);
 
 		return true;
   	}

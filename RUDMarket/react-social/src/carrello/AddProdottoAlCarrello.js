@@ -12,7 +12,6 @@ class AddProdottoAlCarrello extends Component {
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        alert(this.props.location.idProdotto + " " + this.props.location.nomeProdotto)
     }
 
     handleSubmit(event) {

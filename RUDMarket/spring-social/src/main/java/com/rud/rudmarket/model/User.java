@@ -48,9 +48,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Ordine> ordineList;
 
-    @ManyToMany(mappedBy = "carrelloUtenti")
-    List<Prodotto> carrelloList;
-
     public List<Ordine> getOrdineList() {
         return ordineList;
     }
@@ -61,14 +58,6 @@ public class User {
 
     public String getSurname() {
         return surname;
-    }
-
-    public List<Prodotto> getCarrelloList() {
-        return carrelloList;
-    }
-
-    public void setCarrelloList(List<Prodotto> carrelloList) {
-        this.carrelloList = carrelloList;
     }
 
     public void setSurname(String surname) {
