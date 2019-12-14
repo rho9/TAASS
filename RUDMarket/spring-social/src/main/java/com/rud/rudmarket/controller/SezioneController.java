@@ -22,6 +22,7 @@ public class SezioneController {
 	@PostMapping("/addSezione")
 	@PreAuthorize("hasRole('ADMIN')")
 	public Sezione addSezione(@CurrentUser UserPrincipal userPrincipal, @RequestBody SezioneForm sezioneForm) {
+		System.out.println(userPrincipal);
 		Sezione sezione = new Sezione();
 		sezione.setNome(sezioneForm.getNomeSezione());
 		sezioneRepository.save(sezione);
