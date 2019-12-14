@@ -25,7 +25,7 @@ class AddSezione extends Component {
         const addSezioneRequest = Object.assign({}, this.state);
         addSezione(addSezioneRequest)
             .then(response => {
-
+                this.props.history.push("/gestione")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
@@ -58,19 +58,6 @@ class AddSezione extends Component {
                     </div>
                 </div>
             </div>
-            /*<div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Nome Sezione:
-                        <input
-                            type="text"
-                            value={this.state.nome}
-                            onChange={this.handleChangeTitle}/>
-                    </label>
-                    <input type="submit" value="Aggiungi"/>
-                </form>
-
-            </div>*/
         );
     }
 }

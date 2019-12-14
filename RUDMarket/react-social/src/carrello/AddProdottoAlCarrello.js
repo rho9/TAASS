@@ -20,7 +20,7 @@ class AddProdottoAlCarrello extends Component {
         const addProdottoInCarrelloRequest = Object.assign({}, this.state);
         addProdottoInCarrello(addProdottoInCarrelloRequest)
             .then(response => {
-
+                this.props.history.push("/catalogo")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
