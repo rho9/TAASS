@@ -27,7 +27,7 @@ class Home extends Component {
                         <div className="col-md-4">
                             <h2>Dove trovarci</h2>
                             <p>Siamo sparsi in tutto il mondo con tanti punti vendita !</p>
-                            <p><a className="btn btn-warning" href="#" role="button">Scopri dove &raquo;</a></p>
+                            <p><NavLink className="btn btn-warning" to="/mappa" >Scopri dove &raquo;</NavLink></p>
                         </div>
                         <div className="col-md-4">
                             <h2>Eventi</h2>

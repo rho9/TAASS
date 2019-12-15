@@ -27,6 +27,7 @@ import Gestione from "../gestione/Gestione";
 import AdminRoute from "../common/AdminRoute";
 import Carrello from "../carrello/Carrello";
 import AddProdottoAlCarrello from "../carrello/AddProdottoAlCarrello";
+import Mappa from "../mappa/Mappa";
 
 class App extends Component {
   constructor(props) {
@@ -106,6 +107,7 @@ class App extends Component {
             <Route path="/signup"
                    render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
+            <Route path="/mappa" component={Mappa}></Route>
             <Route component={NotFound}></Route>
           </Switch>
         </div>
