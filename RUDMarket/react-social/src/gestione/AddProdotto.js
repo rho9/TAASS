@@ -122,19 +122,6 @@ class AddProdotto extends Component {
                     </div>
                 </div>
             </div>
-            /*<div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Nome Sezione:
-                        <input
-                            type="text"
-                            value={this.state.nome}
-                            onChange={this.handleChangeTitle}/>
-                    </label>
-                    <input type="submit" value="Aggiungi"/>
-                </form>
-
-            </div>*/
         );
     }
 }

@@ -34,8 +34,8 @@ class AddSconto extends Component {
         })
             .then(res => res.json())
             .then((data) => {
-                let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome} })
-                this.setState({ prodotti: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(prodottiFromApi) });
+                let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome + " - " + prodotto.marca} })
+                this.setState({ prodotti: [{value: '', display: '(Seleziona il nome del Prodotto)'}].concat(prodottiFromApi) });
             })
     }
 
@@ -58,7 +58,7 @@ class AddSconto extends Component {
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome del Prodotto)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(sezioniFromApi) });
             }).catch(error => {
             console.log(error);
         });
