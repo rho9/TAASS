@@ -97,3 +97,11 @@ export function addSconto(addScontoRequest){
         body: JSON.stringify(addScontoRequest)
     });
 }
+
+export function findUtenti(findUtentiRequest){
+    return request({
+        url: API_BASE_URL + "/user/findUtenti",
+        method: 'POST',
+        body: findUtentiRequest
+    });
+}

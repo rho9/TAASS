@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addProdotto, addSconto} from '../util/APIUtils';
+import {addSconto, findUtenti} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
@@ -7,24 +7,35 @@ class AddSconto extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            cercaEmailUtente: '',
             emailUtente: '',
+            utentiTrovati: [],
             perc: '',
             selectedSezione: '',
             sezioni: [],
             prodotti: [],
             selectedProdotto: '',
-
         }
         console.log(props);
 
+        //this.handleChangeCercaUtente = this.handleChangeCercaUtente(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChangeSezione = this.handleChangeSezione.bind(this)
+        this.handleChangeSezione = this.handleChangeSezione.bind(this);
     }
 
     handleChangeTitle(event) {
         this.setState({emailUtente: event.target.value});
     }
+
+    /*handleChangeCercaUtente(event) {
+        this.setState({cercaEmailUtente: event.target.value})
+        findUtenti()
+            .then(data => {
+                let utentiTrovatiFromApi = data.map(utenteTrovato => { return {value: utenteTrovato.email, display: utenteTrovato.email} })
+                this.setState({ utentiTrovati: [{value: '', display: '(Seleziona Utente)'}].concat(utentiTrovatiFromApi) })
+            })
+    }*/
 
     handleChangeSezione(event) {
         this.setState({selectedSezione: event.target.value})
@@ -74,20 +85,39 @@ class AddSconto extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="firstName">Email Utente</label>
+                                    <label htmlFor="cercaEmailUtente">Cerca Email Utente</label>
                                     <input type="text" className="form-control"
-                                           name="emailUtente"
-                                           value={this.state.nomeUtente}
-                                           onChange={this.handleChangeTitle}
+                                           name="cercaEmailUtente"
+                                           value={this.state.cercaEmailUtente}
+                                           //onChange={this.handleChangeCercaUtente}
+                                           onChange={
+                                               (e) => {
+                                                   this.setState({cercaEmailUtente: e.target.value})
+                                                   findUtenti(e.target.value)
+                                                       .then(data => {
+                                                           let utentiTrovatiFromApi = data.map(utenteTrovato => { return {value: utenteTrovato, display: utenteTrovato} })
+                                                           this.setState({ utentiTrovati: [{value: '', display: '(Seleziona Utente)'}].concat(utentiTrovatiFromApi) })
+                                                       })
+                                               }
+                                           }
                                            required/>
                                 </div>
                             </div>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="username">Percentuale</label>
+                                    <label htmlFor="username">Email Utente</label>
+                                    <select className="custom-select d-block w-100" value={this.state.emailUtente}
+                                            onChange={(e) => this.setState({emailUtente: e.target.value})}>
+                                        {this.state.utentiTrovati.map((utenteTrovato) => <option key={utenteTrovato.value} value={utenteTrovato.value}>{utenteTrovato.display}</option>)}>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="percentuale">Percentuale</label>
                                     <div className="input-group">
                                         <input type="text" className="form-control"
-                                               name="nomeSezione"
+                                               name="percentuale"
                                                value={this.state.perc}
                                                onChange={(e) => this.setState({perc: e.target.value})}
                                                required/>
