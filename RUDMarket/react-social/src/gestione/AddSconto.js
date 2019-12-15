@@ -11,16 +11,32 @@ class AddSconto extends Component {
             perc: '',
             selectedSezione: '',
             sezioni: [],
+            prodotti: [],
+            selectedProdotto: '',
 
         }
         console.log(props);
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeSezione = this.handleChangeSezione.bind(this)
     }
 
     handleChangeTitle(event) {
         this.setState({nome: event.target.value});
+    }
+
+    handleChangeSezione(event) {
+        this.setState({selectedSezione: event.target.value})
+        fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
+            method: 'POST',
+            body: "id=" + event.target.value
+        })
+            .then(res => res.json())
+            .then((data) => {
+                let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome} })
+                this.setState({ prodotti: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(prodottiFromApi) });
+            })
     }
 
     handleSubmit(event) {
@@ -42,7 +58,7 @@ class AddSconto extends Component {
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona la Sezione del Sezione)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome del Prodotto)'}].concat(sezioniFromApi) });
             }).catch(error => {
             console.log(error);
         });
@@ -83,8 +99,17 @@ class AddSconto extends Component {
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="username">Sezione</label>
                                     <select className="custom-select d-block w-100" value={this.state.selectedSezione}
-                                            onChange={(e) => this.setState({selectedSezione: e.target.value})}>
+                                            onChange={this.handleChangeSezione}>
                                         {this.state.sezioni.map((sezione) => <option key={sezione.value} value={sezione.value}>{sezione.display}</option>)}>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="username">Prodotto</label>
+                                    <select className="custom-select d-block w-100" value={this.state.selectedProdotto}
+                                            onChange={(e) => this.setState({selectedProdotto: e.target.value})}>
+                                        {this.state.prodotti.map((prodotto) => <option key={prodotto.value} value={prodotto.value}>{prodotto.display}</option>)}>
                                     </select>
                                 </div>
                             </div>
