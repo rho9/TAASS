@@ -21,6 +21,9 @@ public class Prodotto {
 	)
 	List<User> carrelloUtenti;
 
+	@OneToMany(mappedBy = "prodotto")
+	List<Ordine> ordineList;
+
 	public List<User> getCarrelloUtenti() {
 		return carrelloUtenti;
 	}
@@ -36,12 +39,6 @@ public class Prodotto {
 	public void setAtKg(boolean atKg) {
 		this.atKg = atKg;
 	}
-
-	@OneToMany(mappedBy = "prodotto")
-	List<Sconto> scontoList;
-
-	@OneToMany(mappedBy = "prodotto")
-	List<Ordine> ordineList;
 
 	public Long getId() {
 		return id;
@@ -69,14 +66,6 @@ public class Prodotto {
 
 	public void setPrezzo(int prezzo) {
 		this.prezzo = prezzo;
-	}
-
-	public List<Sconto> getScontoList() {
-		return scontoList;
-	}
-
-	public void setScontoList(List<Sconto> scontoList) {
-		this.scontoList = scontoList;
 	}
 
 	public List<Ordine> getOrdineList() {

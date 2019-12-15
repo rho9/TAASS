@@ -89,3 +89,11 @@ export function getCostoTotale(getCostoTotaleRequest){
         body: JSON.stringify(getCostoTotaleRequest)
     });
 }
+
+export function addSconto(addScontoRequest){
+    return request({
+        url: API_BASE_URL + "/sconto/addSconto",
+        method: 'POST',
+        body: JSON.stringify(addScontoRequest)
+    });
+}

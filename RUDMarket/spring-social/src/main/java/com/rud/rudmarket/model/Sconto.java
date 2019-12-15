@@ -18,6 +18,22 @@ public class Sconto {
 	@JoinColumn(name = "prodotto_id")
 	Prodotto prodotto;
 
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
+
+	public void setProdotto(Prodotto prodotto) {
+		this.prodotto = prodotto;
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addProdotto } from '../util/APIUtils';
+import {addProdotto, addSconto} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
@@ -7,7 +7,7 @@ class AddSconto extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nomeUtente: '',
+            emailUtente: '',
             perc: '',
             selectedSezione: '',
             sezioni: [],
@@ -23,7 +23,7 @@ class AddSconto extends Component {
     }
 
     handleChangeTitle(event) {
-        this.setState({nome: event.target.value});
+        this.setState({emailUtente: event.target.value});
     }
 
     handleChangeSezione(event) {
@@ -41,9 +41,8 @@ class AddSconto extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        const addProdottoRequest = Object.assign({}, this.state);
-        addProdotto(addProdottoRequest)
+        const addScontoRequest = Object.assign({}, this.state);
+        addSconto(addScontoRequest)
             .then(response => {
                 this.props.history.push("/gestione")
             }).catch(error => {
@@ -75,9 +74,9 @@ class AddSconto extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="firstName">Nome Utente</label>
+                                    <label htmlFor="firstName">Email Utente</label>
                                     <input type="text" className="form-control"
-                                           name="nomeSezione"
+                                           name="emailUtente"
                                            value={this.state.nomeUtente}
                                            onChange={this.handleChangeTitle}
                                            required/>
