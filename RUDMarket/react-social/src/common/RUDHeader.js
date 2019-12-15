@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './AppHeader.css';
-import './RUDHeader.css'
+import './RUDHeader.css';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 class RUDHeader extends Component {
     render() {
@@ -19,11 +20,15 @@ class RUDHeader extends Component {
                                     &nbsp;
                                     <NavLink className="btn btn-warning" to="/gestione">Gestione</NavLink>
                                     &nbsp;
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
+                                    &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
                             ) : this.props.authenticated && this.props.currentUser.role === "USER" ? (
                                 <form>
                                     <NavLink className="btn btn-warning" to="/profile">Profile</NavLink>
+                                    &nbsp;
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
                                     &nbsp;
                                     <a type="button" className="btn btn-warning" onClick={this.props.onLogout}>Logout</a>
                                 </form>
@@ -32,6 +37,10 @@ class RUDHeader extends Component {
                                     <NavLink className="btn btn-warning" to="/login">MyRUD</NavLink>
                                     &nbsp;
                                     <NavLink className="btn btn-warning" to="/signup">Registrazione</NavLink>
+                                    {/* &nbsp;
+                                    <NavLink to="/signup"><ShoppingCartIcon style={{color: '#ffc107'}} /></NavLink>*/}
+                                    &nbsp;
+                                    <NavLink className="btn btn-warning" to="/carrello"><ShoppingCartIcon /></NavLink>
                                 </form>
                             )}
                         </form>

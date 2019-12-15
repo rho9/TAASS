@@ -1,5 +1,6 @@
 import React from 'react'
 import './Catalogo.css'
+import {Link} from "react-router-dom";
 
 const ProdottoList = ({ prodotti }) => {
     return(
@@ -20,8 +21,13 @@ const ProdottoList = ({ prodotti }) => {
                         <ul className="list-unstyled mt-3 mb-4">
                             <li>{prodotto.marca}</li>
                         </ul>
-                        <button type="button" className="btn btn-warning">Aggiungi al Carrello
-                        </button>
+                        <Link className="btn btn-warning" to={
+                            {
+                                pathname: "/addCarrello",
+                                idProdotto: prodotto.id,
+                                nomeProdotto: prodotto.nome
+                            }
+                        }>Aggiungi al Carrello</Link>
                     </div>
                 </div>
             ))}

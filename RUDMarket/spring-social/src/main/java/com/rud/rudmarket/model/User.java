@@ -48,6 +48,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     List<Ordine> ordineList;
 
+    public List<Ordine> getOrdineList() {
+        return ordineList;
+    }
+
+    public void setOrdineList(List<Ordine> ordineList) {
+        this.ordineList = ordineList;
+    }
+
     public String getSurname() {
         return surname;
     }

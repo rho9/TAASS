@@ -25,6 +25,8 @@ import Catalogo from "../catalogo/Catalogo";
 import Sezione from "../catalogo/Sezione";
 import Gestione from "../gestione/Gestione";
 import AdminRoute from "../common/AdminRoute";
+import Carrello from "../carrello/Carrello";
+import AddProdottoAlCarrello from "../carrello/AddProdottoAlCarrello";
 
 class App extends Component {
   constructor(props) {
@@ -87,6 +89,10 @@ class App extends Component {
               <Route path="/sezione" component={Sezione}></Route>
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Profile}></PrivateRoute>
+            <PrivateRoute path="/carrello" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={Carrello}></PrivateRoute>
+            <PrivateRoute path="/addCarrello" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={AddProdottoAlCarrello}></PrivateRoute>
             <AdminRoute path="/gestione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Gestione}></AdminRoute>
             <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
@@ -108,34 +114,6 @@ class App extends Component {
         </footer>
       </body>
     );
-
-    /*return (
-      <div className="app">
-        <div className="app-top-box">
-          <RUDHeader authenticated={this.state.authenticated} currentUser={this.state.currentUser} onLogout={this.handleLogout} />
-        </div>
-        <div className="app-body">
-          <Switch>
-            <Route exact path="/" component={Home}></Route>           
-            <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-              component={Profile}></PrivateRoute>
-            <PrivateRoute path="/prodotto/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-              component={AddProdotto}></PrivateRoute>
-            <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                          component={AddSezione}></PrivateRoute>
-            <Route path="/login"
-              render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
-            <Route path="/signup"
-              render={(props) => <Signup authenticated={this.state.authenticated} {...props} />}></Route>
-            <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>  
-            <Route component={NotFound}></Route>
-          </Switch>
-        </div>
-        <Alert stack={{limit: 3}} 
-          timeout = {3000}
-          position='top-right' effect='slide' offset={65} />
-      </div>
-    );*/
   }
 }
 

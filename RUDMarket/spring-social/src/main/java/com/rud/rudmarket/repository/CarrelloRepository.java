@@ -1,10 +1,10 @@
 package com.rud.rudmarket.repository;
 
-import com.rud.rudmarket.model.Sezione;
+import com.rud.rudmarket.model.Carrello;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SezioneRepository extends JpaRepository<Sezione, Long> {
+public interface CarrelloRepository extends JpaRepository<Carrello, Long> {
 
 }

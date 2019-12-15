@@ -44,7 +44,7 @@ class AddProdotto extends Component {
         const addProdottoRequest = Object.assign({}, this.state);
         addProdotto(addProdottoRequest)
             .then(response => {
-
+                this.props.history.push("/gestione")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });

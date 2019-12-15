@@ -65,3 +65,27 @@ export function addSezione(addSezioneRequest){
         body: JSON.stringify(addSezioneRequest)
     });
 }
+
+export function addProdottoInCarrello(addProdottoInCarrelloRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/addProdottoInCarrello",
+        method: 'POST',
+        body: JSON.stringify(addProdottoInCarrelloRequest)
+    });
+}
+
+export function getProdottiInCarrello(getProdottiInCarrelloRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/getProdottiInCarrello",
+        method: 'GET',
+        body: JSON.stringify(getProdottiInCarrelloRequest)
+    });
+}
+
+export function getCostoTotale(getCostoTotaleRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/getCostoTotale",
+        method: 'GET',
+        body: JSON.stringify(getCostoTotaleRequest)
+    });
+}
