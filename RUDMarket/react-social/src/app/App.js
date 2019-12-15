@@ -27,6 +27,7 @@ import Gestione from "../gestione/Gestione";
 import AdminRoute from "../common/AdminRoute";
 import Carrello from "../carrello/Carrello";
 import AddProdottoAlCarrello from "../carrello/AddProdottoAlCarrello";
+import AddSconto from "../gestione/AddSconto";
 
 class App extends Component {
   constructor(props) {
@@ -97,6 +98,8 @@ class App extends Component {
                           component={Gestione}></AdminRoute>
             <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                         component={AddSezione}></AdminRoute>
+            <AdminRoute path="/addSconto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                        component={AddSconto}></AdminRoute>
             <AdminRoute path="/addProdotto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                         component={AddProdotto}></AdminRoute>
             <PrivateRoute path="/sezione/add" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
