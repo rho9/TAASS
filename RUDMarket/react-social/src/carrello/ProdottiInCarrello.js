@@ -13,7 +13,7 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
                         prodottoInCarrello.percSconto == 0 ? (
                             <th>{prodottoInCarrello.prodotto.prezzo}</th>
                         ) : (
-                            <th>{prodottoInCarrello.prodotto.prezzo} - ({prodottoInCarrello.percSconto}%)</th>
+                            <th>{prodottoInCarrello.prodotto.prezzo} (-{prodottoInCarrello.percSconto}%)</th>
                         )
                     }
                     <th>{(prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)) * prodottoInCarrello.quantita}</th>
