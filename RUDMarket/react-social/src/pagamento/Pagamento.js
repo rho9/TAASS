@@ -37,7 +37,7 @@ class Pagamento extends Component {
         const effettuaPagamentoRequest = Object.assign({}, this.state);
         effettuaPagamento(effettuaPagamentoRequest)
             .then(response => {
-                this.props.history.push("/home")
+                this.props.history.push("/")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
         });
@@ -121,7 +121,7 @@ class Pagamento extends Component {
                         </ul>
 
                         <form onSubmit={this.handleSubmit}>
-                            <NavLink className="btn btn-warning" to="/login">Paga</NavLink>
+                            <button className="btn btn-warning " type="submit">Paga</button>
                         </form>
                     </div>
                 </div>

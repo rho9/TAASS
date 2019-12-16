@@ -92,7 +92,7 @@ export function getCostoTotale(getCostoTotaleRequest){
 
 export function effettuaPagamento(effettuaPagamentoRequest){
     return request({
-        url: API_BASE_URL + "/pagamento/effettuaPagamento",
+        url: API_BASE_URL + "/carrello/effettuaPagamento",
         method: 'POST',
         body: JSON.stringify(effettuaPagamentoRequest)
     });
