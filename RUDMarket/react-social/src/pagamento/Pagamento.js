@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import './Pagamento.css';
 import {NavLink} from "react-router-dom";
+import ProdottiDaPagare from "./ProdottiDaPagare";
+import {getProdottiInCarrello} from "../util/APIUtils";
 
 class Pagamento extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            prodottiDaPagare: [],
+            costoTotale: 0
+        }
+
+        getProdottiInCarrello()
+            .then(response => {
+                this.setState({
+                    prodottiDaPagare: response
+                });
+            })
+    }
+
     render() {
         return (
             <body class="bg-light">
@@ -17,27 +34,7 @@ class Pagamento extends Component {
                             <span className="badge badge-secondary badge-pill">3</span>
                         </h4>
                         <ul className="list-group mb-3">
-                            <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 className="my-0">Prodotto</h6>
-                                    <small className="text-muted">Breve descrizione</small>
-                                </div>
-                                <span className="text-muted">$12</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 className="my-0">Second product</h6>
-                                    <small className="text-muted">Brief description</small>
-                                </div>
-                                <span className="text-muted">$8</span>
-                            </li>
-                            <li className="list-group-item d-flex justify-content-between lh-condensed">
-                                <div>
-                                    <h6 className="my-0">Third item</h6>
-                                    <small className="text-muted">Brief description</small>
-                                </div>
-                                <span className="text-muted">$5</span>
-                            </li>
+                            <ProdottiDaPagare prodottiDaPagare={this.state.prodottiDaPagare}/>
                             <li className="list-group-item d-flex justify-content-between bg-light">
                                 <div className="text-success">
                                     <h6 className="my-0">Promo code</h6>
@@ -65,17 +62,17 @@ class Pagamento extends Component {
                         <div className="d-block my-3">
                             <div className="custom-control custom-radio">
                                 <input id="credit" name="paymentMethod" type="radio" className="custom-control-input"
-                                       checked required></input>
+                                       checked required/>
                                     <label className="custom-control-label" htmlFor="credit">Carta di credito</label>
                             </div>
                             <div className="custom-control custom-radio">
                                 <input id="debit" name="paymentMethod" type="radio" className="custom-control-input"
-                                       required></input>
+                                       required/>
                                     <label className="custom-control-label" htmlFor="debit">Carta di debito</label>
                             </div>
                             <div className="custom-control custom-radio">
                                 <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input"
-                                       required></input>
+                                       required/>
                                     <label className="custom-control-label" htmlFor="paypal">Paypal</label>
                             </div>
                         </div>
