@@ -6,7 +6,7 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
         <tbody>
             {prodottiInCarrello.map((prodottoInCarrello) => (
                 <tr>
-                    <th>1</th>
+                    <th>{prodottoInCarrello.quantita}</th>
                     <th>{prodottoInCarrello.prodotto.nome}</th>
                     <th>{prodottoInCarrello.prodotto.marca}</th>
                     {
@@ -16,7 +16,7 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
                             <th>{prodottoInCarrello.prodotto.prezzo} - ({prodottoInCarrello.percSconto}%)</th>
                         )
                     }
-                    <th>{prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)}</th>
+                    <th>{(prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)) * prodottoInCarrello.quantita}</th>
                 </tr>
             ))}
         </tbody>

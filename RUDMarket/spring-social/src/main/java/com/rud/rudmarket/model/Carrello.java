@@ -17,6 +17,16 @@ public class Carrello {
 	@JoinColumn(name = "prodotto_id")
 	Prodotto prodotto;
 
+	private int quantita;
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
 	public Long getId() {
 		return id;
 	}

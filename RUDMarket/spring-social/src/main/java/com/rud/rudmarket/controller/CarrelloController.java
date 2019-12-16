@@ -49,6 +49,7 @@ public class CarrelloController {
 		Carrello carrello = new Carrello();
 		carrello.setUser(user);
 		carrello.setProdotto(prodotto);
+		carrello.setQuantita(prodottoInCarrelloForm.getQuantita());
 
 		carrelloRepository.save(carrello);
 
@@ -58,7 +59,7 @@ public class CarrelloController {
 	@RequestMapping("/getProdottiInCarrello")
 	public List<ProdottoInCarrello> getProdottiInCarrello(@CurrentUser UserPrincipal userPrincipal) {
 		List<ProdottoInCarrello> result = new ArrayList<>();
-		Prodotto prodotto = new Prodotto();
+		Prodotto prodotto;
 		Long userId = userPrincipal.getId();
 		List<Sconto> scontiAttivi = scontoController.getScontiAttivi(userPrincipal);
 
@@ -71,7 +72,7 @@ public class CarrelloController {
 						percSconto = scontoAttivo.getPerc();
 					}
 				}
-				result.add(new ProdottoInCarrello(prodotto, percSconto));
+				result.add(new ProdottoInCarrello(prodotto, percSconto, c.getQuantita()));
 			}
 		}
 		return result;
@@ -86,7 +87,7 @@ public class CarrelloController {
 			sumCosto = prodottoInCarrello.getProdotto().getPrezzo() -
 					((prodottoInCarrello.getPercSconto() * prodottoInCarrello.getProdotto().getPrezzo()) / 100);
 			System.out.println(sumCosto);
-			costoTotale += sumCosto;
+			costoTotale += sumCosto * prodottoInCarrello.getQuantita();
 		}
 		return costoTotale;
 	}
