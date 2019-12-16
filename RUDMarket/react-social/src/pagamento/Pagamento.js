@@ -2,20 +2,28 @@ import React, { Component } from 'react';
 import './Pagamento.css';
 import {NavLink} from "react-router-dom";
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {getProdottiInCarrello} from "../util/APIUtils";
+import {getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
+import PagamentoTotale from "./PagamentoTotale";
 
 class Pagamento extends Component {
     constructor(props) {
         super(props);
         this.state = {
             prodottiDaPagare: [],
-            costoTotale: 0
+            pagamentoTotale: 0
         }
 
         getProdottiInCarrello()
             .then(response => {
                 this.setState({
                     prodottiDaPagare: response
+                });
+            })
+
+        getCostoTotale()
+            .then(response => {
+                this.setState({
+                    pagamentoTotale: response
                 });
             })
     }
@@ -42,10 +50,7 @@ class Pagamento extends Component {
                                 </div>
                                 <span className="text-success">-$5</span>
                             </li>
-                            <li className="list-group-item d-flex justify-content-between">
-                                <span>Total (USD)</span>
-                                <strong>$20</strong>
-                            </li>
+                            <PagamentoTotale pagamentoTotale={this.state.pagamentoTotale}/>
                         </ul>
 
                         <form className="card p-2">
