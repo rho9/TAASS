@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './Pagamento.css';
 import {NavLink} from "react-router-dom";
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
+import {effettuaPagamento, getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
-import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
+import Alert from "react-s-alert";
 
 class Pagamento extends Component {
     constructor(props) {
@@ -27,6 +27,20 @@ class Pagamento extends Component {
                     pagamentoTotale: response
                 });
             })
+
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        const effettuaPagamentoRequest = Object.assign({}, this.state);
+        effettuaPagamento(effettuaPagamentoRequest)
+            .then(response => {
+                this.props.history.push("/home")
+            }).catch(error => {
+            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
+        });
     }
 
     render() {
@@ -106,8 +120,7 @@ class Pagamento extends Component {
                             <PagamentoTotale pagamentoTotale={this.state.pagamentoTotale}/>
                         </ul>
 
-
-                        <form>
+                        <form onSubmit={this.handleSubmit}>
                             <NavLink className="btn btn-warning" to="/login">Paga</NavLink>
                         </form>
                     </div>
