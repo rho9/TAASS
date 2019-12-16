@@ -10,7 +10,7 @@ const ProdottiDaPagare = ({ prodottiDaPagare }) => {
             <h6 className="my-0">{prodotto.nome}</h6>
             <small className="text-muted">{prodotto.marca}</small>
             </div>
-            <span className="text-muted">{prodotto.prezzo}</span>
+            <span className="text-muted">{prodotto.prezzo}€</span>
             </li>
         ))}
         </tbody>

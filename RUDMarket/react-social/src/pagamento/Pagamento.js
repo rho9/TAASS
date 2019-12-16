@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import ProdottiDaPagare from "./ProdottiDaPagare";
 import {getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
+import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 class Pagamento extends Component {
     constructor(props) {
@@ -36,31 +37,6 @@ class Pagamento extends Component {
                     <h1>RUDMarket</h1>
                 </div>
                 <div class="row">
-                    <div className="col-md-4 order-md-2 mb-4">
-                        <h4 className="d-flex justify-content-between align-items-center mb-3">
-                            <span className="text-muted">Il tuo RUDCarrello</span>
-                            <span className="badge badge-secondary badge-pill">3</span>
-                        </h4>
-                        <ul className="list-group mb-3">
-                            <ProdottiDaPagare prodottiDaPagare={this.state.prodottiDaPagare}/>
-                            <li className="list-group-item d-flex justify-content-between bg-light">
-                                <div className="text-success">
-                                    <h6 className="my-0">Promo code</h6>
-                                    <small>EXAMPLECODE</small>
-                                </div>
-                                <span className="text-success">-$5</span>
-                            </li>
-                            <PagamentoTotale pagamentoTotale={this.state.pagamentoTotale}/>
-                        </ul>
-
-                        <form className="card p-2">
-                            <div className="input-group">
-                                <div className="input-group-append">
-                                    <button type="submit" className="btn btn-secondary">Paga</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                     <div className="col-md-8 order-md-1">
                         <h4 className="mb-3">Pagamento</h4>
 
@@ -112,6 +88,28 @@ class Pagamento extends Component {
                                     </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="col-md-4 order-md-2 mb-4">
+                        <h4 className="d-flex justify-content-between align-items-center mb-3">
+                            <span className="text-muted">Il tuo RUDCarrello</span>
+                            <span className="badge badge-secondary badge-pill">{this.state.prodottiDaPagare.length}</span>
+                        </h4>
+                        <ul className="list-group mb-3">
+                            <ProdottiDaPagare prodottiDaPagare={this.state.prodottiDaPagare}/>
+                            <li className="list-group-item d-flex justify-content-between bg-light">
+                                <div className="text-success">
+                                    <h6 className="my-0">Promo code</h6>
+                                    <small>EXAMPLECODE</small>
+                                </div>
+                                <span className="text-success">-$5</span>
+                            </li>
+                            <PagamentoTotale pagamentoTotale={this.state.pagamentoTotale}/>
+                        </ul>
+
+
+                        <form>
+                            <NavLink className="btn btn-warning" to="/login">Paga</NavLink>
+                        </form>
                     </div>
                 </div>
             </div>
