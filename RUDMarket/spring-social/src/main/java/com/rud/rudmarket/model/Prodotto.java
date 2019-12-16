@@ -10,7 +10,7 @@ public class Prodotto {
 	private Long id;
 
 	private String nome, marca;
-	private int prezzo;
+	private float prezzo;
 	private boolean atKg;
 
 	@ManyToMany
@@ -60,11 +60,11 @@ public class Prodotto {
 		return marca;
 	}
 
-	public int getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
 	}
 

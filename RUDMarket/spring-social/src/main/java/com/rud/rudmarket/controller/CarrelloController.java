@@ -1,11 +1,10 @@
 package com.rud.rudmarket.controller;
 
-import com.rud.rudmarket.model.Carrello;
-import com.rud.rudmarket.model.Prodotto;
-import com.rud.rudmarket.model.User;
+import com.rud.rudmarket.model.*;
 import com.rud.rudmarket.model.form.ProdottoInCarrelloForm;
 import com.rud.rudmarket.repository.CarrelloRepository;
 import com.rud.rudmarket.repository.ProdottoRepository;
+import com.rud.rudmarket.repository.ScontoRepository;
 import com.rud.rudmarket.repository.UserRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
@@ -31,6 +30,12 @@ public class CarrelloController {
 	@Autowired
 	CarrelloRepository carrelloRepository;
 
+	@Autowired
+	ScontoRepository scontoRepository;
+
+	@Autowired
+	ScontoController scontoController;
+
 	@PostMapping("/addProdottoInCarrello")
 	public boolean addProdottoInCarrello(@CurrentUser UserPrincipal userPrincipal, @RequestBody ProdottoInCarrelloForm prodottoInCarrelloForm) {
 		System.out.println(userPrincipal.getEmail() + " " + prodottoInCarrelloForm.getIdProdotto());
@@ -51,27 +56,37 @@ public class CarrelloController {
   	}
     
 	@RequestMapping("/getProdottiInCarrello")
-	public List<Prodotto> getProdottiInCarrello(@CurrentUser UserPrincipal userPrincipal) {
-		List<Carrello> carrelloList = new ArrayList<>();
-		List<Prodotto> prodottoList = new ArrayList<>();
+	public List<ProdottoInCarrello> getProdottiInCarrello(@CurrentUser UserPrincipal userPrincipal) {
+		List<ProdottoInCarrello> result = new ArrayList<>();
 		Prodotto prodotto = new Prodotto();
-		carrelloList = carrelloRepository.findAll();
 		Long userId = userPrincipal.getId();
-		for(Carrello c : carrelloList){
+		List<Sconto> scontiAttivi = scontoController.getScontiAttivi(userPrincipal);
+
+		for(Carrello c : carrelloRepository.findAll()){
 			if(userId == c.getUser().getId()) {
 				prodotto = c.getProdotto();
-				prodottoList.add(prodotto);
+				int percSconto = 0;
+				for (Sconto scontoAttivo : scontiAttivi) {
+					if (scontoAttivo.getProdotto().getId().equals(prodotto.getId())) {
+						percSconto = scontoAttivo.getPerc();
+					}
+				}
+				result.add(new ProdottoInCarrello(prodotto, percSconto));
 			}
 		}
-		return prodottoList;
+		return result;
 	}
 
 	@RequestMapping("/getCostoTotale")
-	public double getCostoTotale(@CurrentUser UserPrincipal userPrincipal){
-		List<Prodotto> prodottoList = getProdottiInCarrello(userPrincipal);
-		double costoTotale = 0;
-		for(Prodotto prodotto : prodottoList){
-			costoTotale += prodotto.getPrezzo();
+	public float getCostoTotale(@CurrentUser UserPrincipal userPrincipal){
+		List<ProdottoInCarrello> prodottoList = getProdottiInCarrello(userPrincipal);
+		float costoTotale = 0;
+		float sumCosto;
+		for(ProdottoInCarrello prodottoInCarrello : prodottoList){
+			sumCosto = prodottoInCarrello.getProdotto().getPrezzo() -
+					((prodottoInCarrello.getPercSconto() * prodottoInCarrello.getProdotto().getPrezzo()) / 100);
+			System.out.println(sumCosto);
+			costoTotale += sumCosto;
 		}
 		return costoTotale;
 	}

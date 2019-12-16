@@ -4,13 +4,19 @@ import './Carrello.css'
 const ProdottiInCarrello = ({ prodottiInCarrello }) => {
     return(
         <tbody>
-            {prodottiInCarrello.map((prodotto) => (
+            {prodottiInCarrello.map((prodottoInCarrello) => (
                 <tr>
                     <th>1</th>
-                    <th>{prodotto.nome}</th>
-                    <th>{prodotto.marca}</th>
-                    <th>{prodotto.prezzo}</th>
-                    <th>{prodotto.prezzo}</th>
+                    <th>{prodottoInCarrello.prodotto.nome}</th>
+                    <th>{prodottoInCarrello.prodotto.marca}</th>
+                    {
+                        prodottoInCarrello.percSconto == 0 ? (
+                            <th>{prodottoInCarrello.prodotto.prezzo}</th>
+                        ) : (
+                            <th>{prodottoInCarrello.prodotto.prezzo} - ({prodottoInCarrello.percSconto}%)</th>
+                        )
+                    }
+                    <th>{prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)}</th>
                 </tr>
             ))}
         </tbody>
