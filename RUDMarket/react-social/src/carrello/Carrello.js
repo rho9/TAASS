@@ -5,8 +5,6 @@ import ProdottiInCarrello from "./ProdottiInCarrello";
 import {getProdottiInCarrello} from "../util/APIUtils";
 import CostoTotale from "./CostoTotale";
 import {getCostoTotale} from "../util/APIUtils";
-import {NavLink} from "react-router-dom";
-import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 class Carrello extends Component {
     constructor(props) {

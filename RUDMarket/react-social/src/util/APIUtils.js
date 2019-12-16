@@ -105,3 +105,11 @@ export function findUtenti(findUtentiRequest){
         body: findUtentiRequest
     });
 }
+
+export function getScontiAttivi(getScontiAttiviRequest){
+    return request({
+        url: API_BASE_URL + "/sconto/getScontiAttivi",
+        method: 'GET',
+        body: JSON.stringify(getScontiAttiviRequest)
+    });
+}

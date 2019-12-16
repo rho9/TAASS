@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Profile.css';
+import {NavLink} from "react-router-dom";
 
 class Profile extends Component {
     constructor(props) {
@@ -27,7 +28,16 @@ class Profile extends Component {
                            <p className="profile-email">{this.props.currentUser.email}</p>
                         </div>
                     </div>
-                </div>    
+                </div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <h2>Visualizza Sconti</h2>
+                            <p>Visualizza gli sconti a te dedicati !</p>
+                            <p><NavLink className="btn btn-warning" to="/sconti">Vai &raquo;</NavLink></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

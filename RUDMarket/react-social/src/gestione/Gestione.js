@@ -21,7 +21,6 @@ class Home extends Component {
                             <p><NavLink className="btn btn-warning" to="/addSconto">Vai &raquo;</NavLink></p>
                         </div>
                     </div>
-
                 </div>
             </main>
         )

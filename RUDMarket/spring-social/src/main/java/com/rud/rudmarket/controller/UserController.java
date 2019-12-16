@@ -2,7 +2,6 @@ package com.rud.rudmarket.controller;
 
 import com.rud.rudmarket.exception.ResourceNotFoundException;
 import com.rud.rudmarket.model.User;
-import com.rud.rudmarket.model.form.CercaUtenteForm;
 import com.rud.rudmarket.repository.UserRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;

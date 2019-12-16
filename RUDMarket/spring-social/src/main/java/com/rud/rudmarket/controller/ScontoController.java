@@ -9,6 +9,8 @@ import com.rud.rudmarket.model.form.ScontoForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.ScontoRepository;
 import com.rud.rudmarket.repository.UserRepository;
+import com.rud.rudmarket.security.CurrentUser;
+import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -47,5 +50,18 @@ public class ScontoController {
 		}
 
 		throw new Exception("Il prodotto inserito non è corretto!");
+	}
+
+	@RequestMapping("/getScontiAttivi")
+	public List<Sconto> getScontiAttivi(@CurrentUser UserPrincipal userPrincipal) {
+		List<Sconto> result = new ArrayList<>();
+
+		for (Sconto s : scontoRepository.findAll()) {
+			if (s.getUser().getEmail().equals(userPrincipal.getEmail())) {
+				result.add(s);
+			}
+		}
+
+		return result;
 	}
 }
