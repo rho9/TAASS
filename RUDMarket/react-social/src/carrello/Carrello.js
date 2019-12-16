@@ -6,6 +6,7 @@ import {getProdottiInCarrello} from "../util/APIUtils";
 import CostoTotale from "./CostoTotale";
 import {getCostoTotale} from "../util/APIUtils";
 import {NavLink} from "react-router-dom";
+import ShoppingCartIcon from "@material-ui/core/SvgIcon/SvgIcon";
 
 class Carrello extends Component {
     constructor(props) {
@@ -52,7 +53,11 @@ class Carrello extends Component {
             </div>
             <div className="text-right">
                 <form>
-                    <NavLink className="btn btn-warning" to="/pagamento">Paga</NavLink>
+                    { this.state.costoTotale !== 0 ? (
+                        <NavLink className="btn btn-warning" to="/pagamento">Paga</NavLink>
+                    ) :
+                        <button className="btn btn-warning" disabled>Paga</button>
+                    }
                 </form>
             </div>
             </section>
