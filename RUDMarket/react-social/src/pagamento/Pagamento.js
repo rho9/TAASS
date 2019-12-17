@@ -5,6 +5,7 @@ import ProdottiDaPagare from "./ProdottiDaPagare";
 import {effettuaPagamento, getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
+import {personalAddress} from "./Indirizzo";
 
 class Pagamento extends Component {
     constructor(props) {
@@ -20,8 +21,7 @@ class Pagamento extends Component {
             scadenzaCarta: '',
             cvvCarta: '',
             indirizzoChecked: false,
-            supermercatoChecked: false,
-            indirizzo: ''
+            supermercatoChecked: false
         }
 
         getProdottiInCarrello()
@@ -193,42 +193,9 @@ class Pagamento extends Component {
                                 { !this.state.indirizzoChecked && !this.state.supermercatoChecked ? (
                                     <small className="text-muted">Scegliere una modalità di consegna</small>
                                     ) : this.state.indirizzoChecked ? (
-                                        <div>
-                                            <div class="row">
-                                                <div className="col-md-6 mb-3">
-                                                    <label htmlFor="cc-name">Nome</label>
-                                                    <input type="text" className="form-control" required/>
-                                                </div>
-                                                <div className="col-md-6 mb-3">
-                                                    <label htmlFor="cc-name">Cognome</label>
-                                                    <input type="text" className="form-control" required/>
-                                                </div>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label htmlFor="cc-name">Indirizzo</label>
-                                                <input type="text" className="form-control"
-                                                       value={this.state.indirizzo}
-                                                       onChange={(e) => this.setState({indirizzo: e.target.value})}
-                                                       required/>
-                                                <small className="text-muted">Indicare l'indirizzo per la consegna</small>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-5 mb-3">
-                                                    <label htmlFor="cc-name">Nazione</label>
-                                                    <input type="text" className="form-control" required/>
-                                                </div>
-                                                <div className="col-md-4 mb-3">
-                                                    <label htmlFor="cc-name">Regione</label>
-                                                    <input type="text" className="form-control" required/>
-                                                </div>
-                                                <div className="col-md-3 mb-3">
-                                                    <label htmlFor="cc-name">CAP</label>
-                                                    <input type="text" className="form-control" required/>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        personalAddress()
                                     ) :
-                                        <h4>Supermercato</h4>
+                                        <h4>Supermercati da scegliere</h4>
                                 }
                             </form>
                         </div>
