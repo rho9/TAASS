@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,5 +64,26 @@ public class ScontoController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping("/findScontiByUtente")
+	@PreAuthorize("hasRole('ADMIN')")
+	public List<Sconto> findScontiByUtente(@RequestBody String body) {
+		List<Sconto> result = new ArrayList<>();
+		User user = userRepository.findByEmail(body).get();
+
+		for (Sconto s : scontoRepository.findAll()) {
+			if (s.getUser().getId().equals(user.getId())) {
+				result.add(s);
+			}
+		}
+
+		return result;
+	}
+
+	@RequestMapping("/removeSconto")
+	@PreAuthorize("hasRole('ADMIN')")
+	public void removeSconto(@RequestBody String body) {
+		scontoRepository.delete(scontoRepository.findById(Long.parseLong(body)).get());
 	}
 }

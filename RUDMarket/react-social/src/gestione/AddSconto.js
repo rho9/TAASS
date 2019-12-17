@@ -18,7 +18,6 @@ class AddSconto extends Component {
         }
         console.log(props);
 
-        //this.handleChangeCercaUtente = this.handleChangeCercaUtente(this);
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeSezione = this.handleChangeSezione.bind(this);
@@ -27,15 +26,6 @@ class AddSconto extends Component {
     handleChangeTitle(event) {
         this.setState({emailUtente: event.target.value});
     }
-
-    /*handleChangeCercaUtente(event) {
-        this.setState({cercaEmailUtente: event.target.value})
-        findUtenti()
-            .then(data => {
-                let utentiTrovatiFromApi = data.map(utenteTrovato => { return {value: utenteTrovato.email, display: utenteTrovato.email} })
-                this.setState({ utentiTrovati: [{value: '', display: '(Seleziona Utente)'}].concat(utentiTrovatiFromApi) })
-            })
-    }*/
 
     handleChangeSezione(event) {
         this.setState({selectedSezione: event.target.value})
