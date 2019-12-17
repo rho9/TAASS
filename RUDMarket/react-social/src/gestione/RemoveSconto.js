@@ -55,7 +55,16 @@ class RemoveSconto extends Component {
                                                    findUtenti(e.target.value)
                                                        .then(data => {
                                                            let utentiTrovatiFromApi = data.map(utenteTrovato => { return {value: utenteTrovato, display: utenteTrovato} })
-                                                           this.setState({ utentiTrovati: [{value: '', display: '(Seleziona Utente)'}].concat(utentiTrovatiFromApi) })
+                                                           this.setState({ utentiTrovati: [].concat(utentiTrovatiFromApi) })
+                                                           findScontiByUtente(this.state.utentiTrovati[0].value)
+                                                               .then(data => {
+                                                                   let scontiTrovatiFromApi = data.map(scontoTrovato => { return {value: scontoTrovato.id, display: scontoTrovato.prodotto.nome + " - " + scontoTrovato.prodotto.marca} })
+                                                                   this.setState({ scontiTrovati: [].concat(scontiTrovatiFromApi) })
+
+                                                                   if (this.state.scontiTrovati.length > 0) {
+                                                                       this.setState({scontoSelezionato: this.state.scontiTrovati[0].value})
+                                                                   }
+                                                               })
                                                        })
                                                }
                                            }
@@ -72,7 +81,7 @@ class RemoveSconto extends Component {
                                                     findScontiByUtente(e.target.value)
                                                         .then(data => {
                                                             let scontiTrovatiFromApi = data.map(scontoTrovato => { return {value: scontoTrovato.id, display: scontoTrovato.prodotto.nome + " - " + scontoTrovato.prodotto.marca} })
-                                                            this.setState({ scontiTrovati: [{value: '', display: '(Seleziona Sconto)'}].concat(scontiTrovatiFromApi) })
+                                                            this.setState({ scontiTrovati: [].concat(scontiTrovatiFromApi) })
                                                         })
                                                 }
                                             }>
