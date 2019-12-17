@@ -4,13 +4,23 @@ import './Pagamento.css'
 const ProdottiDaPagare = ({ prodottiDaPagare }) => {
     return(
         <tbody>
-        {prodottiDaPagare.map((prodotto) => (
+        {prodottiDaPagare.map((prodottoDaPagare) => (
             <li className="list-group-item d-flex justify-content-between lh-condensed">
             <div>
-            <h6 className="my-0">{prodotto.nome}</h6>
-            <small className="text-muted">{prodotto.marca}</small>
+                {
+                    prodottoDaPagare.percSconto == 0 ? (
+                        <h6 className="my-0">
+                            {prodottoDaPagare.prodotto.nome} (x{prodottoDaPagare.quantita})
+                        </h6>
+                    ) : (
+                        <h6 className="my-0">
+                            {prodottoDaPagare.prodotto.nome} (x{prodottoDaPagare.quantita}) (-{prodottoDaPagare.percSconto}%)
+                        </h6>
+                    )
+                }
+            <small className="text-muted">{prodottoDaPagare.prodotto.marca}</small>
             </div>
-            <span className="text-muted">{prodotto.prezzo}€</span>
+            <span className="text-muted">{(prodottoDaPagare.prodotto.prezzo - ((prodottoDaPagare.prodotto.prezzo * prodottoDaPagare.percSconto) / 100)) * prodottoDaPagare.quantita}€</span>
             </li>
         ))}
         </tbody>

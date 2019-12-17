@@ -11,7 +11,10 @@ class Pagamento extends Component {
         super(props);
         this.state = {
             prodottiDaPagare: [],
-            pagamentoTotale: 0
+            pagamentoTotale: 0,
+            creditChecked: false,
+            debitChecked: false,
+            paypalChecked: false
         }
 
         getProdottiInCarrello()
@@ -58,17 +61,38 @@ class Pagamento extends Component {
                         <div className="d-block my-3">
                             <div className="custom-control custom-radio">
                                 <input id="credit" name="paymentMethod" type="radio" className="custom-control-input"
-                                       checked required/>
+                                       checked={this.state.creditChecked}
+                                       onClick={(e) => this.setState(
+                                           {
+                                               creditChecked: !this.state.creditChecked,
+                                               debitChecked: false,
+                                               paypalChecked: false,
+                                           }
+                                           )} required/>
                                     <label className="custom-control-label" htmlFor="credit">Carta di credito</label>
                             </div>
                             <div className="custom-control custom-radio">
                                 <input id="debit" name="paymentMethod" type="radio" className="custom-control-input"
-                                       required/>
+                                       checked={this.state.debitChecked}
+                                       onClick={(e) => this.setState(
+                                           {
+                                               creditChecked: false,
+                                               debitChecked: !this.state.debitChecked,
+                                               paypalChecked: false,
+                                           }
+                                       )} required/>
                                     <label className="custom-control-label" htmlFor="debit">Carta di debito</label>
                             </div>
                             <div className="custom-control custom-radio">
                                 <input id="paypal" name="paymentMethod" type="radio" className="custom-control-input"
-                                       required/>
+                                       checked={this.state.paypalChecked}
+                                       onClick={(e) => this.setState(
+                                           {
+                                               creditChecked: false,
+                                               debitChecked: false,
+                                               paypalChecked: !this.state.paypalChecked,
+                                           }
+                                       )} required/>
                                     <label className="custom-control-label" htmlFor="paypal">Paypal</label>
                             </div>
                         </div>
@@ -111,13 +135,6 @@ class Pagamento extends Component {
                         </h4>
                         <ul className="list-group mb-3">
                             <ProdottiDaPagare prodottiDaPagare={this.state.prodottiDaPagare}/>
-                            <li className="list-group-item d-flex justify-content-between bg-light">
-                                <div className="text-success">
-                                    <h6 className="my-0">Promo code</h6>
-                                    <small>EXAMPLECODE</small>
-                                </div>
-                                <span className="text-success">-$5</span>
-                            </li>
                             <PagamentoTotale pagamentoTotale={this.state.pagamentoTotale}/>
                         </ul>
 

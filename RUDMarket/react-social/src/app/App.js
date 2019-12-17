@@ -94,8 +94,8 @@ class App extends Component {
                           component={Profile}></PrivateRoute>
             <PrivateRoute path="/carrello" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Carrello}></PrivateRoute>
-              <PrivateRoute path="/sconti" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
-                            component={Sconto}></PrivateRoute>
+            <PrivateRoute path="/sconti" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                          component={Sconto}></PrivateRoute>
             <PrivateRoute path="/pagamento" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                           component={Pagamento}></PrivateRoute>
             <PrivateRoute path="/addCarrello" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
