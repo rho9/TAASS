@@ -8,7 +8,7 @@ const CostoTotale = ({ costoTotale }) => {
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>Totale {costoTotale.toString()}</th>
+                <th>Totale {costoTotale.toString()}€</th>
             </tr>
     );
 };

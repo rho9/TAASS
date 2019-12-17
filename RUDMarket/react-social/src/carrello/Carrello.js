@@ -52,7 +52,13 @@ class Carrello extends Component {
                 </table>
             </div>
             <div className="text-right">
-                <button class="btn btn-warning">Paga</button>
+                <form>
+                    { this.state.costoTotale !== 0 ? (
+                        <NavLink className="btn btn-warning" to="/pagamento">Paga</NavLink>
+                    ) :
+                        <button className="btn btn-warning" disabled>Paga</button>
+                    }
+                </form>
             </div>
             </section>
             </body>

@@ -9,8 +9,8 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
                     <th>1</th>
                     <th>{prodotto.nome}</th>
                     <th>{prodotto.marca}</th>
-                    <th>{prodotto.prezzo}</th>
-                    <th>{prodotto.prezzo}</th>
+                    <th>{prodotto.prezzo}€</th>
+                    <th>{prodotto.prezzo}€</th>
                 </tr>
             ))}
         </tbody>

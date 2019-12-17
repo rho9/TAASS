@@ -75,4 +75,19 @@ public class CarrelloController {
 		}
 		return costoTotale;
 	}
+
+	@PostMapping("/effettuaPagamento")
+	public boolean effettuaPagamento(@CurrentUser UserPrincipal userPrincipal) {
+
+		List<Carrello> carrelloList = new ArrayList<>();
+		carrelloList = carrelloRepository.findAll();
+		for(Carrello carrello: carrelloList){
+			if(carrello.getUser().getId()==userPrincipal.getId()){
+				carrelloRepository.delete(carrello);
+			}
+			System.out.println();
+		}
+
+		return true;
+	}
 }
