@@ -68,19 +68,6 @@ class AddSconto extends Component {
         });
     }
 
-    /*componentDidMount() {
-        fetch("http://localhost:8080/sezione/getSezioni")
-            .then((response) => {
-                return response.json();
-            })
-            .then(data => {
-                let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [].concat(sezioniFromApi) });
-            }).catch(error => {
-            console.log(error);
-        });
-    }*/
-
     render() {
         return (
             <div className="container">
@@ -103,7 +90,10 @@ class AddSconto extends Component {
                                                    findUtenti(e.target.value)
                                                        .then(data => {
                                                            let utentiTrovatiFromApi = data.map(utenteTrovato => { return {value: utenteTrovato, display: utenteTrovato} })
-                                                           this.setState({ utentiTrovati: [{value: '', display: '(Seleziona Utente)'}].concat(utentiTrovatiFromApi) })
+                                                           this.setState({ utentiTrovati: [].concat(utentiTrovatiFromApi) })
+                                                           if (this.state.utentiTrovati.length > 0) {
+                                                               this.setState({emailUtente: this.state.utentiTrovati[0].value})
+                                                           }
                                                        })
                                                }
                                            }
@@ -158,4 +148,4 @@ class AddSconto extends Component {
     }
 }
 
-export default AddSconto
+export default AddSconto;
