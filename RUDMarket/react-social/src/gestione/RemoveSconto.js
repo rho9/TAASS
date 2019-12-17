@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addSconto, findScontiByUtente, findUtenti, removeSconto} from '../util/APIUtils';
+import {findScontiByUtente, findUtenti, removeSconto} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
@@ -24,8 +24,6 @@ class RemoveSconto extends Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        const addScontoRequest = Object.assign({}, this.state);
         removeSconto(this.state.scontoSelezionato)
             .then(response => {
                 this.props.history.push("/gestione")
