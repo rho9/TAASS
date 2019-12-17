@@ -5,6 +5,18 @@ import { GOOGLE_MAPS_API_KEY } from '../constants';
 class Mappa extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            markers: [
+                {
+                    lat: 45.0704179,
+                    lng: 7.6241255
+                },
+                {
+                    lat: 45.1704179,
+                    lng: 7.6241255
+                }
+            ]
+        }
         console.log(props);
     }
 
@@ -16,6 +28,11 @@ class Mappa extends Component {
 
         const markerPosition = {
             lat: 45.0704179,
+            lng: 7.6241255
+        };
+
+        const markerPosition2 = {
+            lat: 45.1704179,
             lng: 7.6241255
         };
 
@@ -41,10 +58,16 @@ class Mappa extends Component {
                                 lng: 7.6741106
                             }}
                         >
-                        <Marker
-                            onLoad={onLoad}
-                            position={markerPosition}
-                        />
+
+                            {
+                                this.state.markers.map((marker) => (
+                                        <Marker
+                                            onLoad={onLoad}
+                                            position={marker}
+                                        />
+                                    )
+                                )
+                            }
                         </GoogleMap>
                     </LoadScript>
                 </div>
