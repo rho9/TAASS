@@ -64,7 +64,7 @@ public class CarrelloController {
 		List<Sconto> scontiAttivi = scontoController.getScontiAttivi(userPrincipal);
 
 		for(Carrello c : carrelloRepository.findAll()){
-			if(userId == c.getUser().getId()) {
+			if(c.getUser().getId().equals(userId)) {
 				prodotto = c.getProdotto();
 				int percSconto = 0;
 				for (Sconto scontoAttivo : scontiAttivi) {
@@ -94,16 +94,11 @@ public class CarrelloController {
 
 	@PostMapping("/effettuaPagamento")
 	public boolean effettuaPagamento(@CurrentUser UserPrincipal userPrincipal) {
-
-		List<Carrello> carrelloList = new ArrayList<>();
-		carrelloList = carrelloRepository.findAll();
-		for(Carrello carrello: carrelloList){
-			if(carrello.getUser().getId()==userPrincipal.getId()){
+		for(Carrello carrello : carrelloRepository.findAll()){
+			if (carrello.getUser().getId().equals(userPrincipal.getId())) {
 				carrelloRepository.delete(carrello);
 			}
-			System.out.println();
 		}
-
 		return true;
 	}
 }
