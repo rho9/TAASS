@@ -111,5 +111,10 @@ export function getScontiAttivi(getScontiAttiviRequest){
         url: API_BASE_URL + "/sconto/getScontiAttivi",
         method: 'GET',
         body: JSON.stringify(getScontiAttiviRequest)
+export function effettuaPagamento(effettuaPagamentoRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/effettuaPagamento",
+        method: 'POST',
+        body: JSON.stringify(effettuaPagamentoRequest)
     });
 }
