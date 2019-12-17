@@ -10,7 +10,7 @@ public class Prodotto {
 	private Long id;
 
 	private String nome, marca;
-	private int prezzo;
+	private float prezzo;
 	private boolean atKg;
 
 	@ManyToMany
@@ -20,6 +20,9 @@ public class Prodotto {
 			inverseJoinColumns = @JoinColumn(name = "utente_id")
 	)
 	List<User> carrelloUtenti;
+
+	@OneToMany(mappedBy = "prodotto")
+	List<Ordine> ordineList;
 
 	public List<User> getCarrelloUtenti() {
 		return carrelloUtenti;
@@ -36,12 +39,6 @@ public class Prodotto {
 	public void setAtKg(boolean atKg) {
 		this.atKg = atKg;
 	}
-
-	@OneToMany(mappedBy = "prodotto")
-	List<Sconto> scontoList;
-
-	@OneToMany(mappedBy = "prodotto")
-	List<Ordine> ordineList;
 
 	public Long getId() {
 		return id;
@@ -63,20 +60,12 @@ public class Prodotto {
 		return marca;
 	}
 
-	public int getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(int prezzo) {
+	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
-	}
-
-	public List<Sconto> getScontoList() {
-		return scontoList;
-	}
-
-	public void setScontoList(List<Sconto> scontoList) {
-		this.scontoList = scontoList;
 	}
 
 	public List<Ordine> getOrdineList() {

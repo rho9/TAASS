@@ -89,3 +89,51 @@ export function getCostoTotale(getCostoTotaleRequest){
         body: JSON.stringify(getCostoTotaleRequest)
     });
 }
+
+export function addSconto(addScontoRequest){
+    return request({
+        url: API_BASE_URL + "/sconto/addSconto",
+        method: 'POST',
+        body: JSON.stringify(addScontoRequest)
+    });
+}
+
+export function findUtenti(findUtentiRequest){
+    return request({
+        url: API_BASE_URL + "/user/findUtenti",
+        method: 'POST',
+        body: findUtentiRequest
+    });
+}
+
+export function getScontiAttivi(getScontiAttiviRequest) {
+    return request({
+        url: API_BASE_URL + "/sconto/getScontiAttivi",
+        method: 'GET',
+        body: JSON.stringify(getScontiAttiviRequest)
+    });
+}
+
+export function effettuaPagamento(effettuaPagamentoRequest){
+    return request({
+        url: API_BASE_URL + "/carrello/effettuaPagamento",
+        method: 'POST',
+        body: JSON.stringify(effettuaPagamentoRequest)
+    });
+}
+
+export function findScontiByUtente(emailUtente){
+    return request({
+        url: API_BASE_URL + "/sconto/findScontiByUtente",
+        method: 'POST',
+        body: emailUtente
+    });
+}
+
+export function removeSconto(scontoId){
+    return request({
+        url: API_BASE_URL + "/sconto/removeSconto",
+        method: 'POST',
+        body: scontoId
+    });
+}

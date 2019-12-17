@@ -28,7 +28,7 @@ public class ProdottoController {
             Prodotto prodotto = new Prodotto();
             prodotto.setNome(prodottoForm.getNome());
             prodotto.setMarca(prodottoForm.getMarca());
-            prodotto.setPrezzo(Integer.parseInt(prodottoForm.getPrezzo()));
+            prodotto.setPrezzo(Float.parseFloat(prodottoForm.getPrezzo()));
             prodotto.setAtKg(prodottoForm.getAlKg().equals("true"));
             prodottoRepository.save(prodotto);
 
