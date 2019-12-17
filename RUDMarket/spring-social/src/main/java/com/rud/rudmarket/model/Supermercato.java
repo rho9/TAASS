@@ -19,6 +19,32 @@ public class Supermercato {
 	)
 	List<Sezione> sezioneList;
 
+	private float lat, lng;
+
+	public List<Sezione> getSezioneList() {
+		return sezioneList;
+	}
+
+	public void setSezioneList(List<Sezione> sezioneList) {
+		this.sezioneList = sezioneList;
+	}
+
+	public float getLat() {
+		return lat;
+	}
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public float getLng() {
+		return lng;
+	}
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
+
 	public Long getId() {
 		return id;
 	}

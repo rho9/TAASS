@@ -6,16 +6,7 @@ class Mappa extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            markers: [
-                {
-                    lat: 45.0704179,
-                    lng: 7.6241255
-                },
-                {
-                    lat: 45.1704179,
-                    lng: 7.6241255
-                }
-            ]
+            markers: []
         }
         console.log(props);
     }
