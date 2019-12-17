@@ -14,7 +14,11 @@ class Pagamento extends Component {
             pagamentoTotale: 0,
             creditChecked: false,
             debitChecked: false,
-            paypalChecked: false
+            paypalChecked: false,
+            intestatarioCarta: '',
+            numeroCarta: '',
+            scadenzaCarta: '',
+            cvvCarta: ''
         }
 
         getProdottiInCarrello()
@@ -98,15 +102,19 @@ class Pagamento extends Component {
                         </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="cc-name">Intestatario della carta</label>
-                                <input type="text" className="form-control" id="cc-name" placeholder="" required></input>
+                                <input type="text" className="form-control"
+                                       value={this.state.intestatarioCarta}
+                                       onChange={(e) => this.setState({intestatarioCarta: e.target.value})}
+                                       required/>
                                     <small className="text-muted">Nome completo presente sulla carta</small>
-                                    <div className="invalid-feedback">
-                                        Name on card is required
-                                    </div>
                             </div>
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="cc-number">Numero della carta</label>
-                                <input type="text" className="form-control" id="cc-number" placeholder="" required></input>
+                                <input type="text" className="form-control"
+                                       name="percentuale"
+                                       value={this.state.numeroCarta}
+                                       onChange={(e) => this.setState({numeroCarta: e.target.value})}
+                                       required/>
                                     <div className="invalid-feedback">
                                         Credit card number is required
                                     </div>
@@ -114,14 +122,22 @@ class Pagamento extends Component {
                         <div className="row">
                             <div className="col-md-3 mb-3">
                                 <label htmlFor="cc-expiration">Scadenza</label>
-                                <input type="text" className="form-control" id="cc-expiration" placeholder="" required></input>
+                                <input type="text" className="form-control"
+                                       name="percentuale"
+                                       value={this.state.scadenzaCarta}
+                                       onChange={(e) => this.setState({scadenzaCarta: e.target.value})}
+                                       required/>
                                     <div className="invalid-feedback">
                                         Expiration date required
                                     </div>
                             </div>
                             <div className="col-md-3 mb-3">
                                 <label htmlFor="cc-expiration">CVV</label>
-                                <input type="text" className="form-control" id="cc-cvv" placeholder="" required></input>
+                                <input type="text" className="form-control"
+                                       name="percentuale"
+                                       value={this.state.cvvCarta}
+                                       onChange={(e) => this.setState({cvvCarta: e.target.value})}
+                                       required/>
                                     <div className="invalid-feedback">
                                         Security code required
                                     </div>
