@@ -2,7 +2,9 @@ package com.rud.rudmarket.controller;
 
 import com.rud.rudmarket.model.Prodotto;
 import com.rud.rudmarket.model.Sconto;
+import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.User;
+import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.model.form.ScontoForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.ScontoRepository;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 

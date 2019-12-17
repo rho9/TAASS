@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Carrello.css'
+import {Redirect} from "react-router-dom";
 import {addProdottoInCarrello} from "../util/APIUtils";
 import Alert from "react-s-alert";
 
