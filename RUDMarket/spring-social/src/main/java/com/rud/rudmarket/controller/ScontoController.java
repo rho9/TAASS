@@ -2,9 +2,7 @@ package com.rud.rudmarket.controller;
 
 import com.rud.rudmarket.model.Prodotto;
 import com.rud.rudmarket.model.Sconto;
-import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.User;
-import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.model.form.ScontoForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.ScontoRepository;
@@ -63,5 +61,26 @@ public class ScontoController {
 		}
 
 		return result;
+	}
+
+	@RequestMapping("/findScontiByUtente")
+	@PreAuthorize("hasRole('ADMIN')")
+	public List<Sconto> findScontiByUtente(@RequestBody String body) {
+		List<Sconto> result = new ArrayList<>();
+		User user = userRepository.findByEmail(body).get();
+
+		for (Sconto s : scontoRepository.findAll()) {
+			if (s.getUser().getId().equals(user.getId())) {
+				result.add(s);
+			}
+		}
+
+		return result;
+	}
+
+	@RequestMapping("/removeSconto")
+	@PreAuthorize("hasRole('ADMIN')")
+	public void removeSconto(@RequestBody String body) {
+		scontoRepository.delete(scontoRepository.findById(Long.parseLong(body)).get());
 	}
 }

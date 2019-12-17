@@ -121,3 +121,19 @@ export function effettuaPagamento(effettuaPagamentoRequest){
         body: JSON.stringify(effettuaPagamentoRequest)
     });
 }
+
+export function findScontiByUtente(emailUtente){
+    return request({
+        url: API_BASE_URL + "/sconto/findScontiByUtente",
+        method: 'POST',
+        body: emailUtente
+    });
+}
+
+export function removeSconto(scontoId){
+    return request({
+        url: API_BASE_URL + "/sconto/removeSconto",
+        method: 'POST',
+        body: scontoId
+    });
+}

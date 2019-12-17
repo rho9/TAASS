@@ -30,6 +30,7 @@ import AddProdottoAlCarrello from "../carrello/AddProdottoAlCarrello";
 import AddSconto from "../gestione/AddSconto";
 import Sconto from "../sconto/Sconto";
 import Pagamento from "../pagamento/Pagamento";
+import RemoveSconto from "../gestione/RemoveSconto";
 
 class App extends Component {
   constructor(props) {
@@ -104,6 +105,8 @@ class App extends Component {
                           component={Gestione}></AdminRoute>
             <AdminRoute path="/addSezione" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                         component={AddSezione}></AdminRoute>
+            <AdminRoute path="/removeSconto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+                        component={RemoveSconto}></AdminRoute>
             <AdminRoute path="/addSconto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
                         component={AddSconto}></AdminRoute>
             <AdminRoute path="/addProdotto" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
