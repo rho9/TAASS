@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Ordine {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Column(name = "id", unique = true, columnDefinition="VARCHAR(64)")
+	private String id;
 
 	@ManyToOne
 	@JoinColumn(name = "utente_id")
@@ -16,11 +16,11 @@ public class Ordine {
 	@JoinColumn(name = "prodotto_id")
 	Prodotto prodotto;
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 }
