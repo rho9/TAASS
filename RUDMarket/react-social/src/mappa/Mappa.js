@@ -24,16 +24,6 @@ class Mappa extends Component {
             console.log('marker: ', marker)
         };
 
-        const markerPosition = {
-            lat: 45.0704179,
-            lng: 7.6241255
-        };
-
-        const markerPosition2 = {
-            lat: 45.1704179,
-            lng: 7.6241255
-        };
-
         return (
             <body>
             <section class="jumbotron text-center">
