@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addSconto, findUtenti} from '../util/APIUtils';
+import {addSconto, findUtenti, getSezioni} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
@@ -21,6 +21,23 @@ class AddSconto extends Component {
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChangeSezione = this.handleChangeSezione.bind(this);
+
+        getSezioni()
+            .then(data => {
+                let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
+                this.setState({ sezioni: [].concat(sezioniFromApi) });
+                this.setState({ selectedSezione: this.state.sezioni[0].value})
+                fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
+                    method: 'POST',
+                    body: "id=" + this.state.selectedSezione
+                })
+                    .then(res => res.json())
+                    .then((data) => {
+                        let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome + " - " + prodotto.marca} })
+                        this.setState({ prodotti: [].concat(prodottiFromApi) });
+                        this.setState({ selectedProdotto: this.state.prodotti[0].value})
+                    })
+            })
     }
 
     handleChangeTitle(event) {
@@ -36,7 +53,7 @@ class AddSconto extends Component {
             .then(res => res.json())
             .then((data) => {
                 let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome + " - " + prodotto.marca} })
-                this.setState({ prodotti: [{value: '', display: '(Seleziona il nome del Prodotto)'}].concat(prodottiFromApi) });
+                this.setState({ prodotti: [].concat(prodottiFromApi) });
             })
     }
 
@@ -51,18 +68,18 @@ class AddSconto extends Component {
         });
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch("http://localhost:8080/sezione/getSezioni")
             .then((response) => {
                 return response.json();
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [].concat(sezioniFromApi) });
             }).catch(error => {
             console.log(error);
         });
-    }
+    }*/
 
     render() {
         return (
