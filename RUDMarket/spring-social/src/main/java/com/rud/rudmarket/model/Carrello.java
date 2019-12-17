@@ -6,8 +6,8 @@ import javax.persistence.*;
 public class Carrello {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Column(name = "id", unique = true, columnDefinition="VARCHAR(64)")
+	private String id;
 
 	@ManyToOne
 	@JoinColumn(name = "utente_id")
@@ -27,11 +27,11 @@ public class Carrello {
 		this.quantita = quantita;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

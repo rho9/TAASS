@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/carrello")
@@ -46,10 +47,20 @@ public class CarrelloController {
 		User user = userRepository.findByEmail(userEmail).get();
 		Prodotto prodotto = prodottoRepository.findById(idProdotto).get();
 
-		Carrello carrello = new Carrello();
-		carrello.setUser(user);
-		carrello.setProdotto(prodotto);
-		carrello.setQuantita(prodottoInCarrelloForm.getQuantita());
+		String carrelloId = user.getId() + "_" + prodotto.getId();
+		Optional<Carrello> optionalCarrello = carrelloRepository.findById(carrelloId);
+		Carrello carrello;
+
+		if (optionalCarrello.isPresent()) {
+			carrello = optionalCarrello.get();
+			carrello.setQuantita(carrello.getQuantita() + prodottoInCarrelloForm.getQuantita());
+		} else {
+			carrello = new Carrello();
+			carrello.setId(carrelloId);
+			carrello.setUser(user);
+			carrello.setProdotto(prodotto);
+			carrello.setQuantita(prodottoInCarrelloForm.getQuantita());
+		}
 
 		carrelloRepository.save(carrello);
 
