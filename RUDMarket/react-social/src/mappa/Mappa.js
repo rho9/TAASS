@@ -1,22 +1,27 @@
 import React, { Component } from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { GOOGLE_MAPS_API_KEY } from '../constants';
+import {findUtenti, getSupermercati} from "../util/APIUtils";
 
 class Mappa extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            markers: []
+        }
         console.log(props);
+
+        getSupermercati()
+            .then(data => {
+                let supFromApi = data.map(sup => { return {lat: sup.lat, lng: sup.lng} })
+                this.setState({ markers: [].concat(supFromApi) })
+            })
     }
 
     render() {
 
         const onLoad = marker => {
             console.log('marker: ', marker)
-        };
-
-        const markerPosition = {
-            lat: 45.0704179,
-            lng: 7.6241255
         };
 
         return (
@@ -41,10 +46,16 @@ class Mappa extends Component {
                                 lng: 7.6741106
                             }}
                         >
-                        <Marker
-                            onLoad={onLoad}
-                            position={markerPosition}
-                        />
+
+                            {
+                                this.state.markers.map((marker) => (
+                                        <Marker
+                                            onLoad={onLoad}
+                                            position={marker}
+                                        />
+                                    )
+                                )
+                            }
                         </GoogleMap>
                     </LoadScript>
                 </div>
