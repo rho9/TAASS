@@ -137,3 +137,11 @@ export function removeSconto(scontoId){
         body: scontoId
     });
 }
+
+export function getSupermercati(getSupermercatiRequest){
+    return request({
+        url: API_BASE_URL + "/sup/getSupermercati",
+        method: 'POST',
+        body: JSON.stringify(getSupermercatiRequest)
+    });
+}
