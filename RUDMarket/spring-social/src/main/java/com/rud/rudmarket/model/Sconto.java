@@ -5,8 +5,8 @@ import javax.persistence.*;
 @Entity
 public class Sconto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@Column(name = "id", unique = true, columnDefinition="VARCHAR(64)")
+	private String id;
 
 	private int perc;
 
@@ -34,11 +34,11 @@ public class Sconto {
 		this.prodotto = prodotto;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
