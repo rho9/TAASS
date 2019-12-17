@@ -28,7 +28,8 @@ class AddProdotto extends Component {
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [].concat(sezioniFromApi) });
+                this.setState({ selectedSezione: this.state.sezioni[0].value});
             }).catch(error => {
             console.log(error);
         });
