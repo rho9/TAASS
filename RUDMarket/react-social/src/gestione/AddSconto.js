@@ -54,6 +54,10 @@ class AddSconto extends Component {
             .then((data) => {
                 let prodottiFromApi = data.map(prodotto => { return {value: prodotto.id, display: prodotto.nome + " - " + prodotto.marca} })
                 this.setState({ prodotti: [].concat(prodottiFromApi) });
+                if (this.state.prodotti.length > 0) {
+                    this.setState({selectedProdotto: this.state.prodotti[0].value})
+                }
+
             })
     }
 
