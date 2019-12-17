@@ -82,6 +82,9 @@ class RemoveSconto extends Component {
                                                         .then(data => {
                                                             let scontiTrovatiFromApi = data.map(scontoTrovato => { return {value: scontoTrovato.id, display: scontoTrovato.prodotto.nome + " - " + scontoTrovato.prodotto.marca} })
                                                             this.setState({ scontiTrovati: [].concat(scontiTrovatiFromApi) })
+                                                            if (this.state.scontiTrovati.length > 0) {
+                                                                this.setState({scontoSelezionato: this.state.scontiTrovati[0].value})
+                                                            }
                                                         })
                                                 }
                                             }>
