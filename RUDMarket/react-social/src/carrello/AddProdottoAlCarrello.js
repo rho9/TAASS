@@ -8,7 +8,8 @@ class AddProdottoAlCarrello extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            idProdotto: this.props.location.idProdotto
+            idProdotto: this.props.location.idProdotto,
+            quantita: 1
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,7 +37,12 @@ class AddProdottoAlCarrello extends Component {
                     <div className="row">
                         <div className="col-md-6 mb-3">
                             <h1>{this.props.location.nomeProdotto}</h1>
-                            <input type="text" className="form-control"
+                            <input type="number" className="form-control"
+                                   name="quantita"
+                                   value={this.state.quantita}
+                                   onChange={(e) => this.setState({quantita: e.target.value})}
+                                   required/>
+                            <input type="hidden" className="form-control"
                                    name="idProdotto"
                                    value={this.props.location.idProdotto}
                                    required/>

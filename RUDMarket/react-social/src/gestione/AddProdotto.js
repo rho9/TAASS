@@ -28,7 +28,7 @@ class AddProdotto extends Component {
             })
             .then(data => {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
-                this.setState({ sezioni: [{value: '', display: '(Seleziona la Sezione del Sezione)'}].concat(sezioniFromApi) });
+                this.setState({ sezioni: [{value: '', display: '(Seleziona il nome della Sezione)'}].concat(sezioniFromApi) });
             }).catch(error => {
             console.log(error);
         });
@@ -122,19 +122,6 @@ class AddProdotto extends Component {
                     </div>
                 </div>
             </div>
-            /*<div>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Nome Sezione:
-                        <input
-                            type="text"
-                            value={this.state.nome}
-                            onChange={this.handleChangeTitle}/>
-                    </label>
-                    <input type="submit" value="Aggiungi"/>
-                </form>
-
-            </div>*/
         );
     }
 }

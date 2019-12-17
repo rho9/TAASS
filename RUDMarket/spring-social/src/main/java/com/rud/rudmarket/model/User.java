@@ -43,9 +43,6 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "user")
-    List<Sconto> scontoList;
-
-    @OneToMany(mappedBy = "user")
     List<Ordine> ordineList;
 
     public List<Ordine> getOrdineList() {
@@ -142,13 +139,5 @@ public class User {
 
     public void setProviderId(String providerId) {
         this.providerId = providerId;
-    }
-
-    public List<Sconto> getScontoList() {
-        return scontoList;
-    }
-
-    public void setScontoList(List<Sconto> scontoList) {
-        this.scontoList = scontoList;
     }
 }
