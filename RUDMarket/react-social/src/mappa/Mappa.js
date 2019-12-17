@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { GOOGLE_MAPS_API_KEY } from '../constants';
+import {findUtenti, getSupermercati} from "../util/APIUtils";
 
 class Mappa extends Component {
     constructor(props) {
@@ -9,6 +10,12 @@ class Mappa extends Component {
             markers: []
         }
         console.log(props);
+
+        getSupermercati()
+            .then(data => {
+                let supFromApi = data.map(sup => { return {lat: sup.lat, lng: sup.lng} })
+                this.setState({ markers: [].concat(supFromApi) })
+            })
     }
 
     render() {
