@@ -41,11 +41,11 @@ class Mappa extends Component {
                                 lng: 7.6741106
                             }}
                         >
-                        </GoogleMap>
-                        <Marker //TODO still not working as expected
+                        <Marker
                             onLoad={onLoad}
                             position={markerPosition}
                         />
+                        </GoogleMap>
                     </LoadScript>
                 </div>
             </section>
