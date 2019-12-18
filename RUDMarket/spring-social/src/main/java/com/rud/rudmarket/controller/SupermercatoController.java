@@ -6,6 +6,7 @@ import com.rud.rudmarket.model.form.SupermercatoForm;
 import com.rud.rudmarket.repository.ScontoRepository;
 import com.rud.rudmarket.repository.SupermercatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,7 @@ public class SupermercatoController {
     }
 
     @RequestMapping("/addSupermercato")
+    @PreAuthorize("hasRole('ADMIN')")
     public boolean addSupermercato(@RequestBody SupermercatoForm supermercatoForm) {
         System.out.println(supermercatoForm.getNomeSupermercato() + " " +
                 supermercatoForm.getLat() + " " + supermercatoForm.getLng());
