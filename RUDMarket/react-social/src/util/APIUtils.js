@@ -114,6 +114,14 @@ export function getScontiAttivi(getScontiAttiviRequest) {
     });
 }
 
+export function getOrdiniAttivi(getOrdiniAttiviRequest) {
+    return request({
+        url: API_BASE_URL + "/ordine/getOrdiniAttivi",
+        method: 'GET',
+        body: JSON.stringify(getOrdiniAttiviRequest)
+    });
+}
+
 export function effettuaPagamento(effettuaPagamentoRequest){
     return request({
         url: API_BASE_URL + "/carrello/effettuaPagamento",
@@ -159,5 +167,13 @@ export function addSupermercato(addSupermercatoRequest){
         url: API_BASE_URL + "/sup/addSupermercato",
         method: 'POST',
         body: JSON.stringify(addSupermercatoRequest)
+    });
+}
+
+export function addOrdine(addOrdineRequest){
+    return request({
+        url: API_BASE_URL + "/ordine/addOrdine",
+        method: 'POST',
+        body: JSON.stringify(addOrdineRequest)
     });
 }
