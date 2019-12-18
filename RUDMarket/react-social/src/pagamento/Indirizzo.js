@@ -18,20 +18,6 @@ export function personalAddress(){
                 <input type="text" className="form-control" required/>
                 <small className="text-muted">Indicare l'indirizzo per la consegna</small>
             </div>
-            <div className="row">
-                <div className="col-md-5 mb-3">
-                    <label htmlFor="cc-name">Nazione</label>
-                    <input type="text" className="form-control" required/>
-                </div>
-                <div className="col-md-4 mb-3">
-                    <label htmlFor="cc-name">Regione</label>
-                    <input type="text" className="form-control" required/>
-                </div>
-                <div className="col-md-3 mb-3">
-                    <label htmlFor="cc-name">CAP</label>
-                    <input type="text" className="form-control" required/>
-                </div>
-            </div>
         </div>
     )
 }

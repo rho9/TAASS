@@ -27,6 +27,9 @@ class Pagamento extends Component {
             supermercati: [],
             selectedSupermercato: '',
             selectedMarker: '',
+            indirizzo: '',
+            nome: '',
+            cognome: '',
         }
 
         getProdottiInCarrello()
@@ -208,7 +211,41 @@ class Pagamento extends Component {
                                 { !this.state.indirizzoChecked && !this.state.supermercatoChecked ? (
                                     <small className="text-muted">Scegliere una modalità di consegna</small>
                                     ) : this.state.indirizzoChecked ? (
-                                        personalAddress()
+                                    <div>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-3">
+                                                <label htmlFor="cc-name">Nome</label>
+                                                <input type="text"
+                                                       className="form-control"
+                                                       value={this.state.nome}
+                                                       onChange={(e) => {
+                                                           this.setState({nome: e.target.value})
+                                                       }}
+                                                       required/>
+                                            </div>
+                                            <div className="col-md-6 mb-3">
+                                                <label htmlFor="cc-name">Cognome</label>
+                                                <input type="text"
+                                                       className="form-control"
+                                                       value={this.state.cognome}
+                                                       onChange={(e) => {
+                                                           this.setState({cognome: e.target.value})
+                                                       }}
+                                                       required/>
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label htmlFor="cc-name">Indirizzo</label>
+                                            <input type="text"
+                                                   className="form-control"
+                                                   value={this.state.indirizzo}
+                                                   onChange={(e) => {
+                                                       this.setState({indirizzo: e.target.value})
+                                                   }}
+                                                   required/>
+                                            <small className="text-muted">Indicare l'indirizzo per la consegna</small>
+                                        </div>
+                                    </div>
                                     ) : (
                                         <div className="container">
                                             <div className="row">
