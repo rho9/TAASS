@@ -23,7 +23,10 @@ class Pagamento extends Component {
             cvvCarta: '',
             indirizzoChecked: false,
             supermercatoChecked: false,
-            markers: []
+            markers: [],
+            supermercati: [],
+            selectedSupermercato: '',
+            selectedMarker: '',
         }
 
         getProdottiInCarrello()
@@ -42,8 +45,12 @@ class Pagamento extends Component {
 
         getSupermercati()
             .then(data => {
-                let supFromApi = data.map(sup => { return {lat: sup.lat, lng: sup.lng} })
-                this.setState({ markers: [].concat(supFromApi) })
+                let markersFromApi = data.map(m => { return {lat: m.lat, lng: m.lng} })
+                this.setState({ markers: [].concat(markersFromApi) })
+                this.setState({selectedMarker: this.state.markers[0]})
+                let supFromApi = data.map(sup => { return {value: sup.id, display: sup.nome} })
+                this.setState({ supermercati: [].concat(supFromApi) })
+                this.setState({selectedSupermercato: this.state.supermercati[0].value})
             })
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -203,37 +210,49 @@ class Pagamento extends Component {
                                     ) : this.state.indirizzoChecked ? (
                                         personalAddress()
                                     ) : (
-                                    <div className="container">
-                                        <LoadScript //TODO there's a better way to do this
-                                            id="script-loader"
-                                            googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
-                                            //language={"italian"}
-                                        >
-                                            <GoogleMap
-                                                id='rud-map'
-                                                mapContainerStyle={{
-                                                    height: "400px",
-                                                    width: "640px",
-                                                }}
-                                                zoom={13}
-                                                center={{
-                                                    lat: 45.0644956,
-                                                    lng: 7.6741106
-                                                }}
+                                        <div className="container">
+                                            <div className="row">
+                                                <select className="custom-select d-block w-100" value={this.state.selectedSupermercato}
+                                                        onChange={(e) => this.setState({selectedSupermercato: e.target.value})}>
+                                                    {this.state.supermercati.map((sup) => <option key={sup.value} value={sup.value}>{sup.display}</option>)}>
+                                                </select>
+                                            </div>
+                                            <hr className="mb-4"/>
+                                            <LoadScript //TODO there's a better way to do this
+                                                id="script-loader"
+                                                googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
+                                                //language={"italian"}
                                             >
+                                                <GoogleMap
+                                                    id='rud-map'
+                                                    mapContainerStyle={{
+                                                        height: "400px",
+                                                        width: "640px",
+                                                    }}
+                                                    zoom={13}
+                                                    center={{
+                                                        lat: 45.0644956,
+                                                        lng: 7.6741106
+                                                    }}
+                                                >
 
-                                                {
-                                                    this.state.markers.map((marker) => (
-                                                            <Marker
-                                                                icon={{url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}}
-                                                                position={marker}
-                                                            />
+                                                    {
+                                                        this.state.markers.map((marker) => (
+                                                                <Marker
+                                                                    icon={{url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}}
+                                                                    position={marker}
+                                                                />
+                                                            )
                                                         )
-                                                    )
-                                                }
-                                            </GoogleMap>
-                                        </LoadScript>
-                                    </div>
+                                                    }
+
+                                                    <Marker
+                                                        icon={{url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"}}
+                                                        position={this.state.selectedMarker}
+                                                    />
+                                                </GoogleMap>
+                                            </LoadScript>
+                                        </div>
                                     )
                                 }
                             </form>
