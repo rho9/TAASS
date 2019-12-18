@@ -17,6 +17,15 @@ public class Ordine {
 	Prodotto prodotto;
 
 	private String nome, cognome, indirizzo, supermercatoNome;
+	private int quantita;
+
+	public int getQuantita() {
+		return quantita;
+	}
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
 
 	public String getSupermercatoNome() {
 		return supermercatoNome;

@@ -45,6 +45,7 @@ public class OrdineController {
 			ordine.setId(user.getId() + "_" + p.getProdotto().getId());
 			ordine.setUser(user);
 			ordine.setProdotto(p.getProdotto());
+			ordine.setQuantita(p.getQuantita());
 
 			ordine.setNome(ordineForm.getNome());
 			ordine.setCognome(ordineForm.getCognome());

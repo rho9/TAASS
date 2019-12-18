@@ -6,6 +6,7 @@ const OrdiniAttivi = ({ ordiniAttivi }) => {
         <tbody>
             {ordiniAttivi.map((ordineAttivo) => (
                 <tr>
+                    <th>{ordineAttivo.quantita}</th>
                     <th>{ordineAttivo.prodotto.nome}</th>
                     <th>{ordineAttivo.prodotto.marca}</th>
                     {

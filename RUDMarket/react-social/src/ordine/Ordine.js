@@ -28,6 +28,7 @@ class Ordine extends Component {
                     <table className="table table-striped table-sm">
                         <thead>
                         <tr>
+                            <th>Quantità</th>
                             <th>Prodotto</th>
                             <th>Marca</th>
                             <th>Luogo di Consegna</th>
