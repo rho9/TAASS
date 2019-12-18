@@ -79,14 +79,13 @@ class Pagamento extends Component {
         });
 
 
-        /*const effettuaPagamentoRequest = Object.assign({}, this.state);
+        const effettuaPagamentoRequest = Object.assign({}, this.state);
         effettuaPagamento(effettuaPagamentoRequest)
             .then(response => {
-                alert("Pagamento Effettuato")
                 this.props.history.push("/")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });*/
+        });
     }
 
     render() {
