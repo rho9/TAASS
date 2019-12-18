@@ -5,6 +5,7 @@ import ProdottiDaPagare from "./ProdottiDaPagare";
 import {effettuaPagamento, getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
+import {personalAddress} from "./Indirizzo";
 
 class Pagamento extends Component {
     constructor(props) {
@@ -18,7 +19,9 @@ class Pagamento extends Component {
             intestatarioCarta: '',
             numeroCarta: '',
             scadenzaCarta: '',
-            cvvCarta: ''
+            cvvCarta: '',
+            indirizzoChecked: false,
+            supermercatoChecked: false
         }
 
         getProdottiInCarrello()
@@ -157,6 +160,45 @@ class Pagamento extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <button className="btn btn-warning " type="submit">Paga</button>
                         </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div className="col-md-8 order-md-1">
+                        <hr className="mb-4"/>
+                        <h4 className="mb-3">Luogo di consegna</h4>
+                        <div className="d-block my-3">
+                            <div className="custom-control custom-radio">
+                                <input id="indirizzo" name="luogoDiConsegna" type="radio" className="custom-control-input"
+                                       checked={this.state.indirizzoChecked}
+                                       onClick={(e) => this.setState(
+                                           {
+                                               indirizzoChecked: !this.state.indirizzoChecked,
+                                               supermercatoChecked: false,
+                                           }
+                                       )} required/>
+                                <label className="custom-control-label" htmlFor="indirizzo">Indirizzo</label>
+                            </div>
+                            <div className="custom-control custom-radio">
+                                <input id="market" name="luogoDiConsegna" type="radio" className="custom-control-input"
+                                       checked={this.state.supermercatoChecked}
+                                       onClick={(e) => this.setState(
+                                           {
+                                               indirizzoChecked: false,
+                                               supermercatoChecked: !this.state.supermercatoChecked,
+                                           }
+                                       )} required/>
+                                <label className="custom-control-label" htmlFor="market">RUDMarket</label>
+                            </div>
+                            <form>
+                                { !this.state.indirizzoChecked && !this.state.supermercatoChecked ? (
+                                    <small className="text-muted">Scegliere una modalità di consegna</small>
+                                    ) : this.state.indirizzoChecked ? (
+                                        personalAddress()
+                                    ) :
+                                        <h4>Supermercati da scegliere</h4>
+                                }
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
