@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import './Pagamento.css';
-import {NavLink} from "react-router-dom";
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {effettuaPagamento, getCostoTotale, getProdottiInCarrello} from "../util/APIUtils";
+import {effettuaPagamento, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
 import {personalAddress} from "./Indirizzo";
+import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
+import {GOOGLE_MAPS_API_KEY} from "../constants";
 
 class Pagamento extends Component {
     constructor(props) {
@@ -21,7 +22,8 @@ class Pagamento extends Component {
             scadenzaCarta: '',
             cvvCarta: '',
             indirizzoChecked: false,
-            supermercatoChecked: false
+            supermercatoChecked: false,
+            markers: []
         }
 
         getProdottiInCarrello()
@@ -36,6 +38,12 @@ class Pagamento extends Component {
                 this.setState({
                     pagamentoTotale: response
                 });
+            })
+
+        getSupermercati()
+            .then(data => {
+                let supFromApi = data.map(sup => { return {lat: sup.lat, lng: sup.lng} })
+                this.setState({ markers: [].concat(supFromApi) })
             })
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -194,8 +202,39 @@ class Pagamento extends Component {
                                     <small className="text-muted">Scegliere una modalità di consegna</small>
                                     ) : this.state.indirizzoChecked ? (
                                         personalAddress()
-                                    ) :
-                                        <h4>Supermercati da scegliere</h4>
+                                    ) : (
+                                    <div className="container">
+                                        <LoadScript //TODO there's a better way to do this
+                                            id="script-loader"
+                                            googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
+                                            //language={"italian"}
+                                        >
+                                            <GoogleMap
+                                                id='rud-map'
+                                                mapContainerStyle={{
+                                                    height: "400px",
+                                                    width: "640px",
+                                                }}
+                                                zoom={13}
+                                                center={{
+                                                    lat: 45.0644956,
+                                                    lng: 7.6741106
+                                                }}
+                                            >
+
+                                                {
+                                                    this.state.markers.map((marker) => (
+                                                            <Marker
+                                                                icon={{url: "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png"}}
+                                                                position={marker}
+                                                            />
+                                                        )
+                                                    )
+                                                }
+                                            </GoogleMap>
+                                        </LoadScript>
+                                    </div>
+                                    )
                                 }
                             </form>
                         </div>
