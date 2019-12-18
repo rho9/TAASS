@@ -24,6 +24,10 @@ class Home extends Component {
                             <h2>Rimuovi Sconti</h2>
                             <p><NavLink className="btn btn-warning" to="/removeSconto">Vai &raquo;</NavLink></p>
                         </div>
+                        <div className="col-md-4">
+                            <h2>Aggiungi Supermercato</h2>
+                            <p><NavLink className="btn btn-warning" to="/addSupemercato">Vai &raquo;</NavLink></p>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -153,3 +153,11 @@ export function getSezioni(getSezioniRequest){
         body: JSON.stringify(getSezioniRequest)
     });
 }
+
+export function addSupermercato(addSupermercatoRequest){
+    return request({
+        url: API_BASE_URL + "/sup/addSupermercato",
+        method: 'POST',
+        body: JSON.stringify(addSupermercatoRequest)
+    });
+}

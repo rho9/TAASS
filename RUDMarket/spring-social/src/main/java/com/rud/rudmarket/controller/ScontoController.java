@@ -34,7 +34,7 @@ public class ScontoController {
 
 	@PostMapping("/addSconto")
 	@PreAuthorize("hasRole('ADMIN')")
-	public void addSconto(@RequestBody ScontoForm scontoForm) throws Exception {
+	public boolean addSconto(@RequestBody ScontoForm scontoForm) throws Exception {
 		if (scontoForm.getSelectedProdotto() != null) {
 			User user = userRepository.findByEmail(scontoForm.getEmailUtente()).get();
 			Prodotto prodotto = prodottoRepository.findById(scontoForm.getSelectedProdotto()).get();
@@ -49,6 +49,8 @@ public class ScontoController {
 		} else {
 			throw new Exception("Il prodotto inserito non è corretto!");
 		}
+
+		return true;
 	}
 
 	@RequestMapping("/getScontiAttivi")
@@ -81,7 +83,8 @@ public class ScontoController {
 
 	@RequestMapping("/removeSconto")
 	@PreAuthorize("hasRole('ADMIN')")
-	public void removeSconto(@RequestBody String body) {
+	public boolean removeSconto(@RequestBody String body) {
 		scontoRepository.delete(scontoRepository.findById(body).get());
+		return true;
 	}
 }
