@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Pagamento.css';
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {addOrdine, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
+import {addOrdine, effettuaPagamento, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
 import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
@@ -79,14 +79,14 @@ class Pagamento extends Component {
         });
 
 
-        const effettuaPagamentoRequest = Object.assign({}, this.state);
+        /*const effettuaPagamentoRequest = Object.assign({}, this.state);
         effettuaPagamento(effettuaPagamentoRequest)
             .then(response => {
                 alert("Pagamento Effettuato")
                 this.props.history.push("/")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });
+        });*/
     }
 
     render() {

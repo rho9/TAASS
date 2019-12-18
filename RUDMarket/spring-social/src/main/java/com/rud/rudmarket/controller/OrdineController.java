@@ -1,11 +1,9 @@
 package com.rud.rudmarket.controller;
 
-import com.rud.rudmarket.model.Carrello;
-import com.rud.rudmarket.model.Ordine;
-import com.rud.rudmarket.model.ProdottoInCarrello;
-import com.rud.rudmarket.model.User;
+import com.rud.rudmarket.model.*;
 import com.rud.rudmarket.model.form.OrdineForm;
 import com.rud.rudmarket.repository.OrdineRepository;
+import com.rud.rudmarket.repository.SupermercatoRepository;
 import com.rud.rudmarket.repository.UserRepository;
 import com.rud.rudmarket.security.CurrentUser;
 import com.rud.rudmarket.security.UserPrincipal;
@@ -29,6 +27,9 @@ public class OrdineController {
 
 	@Autowired
 	OrdineRepository ordineRepository;
+
+	@Autowired
+	SupermercatoRepository supermercatoRepository;
 
 	@RequestMapping("/addOrdine")
 	public boolean addOrdine(@CurrentUser UserPrincipal userPrincipal, @RequestBody OrdineForm ordineForm) {
@@ -58,11 +59,25 @@ public class OrdineController {
 			}
 		} else {
 			for (Ordine o : ordineList) {
-				o.setSupermercatoId(ordineForm.getSelectedSupermercato());
+				String supermercatoNome = supermercatoRepository.findById(Long.parseLong(ordineForm.getSelectedSupermercato())).get().getNome();
+				o.setSupermercatoNome(supermercatoNome);
 				ordineRepository.save(o);
 			}
 		}
 
 		return true;
+	}
+
+	@RequestMapping("/getOrdiniAttivi")
+	public List<Ordine> getOrdiniAttivi(@CurrentUser UserPrincipal userPrincipal) {
+		List<Ordine> result = new ArrayList<>();
+
+		for (Ordine s : ordineRepository.findAll()) {
+			if (s.getUser().getEmail().equals(userPrincipal.getEmail())) {
+				result.add(s);
+			}
+		}
+
+		return result;
 	}
 }

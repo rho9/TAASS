@@ -16,14 +16,14 @@ public class Ordine {
 	@JoinColumn(name = "prodotto_id")
 	Prodotto prodotto;
 
-	private String nome, cognome, indirizzo, supermercatoId;
+	private String nome, cognome, indirizzo, supermercatoNome;
 
-	public String getSupermercatoId() {
-		return supermercatoId;
+	public String getSupermercatoNome() {
+		return supermercatoNome;
 	}
 
-	public void setSupermercatoId(String supermercatoId) {
-		this.supermercatoId = supermercatoId;
+	public void setSupermercatoNome(String supermercatoNome) {
+		this.supermercatoNome = supermercatoNome;
 	}
 
 	public User getUser() {

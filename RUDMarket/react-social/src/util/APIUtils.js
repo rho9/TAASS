@@ -114,6 +114,14 @@ export function getScontiAttivi(getScontiAttiviRequest) {
     });
 }
 
+export function getOrdiniAttivi(getOrdiniAttiviRequest) {
+    return request({
+        url: API_BASE_URL + "/ordine/getOrdiniAttivi",
+        method: 'GET',
+        body: JSON.stringify(getOrdiniAttiviRequest)
+    });
+}
+
 export function effettuaPagamento(effettuaPagamentoRequest){
     return request({
         url: API_BASE_URL + "/carrello/effettuaPagamento",

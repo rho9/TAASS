@@ -36,6 +36,11 @@ class Profile extends Component {
                             <p>Visualizza gli sconti a te dedicati !</p>
                             <p><NavLink className="btn btn-warning" to="/sconti">Vai &raquo;</NavLink></p>
                         </div>
+                        <div className="col-md-4">
+                            <h2>Visualizza Ordini</h2>
+                            <p>Visualizza gli ordini da te effettuati !</p>
+                            <p><NavLink className="btn btn-warning" to="/ordini">Vai &raquo;</NavLink></p>
+                        </div>
                     </div>
                 </div>
             </div>
