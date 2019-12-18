@@ -213,7 +213,12 @@ class Pagamento extends Component {
                                         <div className="container">
                                             <div className="row">
                                                 <select className="custom-select d-block w-100" value={this.state.selectedSupermercato}
-                                                        onChange={(e) => this.setState({selectedSupermercato: e.target.value})}>
+                                                        onChange={
+                                                            (e) => {
+                                                                this.setState({selectedSupermercato: e.target.value})
+                                                                this.setState({selectedMarker: this.state.markers[e.target.selectedIndex]})
+                                                            }
+                                                        }>
                                                     {this.state.supermercati.map((sup) => <option key={sup.value} value={sup.value}>{sup.display}</option>)}>
                                                 </select>
                                             </div>
