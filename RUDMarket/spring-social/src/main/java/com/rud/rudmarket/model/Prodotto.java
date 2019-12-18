@@ -21,9 +21,6 @@ public class Prodotto {
 	)
 	List<User> carrelloUtenti;
 
-	@OneToMany(mappedBy = "prodotto")
-	List<Ordine> ordineList;
-
 	public List<User> getCarrelloUtenti() {
 		return carrelloUtenti;
 	}
@@ -66,14 +63,6 @@ public class Prodotto {
 
 	public void setPrezzo(float prezzo) {
 		this.prezzo = prezzo;
-	}
-
-	public List<Ordine> getOrdineList() {
-		return ordineList;
-	}
-
-	public void setOrdineList(List<Ordine> ordineList) {
-		this.ordineList = ordineList;
 	}
 
 	public void setMarca(String marca) {

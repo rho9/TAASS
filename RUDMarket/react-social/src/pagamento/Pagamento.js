@@ -97,10 +97,33 @@ class Pagamento extends Component {
                 <div className="py-5 text-center">
                     <h1>RUDMarket</h1>
                 </div>
+                <div>
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="cc-name">Nome</label>
+                            <input type="text"
+                                   className="form-control"
+                                   value={this.state.nome}
+                                   onChange={(e) => {
+                                       this.setState({nome: e.target.value})
+                                   }}
+                                   required/>
+                        </div>
+                        <div className="col-md-6 mb-3">
+                            <label htmlFor="cc-name">Cognome</label>
+                            <input type="text"
+                                   className="form-control"
+                                   value={this.state.cognome}
+                                   onChange={(e) => {
+                                       this.setState({cognome: e.target.value})
+                                   }}
+                                   required/>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div className="col-md-8 order-md-1">
                         <h4 className="mb-3">Pagamento</h4>
-
                         <div className="d-block my-3">
                             <div className="custom-control custom-radio">
                                 <input id="credit" name="paymentMethod" type="radio" className="custom-control-input"
@@ -230,28 +253,6 @@ class Pagamento extends Component {
                                     <small className="text-muted">Scegliere una modalità di consegna</small>
                                     ) : this.state.indirizzoChecked ? (
                                     <div>
-                                        <div className="row">
-                                            <div className="col-md-6 mb-3">
-                                                <label htmlFor="cc-name">Nome</label>
-                                                <input type="text"
-                                                       className="form-control"
-                                                       value={this.state.nome}
-                                                       onChange={(e) => {
-                                                           this.setState({nome: e.target.value})
-                                                       }}
-                                                       required/>
-                                            </div>
-                                            <div className="col-md-6 mb-3">
-                                                <label htmlFor="cc-name">Cognome</label>
-                                                <input type="text"
-                                                       className="form-control"
-                                                       value={this.state.cognome}
-                                                       onChange={(e) => {
-                                                           this.setState({cognome: e.target.value})
-                                                       }}
-                                                       required/>
-                                            </div>
-                                        </div>
                                         <div className="mb-3">
                                             <label htmlFor="cc-name">Indirizzo</label>
                                             <input type="text"
@@ -266,6 +267,7 @@ class Pagamento extends Component {
                                     </div>
                                     ) : (
                                         <div className="container">
+                                            <label htmlFor="cc-name">Supermercato</label>
                                             <div className="row">
                                                 <select className="custom-select d-block w-100" value={this.state.selectedSupermercato}
                                                         onChange={
