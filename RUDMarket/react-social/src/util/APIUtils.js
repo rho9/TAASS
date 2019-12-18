@@ -161,3 +161,11 @@ export function addSupermercato(addSupermercatoRequest){
         body: JSON.stringify(addSupermercatoRequest)
     });
 }
+
+export function addOrdine(addOrdineRequest){
+    return request({
+        url: API_BASE_URL + "/ordine/addOrdine",
+        method: 'POST',
+        body: JSON.stringify(addOrdineRequest)
+    });
+}

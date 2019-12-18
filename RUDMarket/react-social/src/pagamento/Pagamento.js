@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Pagamento.css';
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {effettuaPagamento, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
+import {addOrdine, effettuaPagamento, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
 import {personalAddress} from "./Indirizzo";
@@ -62,14 +62,32 @@ class Pagamento extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const effettuaPagamentoRequest = Object.assign({}, this.state);
+        let toSend = {
+            nome: this.state.nome,
+            cognome: this.state.cognome,
+            indirizzo: this.state.indirizzo,
+            selectedSupermercato: this.state.selectedSupermercato,
+            indirizzoChecked: this.state.indirizzoChecked,
+            supermercatoChecked: this.state.supermercatoChecked
+        }
+
+        const addOrdineRequest = Object.assign({}, toSend);
+        addOrdine(addOrdineRequest)
+            .then(response => {
+                this.props.history.push("/")
+            }).catch(error => {
+            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
+        });
+
+
+        /*const effettuaPagamentoRequest = Object.assign({}, this.state);
         effettuaPagamento(effettuaPagamentoRequest)
             .then(response => {
                 alert("Pagamento Effettuato")
                 this.props.history.push("/")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });
+        });*/
     }
 
     render() {
