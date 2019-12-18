@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addSezione } from '../util/APIUtils';
+import {addSupermercato} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
@@ -7,7 +7,9 @@ class AddSupermercato extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            nomeSezione: '',
+            nomeSupermercato: '',
+            lat: '',
+            lng: '',
         }
         console.log(props);
 
@@ -16,14 +18,14 @@ class AddSupermercato extends Component {
     }
 
     handleChangeTitle(event) {
-        this.setState({nomeSezione: event.target.value});
+        this.setState({nomeSupermercato: event.target.value});
     }
 
     handleSubmit(event) {
         event.preventDefault();
 
-        const addSezioneRequest = Object.assign({}, this.state);
-        addSezione(addSezioneRequest)
+        const addSupermercatoRequest = Object.assign({}, this.state);
+        addSupermercato(addSupermercatoRequest)
             .then(response => {
                 this.props.history.push("/gestione")
             }).catch(error => {
@@ -42,15 +44,37 @@ class AddSupermercato extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="row">
                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="firstName">Nome Sezione</label>
+                                    <label htmlFor="firstName">Nome Supermercato</label>
                                     <input type="text" className="form-control"
-                                           name="nomeSezione"
-                                           value={this.state.nomeSezione}
+                                           value={this.state.nomeSupermercato}
                                            onChange={this.handleChangeTitle}
                                            required/>
-                                    <div className="invalid-feedback">
-                                        È necessario inserire il nome di una sezione
-                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="firstName">Latitudine</label>
+                                    <input type="text" className="form-control"
+                                           value={this.state.lat}
+                                           onChange={
+                                               (e) => {
+                                                   this.setState({lat: e.target.value})
+                                               }
+                                           }
+                                           required/>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="firstName">Longitudine</label>
+                                    <input type="text" className="form-control"
+                                           value={this.state.lng}
+                                           onChange={
+                                               (e) => {
+                                                   this.setState({lng: e.target.value})
+                                               }
+                                           }
+                                           required/>
                                 </div>
                             </div>
                             <button className="btn btn-warning " type="submit">Aggiungi</button>
