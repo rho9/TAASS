@@ -44,21 +44,21 @@ public class OrdineController {
 			ordine.setId(user.getId() + "_" + p.getProdotto().getId());
 			ordine.setUser(user);
 			ordine.setProdotto(p.getProdotto());
+
+			ordine.setNome(ordineForm.getNome());
+			ordine.setCognome(ordineForm.getCognome());
+
 			ordineList.add(ordine);
 		}
 
 		if (ordineForm.isIndirizzoChecked()) {
 			for (Ordine o : ordineList) {
-				o.setNome(ordineForm.getNome());
-				o.setCognome(ordineForm.getCognome());
 				o.setIndirizzo(ordineForm.getIndirizzo());
-
 				ordineRepository.save(o);
 			}
 		} else {
 			for (Ordine o : ordineList) {
 				o.setSupermercatoId(ordineForm.getSelectedSupermercato());
-
 				ordineRepository.save(o);
 			}
 		}

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './Pagamento.css';
 import ProdottiDaPagare from "./ProdottiDaPagare";
-import {addOrdine, effettuaPagamento, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
+import {addOrdine, getCostoTotale, getProdottiInCarrello, getSupermercati} from "../util/APIUtils";
 import PagamentoTotale from "./PagamentoTotale";
 import Alert from "react-s-alert";
-import {personalAddress} from "./Indirizzo";
 import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
 import {GOOGLE_MAPS_API_KEY} from "../constants";
 
@@ -80,14 +79,14 @@ class Pagamento extends Component {
         });
 
 
-        /*const effettuaPagamentoRequest = Object.assign({}, this.state);
+        const effettuaPagamentoRequest = Object.assign({}, this.state);
         effettuaPagamento(effettuaPagamentoRequest)
             .then(response => {
                 alert("Pagamento Effettuato")
                 this.props.history.push("/")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });*/
+        });
     }
 
     render() {
@@ -109,6 +108,8 @@ class Pagamento extends Component {
                                    }}
                                    required/>
                         </div>
+                    </div>
+                    <div className="row">
                         <div className="col-md-6 mb-3">
                             <label htmlFor="cc-name">Cognome</label>
                             <input type="text"
