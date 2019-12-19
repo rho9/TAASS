@@ -43,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
+/*
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
 
-        );
+        );*/
     }
 
     @Override
