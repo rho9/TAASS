@@ -8,9 +8,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">RUDMarket</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
+    <string name="menu_catalogo">Catalogo</string>
+    <string name="menu_promozioni">Promozioni</string>
+    <string name="menu_doveSiamo">Dove siamo</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
 </resources>

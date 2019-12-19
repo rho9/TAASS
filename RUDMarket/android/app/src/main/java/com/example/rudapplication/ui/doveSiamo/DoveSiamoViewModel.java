@@ -1,16 +1,16 @@
-package com.example.rudapplication.ui.slideshow;
+package com.example.rudapplication.ui.doveSiamo;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class DoveSiamoViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public DoveSiamoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is tools fragment");
     }
 
     public LiveData<String> getText() {

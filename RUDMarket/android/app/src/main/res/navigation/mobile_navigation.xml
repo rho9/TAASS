@@ -12,21 +12,21 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.rudapplication.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_catalogo"
+        android:name="com.example.rudapplication.ui.catalogo.CatalogoFragment"
+        android:label="@string/menu_catalogo"
+        tools:layout="@layout/fragment_catalogo" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.rudapplication.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_promozioni"
+        android:name="com.example.rudapplication.ui.promozioni.PromozioniFragment"
+        android:label="@string/menu_promozioni"
+        tools:layout="@layout/fragment_promozioni" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.rudapplication.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
+        android:name="com.example.rudapplication.ui.doveSiamo.DoveSiamoFragment"
+        android:label="@string/menu_doveSiamo"
         tools:layout="@layout/fragment_tools" />
 
     <fragment

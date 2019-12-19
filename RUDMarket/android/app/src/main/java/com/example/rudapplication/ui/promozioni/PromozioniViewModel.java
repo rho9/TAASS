@@ -1,16 +1,16 @@
-package com.example.rudapplication.ui.gallery;
+package com.example.rudapplication.ui.promozioni;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class PromozioniViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public PromozioniViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is promozioni fragment");
     }
 
     public LiveData<String> getText() {

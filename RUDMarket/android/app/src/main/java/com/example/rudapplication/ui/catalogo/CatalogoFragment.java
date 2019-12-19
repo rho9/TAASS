@@ -1,4 +1,4 @@
-package com.example.rudapplication.ui.gallery;
+package com.example.rudapplication.ui.catalogo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.rudapplication.R;
 
-public class GalleryFragment extends Fragment {
+public class CatalogoFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private CatalogoViewModel catalogoViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(this, new Observer<String>() {
+        catalogoViewModel =
+                ViewModelProviders.of(this).get(CatalogoViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_catalogo, container, false);
+        final TextView textView = root.findViewById(R.id.text_catalogo);
+        catalogoViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
