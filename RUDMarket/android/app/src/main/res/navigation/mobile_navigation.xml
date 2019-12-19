@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.rudapplication.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_catalogo"
+        android:name="com.example.rudapplication.ui.catalogo.CatalogoFragment"
+        android:label="@string/menu_catalogo"
+        tools:layout="@layout/fragment_catalogo" />
+
+    <fragment
+        android:id="@+id/nav_promozioni"
+        android:name="com.example.rudapplication.ui.promozioni.PromozioniFragment"
+        android:label="@string/menu_promozioni"
+        tools:layout="@layout/fragment_promozioni" />
+
+    <fragment
+        android:id="@+id/nav_doveSiamo"
+        android:name="com.example.rudapplication.ui.doveSiamo.DoveSiamoFragment"
+        android:label="@string/menu_doveSiamo"
+        tools:layout="@layout/fragment_dovesiamo" />
+
+    <fragment
+        android:id="@+id/nav_myrud"
+        android:name="com.example.rudapplication.ui.myrud.MyRudFragment"
+        android:label="@string/menu_myrud"
+        tools:layout="@layout/fragment_myrud" />
+
+    <fragment
+        android:id="@+id/nav_registrazione"
+        android:name="com.example.rudapplication.ui.registrazione.RegistrazioneFragment"
+        android:label="@string/menu_registrazione"
+        tools:layout="@layout/fragment_registrazione" />
+</navigation>
