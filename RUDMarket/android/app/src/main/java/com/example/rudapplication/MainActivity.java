@@ -1,5 +1,6 @@
 package com.example.rudapplication;
 
+import android.app.VoiceInteractor;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -7,6 +8,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -38,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+
+        );
     }
 
     @Override
