@@ -22,8 +22,8 @@ public class DoveSiamoFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         doveSiamoViewModel =
                 ViewModelProviders.of(this).get(DoveSiamoViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_tools, container, false);
-        final TextView textView = root.findViewById(R.id.text_tools);
+        View root = inflater.inflate(R.layout.fragment_dovesiamo, container, false);
+        final TextView textView = root.findViewById(R.id.text_doveSiamo);
         doveSiamoViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

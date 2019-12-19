@@ -1,4 +1,4 @@
-package com.example.rudapplication.ui.send;
+package com.example.rudapplication.ui.registrazione;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.rudapplication.R;
 
-public class SendFragment extends Fragment {
+public class RegistrazioneFragment extends Fragment {
 
-    private SendViewModel sendViewModel;
+    private RegistrazioneViewModel registrazioneViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        sendViewModel =
-                ViewModelProviders.of(this).get(SendViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_send, container, false);
-        final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(this, new Observer<String>() {
+        registrazioneViewModel =
+                ViewModelProviders.of(this).get(RegistrazioneViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_registrazione, container, false);
+        final TextView textView = root.findViewById(R.id.text_registrazione);
+        registrazioneViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

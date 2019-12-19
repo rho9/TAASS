@@ -10,7 +10,7 @@ public class DoveSiamoViewModel extends ViewModel {
 
     public DoveSiamoViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is tools fragment");
+        mText.setValue("This is dove siamo fragment");
     }
 
     public LiveData<String> getText() {

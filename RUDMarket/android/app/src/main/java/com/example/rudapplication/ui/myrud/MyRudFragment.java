@@ -1,4 +1,4 @@
-package com.example.rudapplication.ui.share;
+package com.example.rudapplication.ui.myrud;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.rudapplication.R;
 
-public class ShareFragment extends Fragment {
+public class MyRudFragment extends Fragment {
 
-    private ShareViewModel shareViewModel;
+    private MyRudViewModel myRudViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        shareViewModel =
-                ViewModelProviders.of(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
-        final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(this, new Observer<String>() {
+        myRudViewModel =
+                ViewModelProviders.of(this).get(MyRudViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_myrud, container, false);
+        final TextView textView = root.findViewById(R.id.text_myrud);
+        myRudViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

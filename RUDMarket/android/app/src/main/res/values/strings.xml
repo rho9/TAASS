@@ -11,6 +11,6 @@
     <string name="menu_catalogo">Catalogo</string>
     <string name="menu_promozioni">Promozioni</string>
     <string name="menu_doveSiamo">Dove siamo</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_myrud">MyRUD</string>
+    <string name="menu_registrazione">Registrazione</string>
 </resources>

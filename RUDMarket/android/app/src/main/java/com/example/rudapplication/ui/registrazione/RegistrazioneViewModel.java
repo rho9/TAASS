@@ -1,16 +1,16 @@
-package com.example.rudapplication.ui.share;
+package com.example.rudapplication.ui.registrazione;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
+public class RegistrazioneViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public RegistrazioneViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
+        mText.setValue("This is registrazione fragment");
     }
 
     public LiveData<String> getText() {
