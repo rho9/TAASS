@@ -26,7 +26,9 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.SyncFailedException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textView;
-    private static String token;
+    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                System.out.println("MI SONO CONNESSO");
-
                 List<Sezione> sezioneList = response.body();
 
                 for (Sezione s : sezioneList) {
@@ -113,11 +113,18 @@ public class MainActivity extends AppCompatActivity {
         loginRequest.setPassword("ciao");
 
         Call<AuthResponse> authResponseCall = authAPI.doLogin(loginRequest);
+        /*AuthResponse authResponse = null;
+        try {
+            authResponse = authResponseCall.execute().body();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(authResponse.getAccessToken());*/
         authResponseCall.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 AuthResponse AuthResponse = response.body();
-                System.out.println("***" + AuthResponse.getAccessToken());
+                //System.out.println("***" + AuthResponse.getAccessToken());
                 token = AuthResponse.getAccessToken();
             }
 
@@ -127,18 +134,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*UserAPI userAPI = retrofit.create(UserAPI.class);
-        Call<User> userCall = userAPI.getMe();
+        /*Map<String, String> headers = new HashMap<>();
+        System.out.println("ACCESS TOKEN: " + token);
+        headers.put("Authorization", "Bearer " + token);
+
+        UserAPI userAPI = retrofit.create(UserAPI.class);
+        Call<User> userCall = userAPI.getMe(headers);
         userCall.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                System.out.println("USER: " + response.body());
                 User user = response.body();
                 System.out.println(user.getName());
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
-
+                try {
+                    throw t;
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }
             }
         });*/
     }
