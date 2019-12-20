@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.text_view_result);
 
         Retrofit retrofit = new Retrofit.Builder()
+                /*
+                    Questo URL è da inserire se ci si vuole connettere al localhost del proprio
+                    PC da una macchina virtuale. Se si prova a sostituire con "localhost", ci si
+                    starà riferendo all'indirizzo di loopback dell'emulatore stesso
+                 */
                 .baseUrl("http://10.0.2.2:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
