@@ -11,4 +11,7 @@ public interface SezioniAPI {
 
     @GET("sezione/getSezioni")
     Call<List<Sezione>> getSezioni();
+
+    /* @POST()
+    Call<Sezione> createSezione(@Body Sezione sezione);*/
 }
