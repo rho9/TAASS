@@ -7,8 +7,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.rudapplication.api.AuthAPI;
 import com.example.rudapplication.api.SezioniAPI;
+import com.example.rudapplication.api.UserAPI;
+import com.example.rudapplication.model.AuthResponse;
+import com.example.rudapplication.model.LoginRequest;
 import com.example.rudapplication.model.Sezione;
+import com.example.rudapplication.model.User;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,8 +24,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.SyncFailedException;
 import java.util.List;
 
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textView;
+    private static String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +106,41 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        AuthAPI authAPI = retrofit.create(AuthAPI.class);
+        LoginRequest loginRequest = new LoginRequest();
+        loginRequest.setEmail("davide@ciao.it");
+        loginRequest.setPassword("ciao");
+
+        Call<AuthResponse> authResponseCall = authAPI.doLogin(loginRequest);
+        authResponseCall.enqueue(new Callback<AuthResponse>() {
+            @Override
+            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                AuthResponse AuthResponse = response.body();
+                System.out.println("***" + AuthResponse.getAccessToken());
+                token = AuthResponse.getAccessToken();
+            }
+
+            @Override
+            public void onFailure(Call<AuthResponse> call, Throwable t) {
+
+            }
+        });
+
+        /*UserAPI userAPI = retrofit.create(UserAPI.class);
+        Call<User> userCall = userAPI.getMe();
+        userCall.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                User user = response.body();
+                System.out.println(user.getName());
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });*/
     }
 
     @Override
