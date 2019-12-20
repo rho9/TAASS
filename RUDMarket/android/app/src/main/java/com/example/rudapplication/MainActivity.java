@@ -1,6 +1,5 @@
 package com.example.rudapplication;
 
-import android.app.VoiceInteractor;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -8,10 +7,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import com.example.rudapplication.api.SezioniAPI;
+import com.example.rudapplication.model.Sezione;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,10 +17,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.widget.TextView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +50,46 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-/*
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(
-                Request.Method.GET,
 
-        );*/
+        textView = findViewById(R.id.text_view_result);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        SezioniAPI sezioniAPI = retrofit.create(SezioniAPI.class);
+        Call<List<Sezione>> call = sezioniAPI.getSezioni();
+
+        call.enqueue(new Callback<List<Sezione>>() {
+            @Override
+            public void onResponse(Call<List<Sezione>> call, Response<List<Sezione>> response) {
+                if (!response.isSuccessful()) {
+                    textView.setText("Code: " + response.code());
+                    return;
+                }
+
+                System.out.println("MI SONO CONNESSO");
+
+                List<Sezione> sezioneList = response.body();
+
+                for (Sezione s : sezioneList) {
+                    String content = "";
+                    content += "ID: " + s.getId() + "\n";
+                    content += "Nome: " + s.getNome() + "\n";
+                    System.out.println(content);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Sezione>> call, Throwable t) {
+                try {
+                    throw t;
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
