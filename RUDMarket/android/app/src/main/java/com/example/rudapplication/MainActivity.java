@@ -1,5 +1,6 @@
 package com.example.rudapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -22,17 +23,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.SyncFailedException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -106,42 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        AuthAPI authAPI = retrofit.create(AuthAPI.class);
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail("davide@ciao.it");
-        loginRequest.setPassword("ciao");
-
-        Call<AuthResponse> authResponseCall = authAPI.doLogin(loginRequest);
-        authResponseCall.enqueue(new Callback<AuthResponse>() {
-            @Override
-            public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                AuthResponse AuthResponse = response.body();
-                token = AuthResponse.getAccessToken();
-                System.out.println("TOKEN: " + token);
-
-                Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer " + token);
-                UserAPI userAPI = retrofit.create(UserAPI.class);
-                Call<User> userCall = userAPI.getMe(headers);
-                userCall.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        System.out.println(response.body().getEmail());
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                    }
-                });
-            }
-
-            @Override
-            public void onFailure(Call<AuthResponse> call, Throwable t) {
-
-            }
-        });
     }
 
     @Override
@@ -149,6 +110,18 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                //Toast.makeText(getApplicationContext(), "Hello, world!", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this, LoginActivity.class));
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

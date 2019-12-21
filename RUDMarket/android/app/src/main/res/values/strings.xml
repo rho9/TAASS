@@ -13,4 +13,10 @@
     <string name="menu_doveSiamo">Dove siamo</string>
     <string name="menu_myrud">MyRUD</string>
     <string name="menu_registrazione">Registrazione</string>
+
+    <string name="prompt_email">EMAIL</string>
+    <string name="prompt_password">PASSWORD</string>
+    <string name="action_sign_in_short">SIGNIN_SHORT</string>
+    <string name="action_sign_in">SIGNIN</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>
