@@ -34,8 +34,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private TextView textView;
     private NavigationView navigationView;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Sezione>> call, Response<List<Sezione>> response) {
                 if (!response.isSuccessful()) {
-                    textView.setText("Code: " + response.code());
                     return;
                 }
 
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        this.menu = menu;
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -109,8 +109,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                //Toast.makeText(getApplicationContext(), "Hello, world!", Toast.LENGTH_LONG).show();
-                startLoginActivity();
+                if (item.getTitle().equals("Login")) {
+                    startLoginActivity();
+                } else {
+                    item.setTitle("Login");
+                    doLogout();
+                }
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -124,19 +128,32 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void startLoginActivity() {
+    private void startLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    private void doLogout() {
+        LoginRepository.getInstance().logout();
+        TextView navHeaderName = findViewById(R.id.nav_header_name);
+        TextView navHeaderEmail = findViewById(R.id.nav_header_email);
+
+        navHeaderName.setText("Ospite");
+        navHeaderEmail.setText("Effettua il Login");
+
+        Toast.makeText(getApplicationContext(), "Hai effettuato il Logout", Toast.LENGTH_LONG).show();
     }
 
     @Override
     protected void onRestart() {
-        Toast.makeText(getApplicationContext(), "Rieccomi", Toast.LENGTH_LONG).show();
         TextView navHeaderName = findViewById(R.id.nav_header_name);
         TextView navHeaderEmail = findViewById(R.id.nav_header_email);
         LoginRepository loginRepository = LoginRepository.getInstance();
         if (loginRepository.isLoggedIn()) {
             navHeaderName.setText(loginRepository.getLoggedIndUser().getName());
             navHeaderEmail.setText(loginRepository.getLoggedIndUser().getEmail());
+
+            MenuItem menuItem = this.menu.findItem(R.id.action_settings);
+            menuItem.setTitle("Logout");
         }
         super.onRestart();
     }
