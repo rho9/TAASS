@@ -28,6 +28,7 @@ import com.example.rudapplication.MainActivity;
 import com.example.rudapplication.R;
 import com.example.rudapplication.api.SezioniAPI;
 import com.example.rudapplication.model.Sezione;
+import com.example.rudapplication.utils.RetrofitUtil;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class CatalogoFragment extends Fragment {
 
     private CatalogoViewModel catalogoViewModel;
     private ListView catalogoList;
+    private RetrofitUtil retrofitUtil;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,18 +44,10 @@ public class CatalogoFragment extends Fragment {
                 ViewModelProviders.of(this).get(CatalogoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_catalogo, container, false);
 
+        retrofitUtil = RetrofitUtil.getInstance();
         catalogoList = (ListView)root.findViewById(R.id.catalogo_list_id);
         ArrayList<String> arrayList = new ArrayList<>();
-        final Retrofit retrofit = new Retrofit.Builder()
-                /*
-                    Questo URL è da inserire se ci si vuole connettere al localhost del proprio
-                    PC da una macchina virtuale. Se si prova a sostituire con "localhost", ci si
-                    starà riferendo all'indirizzo di loopback dell'emulatore stesso
-                 */
-                .baseUrl("http://10.0.2.2:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        SezioniAPI sezioniAPI = retrofit.create(SezioniAPI.class);
+        SezioniAPI sezioniAPI = retrofitUtil.getRetrofit().create(SezioniAPI.class);
         Call<List<Sezione>> call2 = sezioniAPI.getSezioni();
         call2.enqueue(new Callback<List<Sezione>>() {
             @Override

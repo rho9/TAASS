@@ -15,6 +15,7 @@ import com.example.rudapplication.model.AuthResponse;
 import com.example.rudapplication.model.LoginRequest;
 import com.example.rudapplication.model.User;
 import com.example.rudapplication.rudlogin.LoginRepository;
+import com.example.rudapplication.utils.RetrofitUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText user, psw;
     private LoginRepository loginRepository;
     private LoginActivity loginActivity;
+    private RetrofitUtil retrofitUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         loginActivity = this;
 
         loginRepository = LoginRepository.getInstance();
+        retrofitUtil = RetrofitUtil.getInstance();
 
         user = (EditText) findViewById(R.id.usrusr);
         psw = findViewById(R.id.pswrdd);
@@ -58,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     public void doLogin() {
         String username = user.getText().toString();
         String password = psw.getText().toString();
-        AuthAPI authAPI = loginRepository.getRetrofit().create(AuthAPI.class);
+        AuthAPI authAPI = retrofitUtil.getRetrofit().create(AuthAPI.class);
         LoginRequest loginRequest = new LoginRequest();
         System.out.println(username + " " + password);
         loginRequest.setEmail(username);
@@ -73,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Authorization", "Bearer " + AuthResponse.getAccessToken());
-                UserAPI userAPI = loginRepository.getRetrofit().create(UserAPI.class);
+                UserAPI userAPI = retrofitUtil.getRetrofit().create(UserAPI.class);
                 Call<User> userCall = userAPI.getMe(headers);
                 userCall.enqueue(new Callback<User>() {
                     @Override
