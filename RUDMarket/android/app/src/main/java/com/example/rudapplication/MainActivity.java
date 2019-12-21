@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        textView = findViewById(R.id.text_view_result);
-
         final Retrofit retrofit = new Retrofit.Builder()
                 /*
                     Questo URL è da inserire se ci si vuole connettere al localhost del proprio
