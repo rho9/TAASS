@@ -32,13 +32,6 @@ public class CatalogoFragment extends Fragment {
         catalogoViewModel =
                 ViewModelProviders.of(this).get(CatalogoViewModel.class);
         View root = inflater.inflate(R.layout.fragment_catalogo, container, false);
-        final TextView textView = root.findViewById(R.id.text_catalogo);
-        catalogoViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         catalogoList = (ListView)root.findViewById(R.id.catalogo_list_id);
         ArrayList<String> arrayList = new ArrayList<>();
