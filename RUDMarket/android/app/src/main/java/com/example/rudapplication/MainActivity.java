@@ -10,6 +10,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.rudapplication.api.SezioniAPI;
 import com.example.rudapplication.model.Sezione;
+import com.example.rudapplication.rudlogin.LoginRepository;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,6 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textView;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -123,5 +126,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void startLoginActivity() {
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    @Override
+    protected void onRestart() {
+        Toast.makeText(getApplicationContext(), "Rieccomi", Toast.LENGTH_LONG).show();
+        TextView navHeaderName = findViewById(R.id.nav_header_name);
+        TextView navHeaderEmail = findViewById(R.id.nav_header_email);
+        LoginRepository loginRepository = LoginRepository.getInstance();
+        if (loginRepository.isLoggedIn()) {
+            navHeaderName.setText(loginRepository.getLoggedIndUser().getName());
+            navHeaderEmail.setText(loginRepository.getLoggedIndUser().getEmail());
+        }
+        super.onRestart();
     }
 }

@@ -2,24 +2,19 @@ package com.example.rudapplication;
 
 import android.os.Bundle;
 
-import com.example.rudapplication.api.AuthAPI;
-import com.example.rudapplication.api.UserAPI;
-import com.example.rudapplication.data.LoginDataSource;
-import com.example.rudapplication.data.LoginRepository;
-import com.example.rudapplication.model.AuthResponse;
-import com.example.rudapplication.model.LoginRequest;
-import com.example.rudapplication.model.User;
-import com.example.rudapplication.ui.login.LoginViewModel;
-import com.example.rudapplication.ui.login.LoginViewModelFactory;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.rudapplication.api.AuthAPI;
+import com.example.rudapplication.api.UserAPI;
+import com.example.rudapplication.model.AuthResponse;
+import com.example.rudapplication.model.LoginRequest;
+import com.example.rudapplication.model.User;
+import com.example.rudapplication.rudlogin.LoginRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,17 +22,15 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private String token;
 
     private TextView loginText;
-    private EditText user, password;
-
-    private LoginViewModel loginViewModel;
+    private EditText user, psw;
+    private LoginRepository loginRepository;
+    private LoginActivity loginActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        loginActivity = this;
 
+        loginRepository = LoginRepository.getInstance();
 
         user = (EditText) findViewById(R.id.usrusr);
-        password = findViewById(R.id.pswrdd);
-
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
+        psw = findViewById(R.id.pswrdd);
 
         loginText = findViewById(R.id.lin);
         loginText.setOnClickListener(new View.OnClickListener() {
@@ -63,38 +55,32 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void doLogin_old() {
-        final Retrofit retrofit = new Retrofit.Builder()
-                /*
-                    Questo URL è da inserire se ci si vuole connettere al localhost del proprio
-                    PC da una macchina virtuale. Se si prova a sostituire con "localhost", ci si
-                    starà riferendo all'indirizzo di loopback dell'emulatore stesso
-                 */
-                .baseUrl("http://10.0.2.2:8080/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        AuthAPI authAPI = retrofit.create(AuthAPI.class);
+    public void doLogin() {
+        String username = user.getText().toString();
+        String password = psw.getText().toString();
+        AuthAPI authAPI = loginRepository.getRetrofit().create(AuthAPI.class);
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setEmail(user.getText().toString());
-        loginRequest.setPassword(password.getText().toString());
+        System.out.println(username + " " + password);
+        loginRequest.setEmail(username);
+        loginRequest.setPassword(password);
 
         Call<AuthResponse> authResponseCall = authAPI.doLogin(loginRequest);
         authResponseCall.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 AuthResponse AuthResponse = response.body();
-                token = AuthResponse.getAccessToken();
-                System.out.println("TOKEN: " + token);
+                System.out.println("TOKEN: " + AuthResponse.getAccessToken());
 
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization", "Bearer " + token);
-                UserAPI userAPI = retrofit.create(UserAPI.class);
+                headers.put("Authorization", "Bearer " + AuthResponse.getAccessToken());
+                UserAPI userAPI = loginRepository.getRetrofit().create(UserAPI.class);
                 Call<User> userCall = userAPI.getMe(headers);
                 userCall.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
-                        Toast.makeText(getApplicationContext(), "Login effettuato!", Toast.LENGTH_LONG).show();
+                        loginRepository.setLoggedInUser(response.body());
+                        System.out.println("LOGGATO: " + response.body().getEmail());
+                        loginActivity.finish();
                     }
 
                     @Override
@@ -109,10 +95,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void doLogin() {
-        loginViewModel.login(user.getText().toString(), password.getText().toString());
     }
 
 }
