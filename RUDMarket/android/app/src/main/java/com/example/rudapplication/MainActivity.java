@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.text_view_result);
 
-        Retrofit retrofit = new Retrofit.Builder()
+        final Retrofit retrofit = new Retrofit.Builder()
                 /*
                     Questo URL è da inserire se ci si vuole connettere al localhost del proprio
                     PC da una macchina virtuale. Se si prova a sostituire con "localhost", ci si
@@ -113,19 +113,28 @@ public class MainActivity extends AppCompatActivity {
         loginRequest.setPassword("ciao");
 
         Call<AuthResponse> authResponseCall = authAPI.doLogin(loginRequest);
-        /*AuthResponse authResponse = null;
-        try {
-            authResponse = authResponseCall.execute().body();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(authResponse.getAccessToken());*/
         authResponseCall.enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                 AuthResponse AuthResponse = response.body();
-                //System.out.println("***" + AuthResponse.getAccessToken());
                 token = AuthResponse.getAccessToken();
+                System.out.println("TOKEN: " + token);
+
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + token);
+                UserAPI userAPI = retrofit.create(UserAPI.class);
+                Call<User> userCall = userAPI.getMe(headers);
+                userCall.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        System.out.println(response.body().getEmail());
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
             }
 
             @Override
@@ -133,30 +142,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        /*Map<String, String> headers = new HashMap<>();
-        System.out.println("ACCESS TOKEN: " + token);
-        headers.put("Authorization", "Bearer " + token);
-
-        UserAPI userAPI = retrofit.create(UserAPI.class);
-        Call<User> userCall = userAPI.getMe(headers);
-        userCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(Call<User> call, Response<User> response) {
-                System.out.println("USER: " + response.body());
-                User user = response.body();
-                System.out.println(user.getName());
-            }
-
-            @Override
-            public void onFailure(Call<User> call, Throwable t) {
-                try {
-                    throw t;
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
-                }
-            }
-        });*/
     }
 
     @Override

@@ -2,7 +2,14 @@ package com.example.rudapplication.model;
 
 public class User {
     private Long id;
-    private String name, surname, email;
+
+    private String name;
+
+    private String surname;
+
+    private String email;
+
+    private String role;
 
     public Long getId() {
         return id;
@@ -34,5 +41,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
