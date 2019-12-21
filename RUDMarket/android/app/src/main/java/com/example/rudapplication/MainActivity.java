@@ -8,13 +8,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.rudapplication.api.AuthAPI;
 import com.example.rudapplication.api.SezioniAPI;
-import com.example.rudapplication.api.UserAPI;
-import com.example.rudapplication.model.AuthResponse;
-import com.example.rudapplication.model.LoginRequest;
 import com.example.rudapplication.model.Sezione;
-import com.example.rudapplication.model.User;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -26,9 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView textView;
-    private String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 //Toast.makeText(getApplicationContext(), "Hello, world!", Toast.LENGTH_LONG).show();
-                startActivity(new Intent(this, LoginActivity.class));
+                startLoginActivity();
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -129,5 +121,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void startLoginActivity() {
+        startActivity(new Intent(this, LoginActivity.class));
     }
 }
