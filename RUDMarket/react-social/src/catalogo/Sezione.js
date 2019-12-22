@@ -15,7 +15,7 @@ class Sezione extends Component {
     componentDidMount() {
         fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
             method: 'POST',
-            body: "id=" + this.props.location.idSezione
+            body: this.props.location.idSezione
         })
             .then(res => res.json())
             .then((data) => {

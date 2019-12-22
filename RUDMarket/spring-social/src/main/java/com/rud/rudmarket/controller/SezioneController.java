@@ -31,8 +31,8 @@ public class SezioneController {
 
 	@RequestMapping("/getProdottiByIdSezione")
 	public List<Prodotto> getProdottiByIdSezione(@RequestBody String body) {
-		Long id = Long.parseLong(body.split("=")[1]);
-		Sezione sezione = sezioneRepository.findById(id).get();
+		//Long id = Long.parseLong(body.split("=")[1]);
+		Sezione sezione = sezioneRepository.findById(Long.parseLong(body)).get();
 		return sezione.getProdottoList();
 	}
 
