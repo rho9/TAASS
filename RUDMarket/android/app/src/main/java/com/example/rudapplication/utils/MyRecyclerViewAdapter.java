@@ -1,9 +1,11 @@
 package com.example.rudapplication.utils;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
 
     private ArrayList<String> mDataset;
     private static MyClickListener myClickListener;
+
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
@@ -34,11 +37,19 @@ public class MyRecyclerViewAdapter extends RecyclerView
             myClickListener.onItemClick(getAdapterPosition(), v);
         }
     }
+
     public void setOnItemClickListener(MyClickListener myClickListener) {
         this.myClickListener = myClickListener;
     }
+
     public MyRecyclerViewAdapter(ArrayList<String> myDataset) {
         mDataset = myDataset;
+        this.setOnItemClickListener(new MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                System.out.println("Ho cliccato sulla posizione " + position);
+            }
+        });
     }
 
     @Override
