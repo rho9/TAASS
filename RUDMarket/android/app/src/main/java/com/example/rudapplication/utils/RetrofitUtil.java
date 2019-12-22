@@ -1,7 +1,5 @@
 package com.example.rudapplication.utils;
 
-import com.example.rudapplication.rudlogin.LoginRepository;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 

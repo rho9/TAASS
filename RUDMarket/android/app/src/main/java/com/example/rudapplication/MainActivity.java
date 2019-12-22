@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startLoginActivity() {
-        startActivity(new Intent(this, LoginActivity.class));
+        //startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, ProdottiActivity.class));
     }
 
     private void doLogout() {

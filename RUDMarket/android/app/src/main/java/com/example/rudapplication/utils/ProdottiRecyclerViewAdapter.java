@@ -1,35 +1,35 @@
 package com.example.rudapplication.utils;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rudapplication.R;
+import com.example.rudapplication.model.Prodotto;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView
-        .Adapter<MyRecyclerViewAdapter
+public class ProdottiRecyclerViewAdapter extends RecyclerView
+        .Adapter<ProdottiRecyclerViewAdapter
         .DataObjectHolder> {
 
-    private ArrayList<String> mDataset;
+    private List<Prodotto> mDataset;
     private static MyClickListener myClickListener;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
             .OnClickListener {
 
-        TextView label;
-        TextView dateTime;
+        TextView nome, marca, prezzo;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            label = (TextView) itemView.findViewById(R.id.text);
+            nome = itemView.findViewById(R.id.textNomeProdotto);
+            marca = itemView.findViewById(R.id.textMarcaProdotto);
+            prezzo = itemView.findViewById(R.id.textPrezzoProdotto);
             itemView.setOnClickListener(this);
         }
         @Override
@@ -42,7 +42,7 @@ public class MyRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public MyRecyclerViewAdapter(ArrayList<String> myDataset) {
+    public ProdottiRecyclerViewAdapter(List<Prodotto> myDataset) {
         mDataset = myDataset;
         this.setOnItemClickListener(new MyClickListener() {
             @Override
@@ -56,17 +56,23 @@ public class MyRecyclerViewAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_view, parent, false);
+                .inflate(R.layout.card_view_prodotti, parent, false);
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
     }
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.label.setText(mDataset.get(position));
+        holder.nome.setText(mDataset.get(position).getNome());
+        holder.marca.setText(mDataset.get(position).getMarca());
+        String prezzoString = String.valueOf(mDataset.get(position).getPrezzo());
+        if (mDataset.get(position).isAtKg()) {
+            prezzoString += " / kg";
+        }
+        holder.prezzo.setText(prezzoString);
     }
 
-    public void addItem(String dataObj, int index) {
+    public void addItem(Prodotto dataObj, int index) {
         mDataset.add(index, dataObj);
         notifyItemInserted(index);
     }

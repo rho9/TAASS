@@ -13,8 +13,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ProdottiActivity"
+            android:label="@string/title_activity_prodotti"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ui.login.LoginActivity2"
-            android:label="@string/title_activity_login2"></activity>
+            android:label="@string/title_activity_login2" />
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"

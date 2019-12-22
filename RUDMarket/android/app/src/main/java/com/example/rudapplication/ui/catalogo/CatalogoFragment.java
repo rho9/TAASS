@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -21,10 +20,9 @@ import retrofit2.Response;
 import com.example.rudapplication.R;
 import com.example.rudapplication.api.SezioniAPI;
 import com.example.rudapplication.model.Sezione;
-import com.example.rudapplication.utils.MyRecyclerViewAdapter;
+import com.example.rudapplication.utils.SezioniRecyclerViewAdapter;
 import com.example.rudapplication.utils.RetrofitUtil;
 
-import java.util.ArrayList;
 
 public class CatalogoFragment extends Fragment {
 
@@ -41,13 +39,11 @@ public class CatalogoFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_catalogo, container, false);
 
         retrofitUtil = RetrofitUtil.getInstance();
-        //catalogoList = (ListView)root.findViewById(R.id.catalogo_list_id);
-        mRecyclerView = (RecyclerView) root.findViewById(R.id.my_recycler_view);
+        mRecyclerView = (RecyclerView) root.findViewById(R.id.recycler_view_sezioni);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        ArrayList<String> arrayList = new ArrayList<>();
         SezioniAPI sezioniAPI = retrofitUtil.getRetrofit().create(SezioniAPI.class);
         Call<List<Sezione>> call2 = sezioniAPI.getSezioni();
         call2.enqueue(new Callback<List<Sezione>>() {
@@ -55,19 +51,16 @@ public class CatalogoFragment extends Fragment {
             public void onResponse(Call<List<Sezione>> call, Response<List<Sezione>> response) {
 
                 List<Sezione> sezioneList = response.body();
-                for(Sezione sezione: sezioneList){
-                    arrayList.add(sezione.getNome());
-                }
 
-                mAdapter = new MyRecyclerViewAdapter(arrayList);
+                mAdapter = new SezioniRecyclerViewAdapter(sezioneList, getActivity());
 
                 mRecyclerView.setAdapter(mAdapter);
 
                 // Code to Add an item with default animation
-                //((MyRecyclerViewAdapter) mAdapter).addItem(obj, index);
+                //((SezioniRecyclerViewAdapter) mAdapter).addItem(obj, index);
 
                 // Code to remove an item with default animation
-                //((MyRecyclerViewAdapter) mAdapter).deleteItem(index);
+                //((SezioniRecyclerViewAdapter) mAdapter).deleteItem(index);
             }
 
             @Override
