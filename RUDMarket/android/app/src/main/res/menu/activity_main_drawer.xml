@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <!--solo una può essere selezionata-->
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_catalogo"
+            android:icon="@drawable/ic_menu_catalogo"
+            android:title="@string/menu_catalogo" />
+        <item
+            android:id="@+id/nav_promozioni"
+            android:icon="@drawable/ic_menu_promozioni"
+            android:title="@string/menu_promozioni" />
+        <item
+            android:id="@+id/nav_doveSiamo"
+            android:icon="@drawable/ic_menu_dovesiamo"
+            android:title="@string/menu_doveSiamo" />
+    </group>
+
+    <!--solo per triggerare azioni, non stanno selezionate-->
+    <item android:title="Area personale">
+        <menu>
+            <item
+                android:id="@+id/nav_myrud"
+                android:icon="@drawable/ic_menu_myrud"
+                android:title="@string/menu_myrud" />
+            <item
+                android:id="@+id/nav_registrazione"
+                android:icon="@drawable/ic_menu_registrazione"
+                android:title="@string/menu_registrazione" />
+        </menu>
+    </item>
+
+</menu>

@@ -50,6 +50,8 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        System.out.println("Qualcuno si è connesso: " + loginRequest.getEmail());
+
         String token = tokenProvider.createToken(authentication);
         return ResponseEntity.ok(new AuthResponse(token));
     }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,8 +32,7 @@ public class SezioneController {
 
 	@RequestMapping("/getProdottiByIdSezione")
 	public List<Prodotto> getProdottiByIdSezione(@RequestBody String body) {
-		Long id = Long.parseLong(body.split("=")[1]);
-		Sezione sezione = sezioneRepository.findById(id).get();
+		Sezione sezione = sezioneRepository.findById(Long.parseLong(body)).get();
 		return sezione.getProdottoList();
 	}
 
