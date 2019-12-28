@@ -24,7 +24,7 @@ public class APIController {
 	ProdottoRepository prodottoRepository;
 
 	@GetMapping("/getProdottiByName")
-	public List<ProdottoAPI> addSezione(@RequestBody String body) {
+	public List<ProdottoAPI> getProdottiByName(@RequestBody String body) {
 		List<ProdottoAPI> result = new ArrayList<>();
 
 		for (Prodotto p : prodottoRepository.findAll()) {
