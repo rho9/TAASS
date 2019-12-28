@@ -177,3 +177,11 @@ export function addOrdine(addOrdineRequest){
         body: JSON.stringify(addOrdineRequest)
     });
 }
+
+export function getProdottoImage(prodottoId){
+    return request({
+        url: API_BASE_URL + "/prodotto/getImageProdottoByProdottoId",
+        method: 'POST',
+        body: prodottoId
+    });
+}

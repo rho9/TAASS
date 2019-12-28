@@ -17,6 +17,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -64,6 +66,15 @@ public class ProdottoController {
         }
 
         throw new Exception("La sezione inserita non è corretta!");
+    }
+
+    @RequestMapping("/getImageProdottoByProdottoId")
+    public String getImageProdottoByProdottoId(@RequestBody String body) throws SQLException {
+        System.out.println("ECCOMI");
+        Prodotto prodotto = prodottoRepository.findById(Long.parseLong(body)).get();
+        ProdottoImage prodottoImage = prodottoImageRepository.findById(prodotto.getIdImage()).get();
+        Blob blob = prodottoImage.getImage();
+        return prodottoImage.getImage().getBytes(1, (int) blob.length()).toString();
     }
 
     public static byte[] getImage() {

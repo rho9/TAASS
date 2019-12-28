@@ -1,6 +1,17 @@
 import React from 'react'
 import './Catalogo.css'
 import {Link} from "react-router-dom";
+import {getProdottoImage} from "../util/APIUtils";
+
+function foo(idProdotto) {
+    getProdottoImage(3)
+        .then((data) => {
+            alert(data)
+            return (
+                <img src={{uri: `data:image/gif;base64,${data}`}} />
+            )
+        })
+}
 
 const ProdottoList = ({ prodotti }) => {
     return(
@@ -21,6 +32,9 @@ const ProdottoList = ({ prodotti }) => {
                         <ul className="list-unstyled mt-3 mb-4">
                             <li>{prodotto.marca}</li>
                         </ul>
+                        {
+                            foo(prodotto.id)
+                        }
                         <Link className="btn btn-warning" to={
                             {
                                 pathname: "/addCarrello",

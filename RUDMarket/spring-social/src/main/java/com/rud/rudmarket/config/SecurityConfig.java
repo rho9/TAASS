@@ -113,7 +113,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .antMatchers("/sezione/getSezioni",
 							"/sezione/getProdottiByIdSezione",
-                            "/sup/getSupermercati")
+                            "/sup/getSupermercati",
+                            "/prodotto/getImageProdottoByProdottoId")
                         .permitAll()
                     .anyRequest()
                         .authenticated()
