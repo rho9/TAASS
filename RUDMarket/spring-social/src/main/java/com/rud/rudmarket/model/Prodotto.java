@@ -1,6 +1,7 @@
 package com.rud.rudmarket.model;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.List;
 
 @Entity
@@ -12,6 +13,15 @@ public class Prodotto {
 	private String nome, marca;
 	private float prezzo;
 	private boolean atKg;
+	private Long idImage;
+
+	public Long getIdImage() {
+		return idImage;
+	}
+
+	public void setIdImage(Long idImage) {
+		this.idImage = idImage;
+	}
 
 	@ManyToMany
 	@JoinTable(
