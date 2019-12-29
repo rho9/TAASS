@@ -21,7 +21,6 @@ class ImmagineProdotto extends Component {
                 let reader = new FileReader();
                 reader.readAsDataURL(data);
                 reader.onload = (e) => {
-                    //alert(e.target.result);
                     this.setState({immagine: e.target.result})
                 };
             })

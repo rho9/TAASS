@@ -13,12 +13,14 @@ class AddProdotto extends Component {
             atKg: false,
             sezioni: [],
             selectedSezione: '',
-            validationError: ''
+            validationError: '',
+            selectedFile: ''
         }
         console.log(props);
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeFile = this.handleChangeFile.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +39,10 @@ class AddProdotto extends Component {
 
     handleChangeTitle(event) {
         this.setState({nome: event.target.value});
+    }
+
+    handleChangeFile(event) {
+        this.setState({selectedFile: event.target.files[0]})
     }
 
     handleSubmit(event) {
@@ -121,7 +127,7 @@ class AddProdotto extends Component {
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label htmlFor="username">Immagine</label>
-                                    <input type="file"/>
+                                    <input type="file" onChange={this.handleChangeFile}/>
                                 </div>
                             </div>
                             <button className="btn btn-warning " type="submit">Aggiungi</button>

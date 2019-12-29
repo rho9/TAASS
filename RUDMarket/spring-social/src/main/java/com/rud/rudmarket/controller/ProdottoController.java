@@ -19,6 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -40,7 +41,10 @@ public class ProdottoController {
         if (prodottoForm.getSelectedSezione() != null) {
 
             ProdottoImage prodottoImage = new ProdottoImage();
-            prodottoImage.setImage(BlobProxy.generateProxy(getImage()));
+            //prodottoImage.setImage(BlobProxy.generateProxy(getImage()));
+            //byte[] bytes = Base64.getMimeDecoder().decode(prodottoForm.getSelectedFile());
+            //prodottoImage.setImage(BlobProxy.generateProxy(bytes));
+            System.out.println(prodottoForm.getSelectedFile());
             prodottoImageRepository.save(prodottoImage);
 
             List<ProdottoImage> prodottoImages = prodottoImageRepository.findAll();
@@ -51,7 +55,7 @@ public class ProdottoController {
             prodotto.setNome(prodottoForm.getNome());
             prodotto.setMarca(prodottoForm.getMarca());
             prodotto.setPrezzo(Float.parseFloat(prodottoForm.getPrezzo()));
-            prodotto.setAtKg(prodottoForm.getAlKg().equals("true"));
+            prodotto.setAtKg(prodottoForm.getAtKg().equals("true"));
             prodotto.setIdImage(idImage);
 
             prodottoRepository.save(prodotto);
@@ -80,7 +84,6 @@ public class ProdottoController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //return new String(bytes, StandardCharsets.UTF_8);
         return bytes;
     }
 

@@ -1,11 +1,22 @@
 package com.rud.rudmarket.model.form;
 
+import java.io.File;
+
 public class ProdottoForm {
     private String nome, marca, prezzo;
     private Long selectedSezione;
     private String atKg;
+    private File selectedFile;
 
-    public String getAlKg() {
+    public File getSelectedFile() {
+        return selectedFile;
+    }
+
+    public void setSelectedFile(File selectedFile) {
+        this.selectedFile = selectedFile;
+    }
+
+    public String getAtKg() {
         return atKg;
     }
 
