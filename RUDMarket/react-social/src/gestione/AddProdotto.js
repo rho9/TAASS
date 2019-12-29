@@ -118,6 +118,12 @@ class AddProdotto extends Component {
                                     </select>
                                 </div>
                             </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="username">Immagine</label>
+                                    <input type="file"/>
+                                </div>
+                            </div>
                             <button className="btn btn-warning " type="submit">Aggiungi</button>
                         </form>
                     </div>

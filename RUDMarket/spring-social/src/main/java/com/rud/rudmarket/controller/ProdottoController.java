@@ -69,15 +69,22 @@ public class ProdottoController {
     }
 
     @RequestMapping("/getImageProdottoByProdottoId")
-    public String getImageProdottoByProdottoId(@RequestBody String body) throws SQLException {
+    public byte[] getImageProdottoByProdottoId(@RequestBody String body) {
         System.out.println("ECCOMI");
         Prodotto prodotto = prodottoRepository.findById(Long.parseLong(body)).get();
         ProdottoImage prodottoImage = prodottoImageRepository.findById(prodotto.getIdImage()).get();
         Blob blob = prodottoImage.getImage();
-        return prodottoImage.getImage().getBytes(1, (int) blob.length()).toString();
+        byte[] bytes = new byte[0];
+        try {
+            bytes = prodottoImage.getImage().getBytes(1, (int) blob.length());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //return new String(bytes, StandardCharsets.UTF_8);
+        return bytes;
     }
 
-    public static byte[] getImage() {
+    private static byte[] getImage() {
         File file = new File("C:\\Users\\Davide\\Desktop\\cavolo-cappuccio-bianco-bio-per-smartbox.jpg");
         if(file.exists()){
             try {
