@@ -7,16 +7,17 @@ import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.repository.ProdottoImageRepository;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.SezioneRepository;
-import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.Base64;
@@ -34,6 +35,12 @@ public class ProdottoController {
 
     @Autowired
     private SezioneRepository sezioneRepository;
+
+    @RequestMapping("/provaFile")
+    public void provaFile(@RequestBody MultipartFile file) {
+        System.out.println("File ricevuto" + file);
+        System.out.println(getImage(file));
+    }
 
     @PostMapping("/addProdotto")
     @PreAuthorize("hasRole('ADMIN')")
@@ -87,8 +94,18 @@ public class ProdottoController {
         return bytes;
     }
 
-    private static byte[] getImage() {
-        File file = new File("C:\\Users\\Davide\\Desktop\\cavolo-cappuccio-bianco-bio-per-smartbox.jpg");
+    private static byte[] getImage(MultipartFile inputFile) {
+        //File file = new File("C:\\Users\\Davide\\Desktop\\cavolo-cappuccio-bianco-bio-per-smartbox.jpg");
+        File file = new File(inputFile.getOriginalFilename());
+        try {
+            file.createNewFile();
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(inputFile.getBytes());
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         if(file.exists()){
             try {
                 BufferedImage bufferedImage= ImageIO.read(file);
