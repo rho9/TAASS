@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './Catalogo.css'
-import {Link} from "react-router-dom";
 
 
 class ImmagineProdotto extends Component {
@@ -28,9 +27,15 @@ class ImmagineProdotto extends Component {
 
     render() {
         return (
-            <ul className="list-unstyled mt-3 mb-4">
-                <img src={this.state.immagine} width="100px" height="100px" />
-            </ul>
+            this.state.immagine.includes("data:application/json;charset") ? (
+                    <ul className="list-unstyled mt-3 mb-4">
+                        Immagine non disponibile
+                    </ul>
+                ) : (
+                    <ul className="list-unstyled mt-3 mb-4">
+                        <img src={this.state.immagine} width="100px" height="100px" />
+                    </ul>
+                )
         )
     }
 }

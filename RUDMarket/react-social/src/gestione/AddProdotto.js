@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {addProdotto, storeImage} from '../util/APIUtils';
-import Alert from 'react-s-alert';
+import {addProdotto} from '../util/APIUtils';
 import './form-validation.css'
 import {ACCESS_TOKEN} from "../constants";
 
@@ -49,14 +48,6 @@ class AddProdotto extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-
-        /*const addProdottoRequest = Object.assign({}, this.state);
-        addProdotto(addProdottoRequest)
-            .then(response => {
-                this.props.history.push("/gestione")
-            }).catch(error => {
-            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });*/
 
         const formData = new FormData();
         formData.append('file', this.state.selectedFile);

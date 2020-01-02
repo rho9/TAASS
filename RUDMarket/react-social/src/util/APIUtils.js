@@ -177,11 +177,3 @@ export function addOrdine(addOrdineRequest) {
         body: JSON.stringify(addOrdineRequest)
     });
 }
-
-export function storeImage(selectedFile) {
-    return request({
-        url: API_BASE_URL + "/prodotto/storeImage",
-        method: 'POST',
-        body: selectedFile
-    });
-}
