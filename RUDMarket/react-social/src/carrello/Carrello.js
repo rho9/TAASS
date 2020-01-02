@@ -6,13 +6,15 @@ import {getProdottiInCarrello} from "../util/APIUtils";
 import CostoTotale from "./CostoTotale";
 import {getCostoTotale} from "../util/APIUtils";
 import NavLink from "react-router-dom/NavLink";
+import Ricette from "./Ricette";
 
 class Carrello extends Component {
     constructor(props) {
         super(props);
         this.state = {
             prodottiInCarrello: [],
-            costoTotale: 0
+            costoTotale: 0,
+            prodottiRicette: {},
         }
 
         getProdottiInCarrello()
@@ -20,7 +22,14 @@ class Carrello extends Component {
                 this.setState({
                     prodottiInCarrello: response
                 });
-            })
+
+                // TODO: chiama la funzione per ricevere le ricette e setta la map correttamente, per ora è uno stub
+
+                let ricette = this.state.prodottiRicette;
+                ricette['Carota'] = ['Ricetta con Carota 1', 'Ricetta con Carota 2'];
+                //ricette['Cavolo'] = ['Ricetta con Cavolo 1'];
+                this.setState({prodottiRicette : ricette});
+            });
 
         getCostoTotale()
             .then(response => {
@@ -60,6 +69,17 @@ class Carrello extends Component {
                 </form>
             </div>
             </section>
+
+            {
+                Object.keys(this.state.prodottiRicette).length > 0 ? (
+                    <Ricette ricette={this.state.prodottiRicette} chiavi={Object.keys(this.state.prodottiRicette)} />
+                ) : (
+                    <section className="jumbotron text-center">
+                        <h2>Nessuna Ricetta</h2>
+                    </section>
+                )
+            }
+
             </body>
         );
     }
