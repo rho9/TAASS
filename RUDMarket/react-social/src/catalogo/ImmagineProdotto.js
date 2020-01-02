@@ -27,15 +27,9 @@ class ImmagineProdotto extends Component {
 
     render() {
         return (
-            this.state.immagine.includes("data:application/json;charset") ? (
-                    <ul className="list-unstyled mt-3 mb-4">
-                        Immagine non disponibile
-                    </ul>
-                ) : (
-                    <ul className="list-unstyled mt-3 mb-4">
-                        <img src={this.state.immagine} width="100px" height="100px" />
-                    </ul>
-                )
+            <ul className="list-unstyled mt-3 mb-4">
+                <img src={this.state.immagine} width="100px" height="100px" />
+            </ul>
         )
     }
 }

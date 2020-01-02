@@ -26,13 +26,26 @@ public class FileUtils {
 	public static byte[] getImageBytes(File file) {
 		if(file.exists()){
 			try {
-				BufferedImage bufferedImage= ImageIO.read(file);
-				ByteArrayOutputStream byteOutStream=new ByteArrayOutputStream();
+				BufferedImage bufferedImage = ImageIO.read(file);
+				ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
 				ImageIO.write(bufferedImage, "png", byteOutStream);
 				return byteOutStream.toByteArray();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		return null;
+	}
+
+	public static byte[] getImageByteImgNotAvaible() {
+		File file = new File("img_non_disp.jpg");
+		try {
+			BufferedImage bufferedImage = ImageIO.read(file);
+			ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
+			ImageIO.write(bufferedImage, "png", byteOutStream);
+			return byteOutStream.toByteArray();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return null;
 	}
