@@ -72,15 +72,24 @@ public class ProdottoController {
 
     @RequestMapping("/getImageProdottoByProdottoId")
     public byte[] getImageProdottoByProdottoId(@RequestBody String body) {
-        Prodotto prodotto = prodottoRepository.findById(Long.parseLong(body)).get();
-        ProdottoImage prodottoImage = prodottoImageRepository.findById(prodotto.getIdImage()).get();
-        Blob blob = prodottoImage.getImage();
-        byte[] bytes = new byte[0];
-        try {
-            bytes = prodottoImage.getImage().getBytes(1, (int) blob.length());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        System.out.println("ECCOMI");
+        if (body.startsWith("\"")) {
+            body = body.substring(1, body.length() - 1);
         }
-        return bytes;
+        System.out.println(body);
+        Prodotto prodotto = prodottoRepository.findById(Long.parseLong(body)).get();
+        if (prodotto.getIdImage() != null) {
+            ProdottoImage prodottoImage = prodottoImageRepository.findById(prodotto.getIdImage()).get();
+            Blob blob = prodottoImage.getImage();
+            byte[] bytes = new byte[0];
+            try {
+                bytes = prodottoImage.getImage().getBytes(1, (int) blob.length());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return bytes;
+        } else {
+            return null;
+        }
     }
 }
