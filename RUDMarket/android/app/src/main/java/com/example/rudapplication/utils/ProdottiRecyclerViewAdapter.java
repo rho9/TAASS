@@ -1,8 +1,11 @@
 package com.example.rudapplication.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,12 +14,14 @@ import com.example.rudapplication.R;
 import com.example.rudapplication.model.Prodotto;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProdottiRecyclerViewAdapter extends RecyclerView
         .Adapter<ProdottiRecyclerViewAdapter
         .DataObjectHolder> {
 
     private List<Prodotto> mDataset;
+    private Map<Long, byte[]> imagesMap;
     private static MyClickListener myClickListener;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -24,12 +29,14 @@ public class ProdottiRecyclerViewAdapter extends RecyclerView
             .OnClickListener {
 
         TextView nome, marca, prezzo;
+        ImageView imageView;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
             nome = itemView.findViewById(R.id.textNomeProdotto);
             marca = itemView.findViewById(R.id.textMarcaProdotto);
             prezzo = itemView.findViewById(R.id.textPrezzoProdotto);
+            imageView = itemView.findViewById(R.id.imageProdotto);
             itemView.setOnClickListener(this);
         }
         @Override
@@ -42,8 +49,9 @@ public class ProdottiRecyclerViewAdapter extends RecyclerView
         this.myClickListener = myClickListener;
     }
 
-    public ProdottiRecyclerViewAdapter(List<Prodotto> myDataset) {
+    public ProdottiRecyclerViewAdapter(List<Prodotto> myDataset, Map<Long, byte[]> imagesMap) {
         mDataset = myDataset;
+        this.imagesMap = imagesMap;
         this.setOnItemClickListener(new MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -70,6 +78,11 @@ public class ProdottiRecyclerViewAdapter extends RecyclerView
             prezzoString += " / kg";
         }
         holder.prezzo.setText(prezzoString);
+
+        Long idProdotto = mDataset.get(position).getId();
+        byte[] bytes = imagesMap.get(idProdotto);
+        Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        holder.imageView.setImageBitmap(bmp);
     }
 
     public void addItem(Prodotto dataObj, int index) {

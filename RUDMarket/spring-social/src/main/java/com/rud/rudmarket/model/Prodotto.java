@@ -12,6 +12,15 @@ public class Prodotto {
 	private String nome, marca;
 	private float prezzo;
 	private boolean atKg;
+	private Long idImage;
+
+	public Long getIdImage() {
+		return idImage;
+	}
+
+	public void setIdImage(Long idImage) {
+		this.idImage = idImage;
+	}
 
 	@ManyToMany
 	@JoinTable(

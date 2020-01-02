@@ -29,7 +29,7 @@ class AddSconto extends Component {
                 this.setState({ selectedSezione: this.state.sezioni[0].value})
                 fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
                     method: 'POST',
-                    body: "id=" + this.state.selectedSezione
+                    body: this.state.selectedSezione
                 })
                     .then(res => res.json())
                     .then((data) => {
@@ -48,7 +48,7 @@ class AddSconto extends Component {
         this.setState({selectedSezione: event.target.value})
         fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
             method: 'POST',
-            body: "id=" + event.target.value
+            body: event.target.value
         })
             .then(res => res.json())
             .then((data) => {

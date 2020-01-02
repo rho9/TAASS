@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProdottiActivity extends AppCompatActivity {
 
@@ -34,8 +35,11 @@ public class ProdottiActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         List<Prodotto> prodottoList = (List<Prodotto>) intent.getSerializableExtra("list");
+        Map<Long, byte[]> imagesMap = (Map<Long, byte[]>) intent.getSerializableExtra("imagesMap");
 
-        mAdapter = new ProdottiRecyclerViewAdapter(prodottoList);
+        mAdapter = new ProdottiRecyclerViewAdapter(prodottoList, imagesMap);
         mRecyclerView.setAdapter(mAdapter);
     }
+
+
 }
