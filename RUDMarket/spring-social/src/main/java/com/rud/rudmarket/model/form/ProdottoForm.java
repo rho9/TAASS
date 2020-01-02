@@ -4,8 +4,17 @@ public class ProdottoForm {
     private String nome, marca, prezzo;
     private Long selectedSezione;
     private String atKg;
+    private Long idImage;
 
-    public String getAlKg() {
+	public Long getIdImage() {
+		return idImage;
+	}
+
+	public void setIdImage(Long idImage) {
+		this.idImage = idImage;
+	}
+
+	public String getAtKg() {
         return atKg;
     }
 

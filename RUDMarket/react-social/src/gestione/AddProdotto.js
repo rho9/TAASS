@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { addProdotto } from '../util/APIUtils';
-import Alert from 'react-s-alert';
+import {addProdotto} from '../util/APIUtils';
 import './form-validation.css'
+import {ACCESS_TOKEN} from "../constants";
 
 class AddProdotto extends Component {
     constructor(props) {
@@ -13,12 +13,15 @@ class AddProdotto extends Component {
             atKg: false,
             sezioni: [],
             selectedSezione: '',
-            validationError: ''
+            validationError: '',
+            selectedFile: '',
+            idImage: ''
         }
         console.log(props);
 
         this.handleChangeTitle = this.handleChangeTitle.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChangeFile = this.handleChangeFile.bind(this);
     }
 
     componentDidMount() {
@@ -39,16 +42,31 @@ class AddProdotto extends Component {
         this.setState({nome: event.target.value});
     }
 
+    handleChangeFile(event) {
+        this.setState({selectedFile: event.target.files[0]})
+    }
+
     handleSubmit(event) {
         event.preventDefault();
 
-        const addProdottoRequest = Object.assign({}, this.state);
-        addProdotto(addProdottoRequest)
-            .then(response => {
-                this.props.history.push("/gestione")
-            }).catch(error => {
-            Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });
+        const formData = new FormData();
+        formData.append('file', this.state.selectedFile);
+        fetch('http://localhost:8080/prodotto/storeImage', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+            },
+            method: 'post',
+            body: formData
+        })
+            .then(res => res.json())
+            .then((res) => {
+                this.setState({idImage: res})
+                const addProdottoRequest = Object.assign({}, this.state);
+                addProdotto(addProdottoRequest)
+                    .then(response => {
+                        this.props.history.push("/gestione")
+                    })
+            });
     }
 
     render() {
@@ -116,6 +134,12 @@ class AddProdotto extends Component {
                                             onChange={(e) => this.setState({selectedSezione: e.target.value})}>
                                         {this.state.sezioni.map((sezione) => <option key={sezione.value} value={sezione.value}>{sezione.display}</option>)}>
                                     </select>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-6 mb-3">
+                                    <label htmlFor="username">Immagine</label>
+                                    <input type="file" onChange={this.handleChangeFile}/>
                                 </div>
                             </div>
                             <button className="btn btn-warning " type="submit">Aggiungi</button>
