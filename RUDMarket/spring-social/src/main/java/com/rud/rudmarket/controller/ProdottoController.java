@@ -7,12 +7,16 @@ import com.rud.rudmarket.model.form.ProdottoForm;
 import com.rud.rudmarket.repository.ProdottoImageRepository;
 import com.rud.rudmarket.repository.ProdottoRepository;
 import com.rud.rudmarket.repository.SezioneRepository;
+import com.rud.rudmarket.util.FileUtils;
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
@@ -36,34 +40,29 @@ public class ProdottoController {
     @Autowired
     private SezioneRepository sezioneRepository;
 
-    @RequestMapping("/provaFile")
-    public void provaFile(@RequestBody MultipartFile file) {
-        System.out.println("File ricevuto" + file);
-        System.out.println(getImage(file));
+    @RequestMapping(value = "/storeImage", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
+    public Long storeImage(@RequestBody MultipartFile file) {
+        File finalFile = FileUtils.moveAndStoreFile(file);
+        ProdottoImage prodottoImage = new ProdottoImage();
+        prodottoImage.setImage(BlobProxy.generateProxy(FileUtils.getImageBytes(finalFile)));
+        prodottoImageRepository.save(prodottoImage);
+        finalFile.delete();
+        List<ProdottoImage> prodottoImages = prodottoImageRepository.findAll();
+
+        return prodottoImages.get(prodottoImages.size() - 1).getId();
     }
 
     @PostMapping("/addProdotto")
     @PreAuthorize("hasRole('ADMIN')")
     public Prodotto addProdotto(@RequestBody ProdottoForm prodottoForm) throws Exception {
         if (prodottoForm.getSelectedSezione() != null) {
-
-            ProdottoImage prodottoImage = new ProdottoImage();
-            //prodottoImage.setImage(BlobProxy.generateProxy(getImage()));
-            //byte[] bytes = Base64.getMimeDecoder().decode(prodottoForm.getSelectedFile());
-            //prodottoImage.setImage(BlobProxy.generateProxy(bytes));
-            System.out.println(prodottoForm.getSelectedFile());
-            prodottoImageRepository.save(prodottoImage);
-
-            List<ProdottoImage> prodottoImages = prodottoImageRepository.findAll();
-
-            Long idImage = prodottoImages.get(prodottoImages.size() - 1).getId();
-
             Prodotto prodotto = new Prodotto();
             prodotto.setNome(prodottoForm.getNome());
             prodotto.setMarca(prodottoForm.getMarca());
             prodotto.setPrezzo(Float.parseFloat(prodottoForm.getPrezzo()));
             prodotto.setAtKg(prodottoForm.getAtKg().equals("true"));
-            prodotto.setIdImage(idImage);
+            prodotto.setIdImage(prodottoForm.getIdImage());
 
             prodottoRepository.save(prodotto);
 
@@ -92,30 +91,5 @@ public class ProdottoController {
             e.printStackTrace();
         }
         return bytes;
-    }
-
-    private static byte[] getImage(MultipartFile inputFile) {
-        //File file = new File("C:\\Users\\Davide\\Desktop\\cavolo-cappuccio-bianco-bio-per-smartbox.jpg");
-        File file = new File(inputFile.getOriginalFilename());
-        try {
-            file.createNewFile();
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(inputFile.getBytes());
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if(file.exists()){
-            try {
-                BufferedImage bufferedImage= ImageIO.read(file);
-                ByteArrayOutputStream byteOutStream=new ByteArrayOutputStream();
-                ImageIO.write(bufferedImage, "png", byteOutStream);
-                return byteOutStream.toByteArray();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
     }
 }

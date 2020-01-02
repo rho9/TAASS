@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { addProdotto } from '../util/APIUtils';
+import {addProdotto, storeImage} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
+import {ACCESS_TOKEN} from "../constants";
 
 class AddProdotto extends Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class AddProdotto extends Component {
             sezioni: [],
             selectedSezione: '',
             validationError: '',
-            selectedFile: ''
+            selectedFile: '',
+            idImage: ''
         }
         console.log(props);
 
@@ -48,13 +50,32 @@ class AddProdotto extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const addProdottoRequest = Object.assign({}, this.state);
+        /*const addProdottoRequest = Object.assign({}, this.state);
         addProdotto(addProdottoRequest)
             .then(response => {
                 this.props.history.push("/gestione")
             }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');
-        });
+        });*/
+
+        const formData = new FormData();
+        formData.append('file', this.state.selectedFile);
+        fetch('http://localhost:8080/prodotto/storeImage', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
+            },
+            method: 'post',
+            body: formData
+        })
+            .then(res => res.json())
+            .then((res) => {
+                this.setState({idImage: res})
+                const addProdottoRequest = Object.assign({}, this.state);
+                addProdotto(addProdottoRequest)
+                    .then(response => {
+                        this.props.history.push("/gestione")
+                    })
+            });
     }
 
     render() {

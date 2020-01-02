@@ -50,7 +50,7 @@ export function signup(signupRequest) {
     });
 }
 
-export function addProdotto(addProdottoRequest){
+export function addProdotto(addProdottoRequest) {
     return request({
         url: API_BASE_URL + "/prodotto/addProdotto",
         method: 'POST',
@@ -58,7 +58,7 @@ export function addProdotto(addProdottoRequest){
     });
 }
 
-export function addSezione(addSezioneRequest){
+export function addSezione(addSezioneRequest) {
     return request({
         url: API_BASE_URL + "/sezione/addSezione",
         method: 'POST',
@@ -66,7 +66,7 @@ export function addSezione(addSezioneRequest){
     });
 }
 
-export function addProdottoInCarrello(addProdottoInCarrelloRequest){
+export function addProdottoInCarrello(addProdottoInCarrelloRequest) {
     return request({
         url: API_BASE_URL + "/carrello/addProdottoInCarrello",
         method: 'POST',
@@ -74,7 +74,7 @@ export function addProdottoInCarrello(addProdottoInCarrelloRequest){
     });
 }
 
-export function getProdottiInCarrello(getProdottiInCarrelloRequest){
+export function getProdottiInCarrello(getProdottiInCarrelloRequest) {
     return request({
         url: API_BASE_URL + "/carrello/getProdottiInCarrello",
         method: 'GET',
@@ -82,7 +82,7 @@ export function getProdottiInCarrello(getProdottiInCarrelloRequest){
     });
 }
 
-export function getCostoTotale(getCostoTotaleRequest){
+export function getCostoTotale(getCostoTotaleRequest) {
     return request({
         url: API_BASE_URL + "/carrello/getCostoTotale",
         method: 'GET',
@@ -90,7 +90,7 @@ export function getCostoTotale(getCostoTotaleRequest){
     });
 }
 
-export function addSconto(addScontoRequest){
+export function addSconto(addScontoRequest) {
     return request({
         url: API_BASE_URL + "/sconto/addSconto",
         method: 'POST',
@@ -98,7 +98,7 @@ export function addSconto(addScontoRequest){
     });
 }
 
-export function findUtenti(findUtentiRequest){
+export function findUtenti(findUtentiRequest) {
     return request({
         url: API_BASE_URL + "/user/findUtenti",
         method: 'POST',
@@ -122,7 +122,7 @@ export function getOrdiniAttivi(getOrdiniAttiviRequest) {
     });
 }
 
-export function effettuaPagamento(effettuaPagamentoRequest){
+export function effettuaPagamento(effettuaPagamentoRequest) {
     return request({
         url: API_BASE_URL + "/carrello/effettuaPagamento",
         method: 'POST',
@@ -130,7 +130,7 @@ export function effettuaPagamento(effettuaPagamentoRequest){
     });
 }
 
-export function findScontiByUtente(emailUtente){
+export function findScontiByUtente(emailUtente) {
     return request({
         url: API_BASE_URL + "/sconto/findScontiByUtente",
         method: 'POST',
@@ -138,7 +138,7 @@ export function findScontiByUtente(emailUtente){
     });
 }
 
-export function removeSconto(scontoId){
+export function removeSconto(scontoId) {
     return request({
         url: API_BASE_URL + "/sconto/removeSconto",
         method: 'POST',
@@ -146,7 +146,7 @@ export function removeSconto(scontoId){
     });
 }
 
-export function getSupermercati(getSupermercatiRequest){
+export function getSupermercati(getSupermercatiRequest) {
     return request({
         url: API_BASE_URL + "/sup/getSupermercati",
         method: 'POST',
@@ -154,7 +154,7 @@ export function getSupermercati(getSupermercatiRequest){
     });
 }
 
-export function getSezioni(getSezioniRequest){
+export function getSezioni(getSezioniRequest) {
     return request({
         url: API_BASE_URL + "/sezione/getSezioni",
         method: 'POST',
@@ -162,7 +162,7 @@ export function getSezioni(getSezioniRequest){
     });
 }
 
-export function addSupermercato(addSupermercatoRequest){
+export function addSupermercato(addSupermercatoRequest) {
     return request({
         url: API_BASE_URL + "/sup/addSupermercato",
         method: 'POST',
@@ -170,7 +170,7 @@ export function addSupermercato(addSupermercatoRequest){
     });
 }
 
-export function addOrdine(addOrdineRequest){
+export function addOrdine(addOrdineRequest) {
     return request({
         url: API_BASE_URL + "/ordine/addOrdine",
         method: 'POST',
@@ -178,10 +178,10 @@ export function addOrdine(addOrdineRequest){
     });
 }
 
-export function getProdottoImage(prodottoId){
+export function storeImage(selectedFile) {
     return request({
-        url: API_BASE_URL + "/prodotto/getImageProdottoByProdottoId",
+        url: API_BASE_URL + "/prodotto/storeImage",
         method: 'POST',
-        body: prodottoId
+        body: selectedFile
     });
 }

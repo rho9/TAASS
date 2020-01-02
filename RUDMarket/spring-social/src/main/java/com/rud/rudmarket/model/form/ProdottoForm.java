@@ -1,22 +1,24 @@
 package com.rud.rudmarket.model.form;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.File;
 
 public class ProdottoForm {
     private String nome, marca, prezzo;
     private Long selectedSezione;
     private String atKg;
-    private File selectedFile;
+    private Long idImage;
 
-    public File getSelectedFile() {
-        return selectedFile;
-    }
+	public Long getIdImage() {
+		return idImage;
+	}
 
-    public void setSelectedFile(File selectedFile) {
-        this.selectedFile = selectedFile;
-    }
+	public void setIdImage(Long idImage) {
+		this.idImage = idImage;
+	}
 
-    public String getAtKg() {
+	public String getAtKg() {
         return atKg;
     }
 
