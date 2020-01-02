@@ -15,16 +15,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.List;
 
 @RestController
@@ -63,7 +56,6 @@ public class ProdottoController {
             prodotto.setPrezzo(Float.parseFloat(prodottoForm.getPrezzo()));
             prodotto.setAtKg(prodottoForm.getAtKg().equals("true"));
             prodotto.setIdImage(prodottoForm.getIdImage());
-
             prodottoRepository.save(prodotto);
 
             Sezione sezione = sezioneRepository.findById(prodottoForm.getSelectedSezione()).get();
@@ -80,7 +72,6 @@ public class ProdottoController {
 
     @RequestMapping("/getImageProdottoByProdottoId")
     public byte[] getImageProdottoByProdottoId(@RequestBody String body) {
-        System.out.println("ECCOMI");
         Prodotto prodotto = prodottoRepository.findById(Long.parseLong(body)).get();
         ProdottoImage prodottoImage = prodottoImageRepository.findById(prodotto.getIdImage()).get();
         Blob blob = prodottoImage.getImage();

@@ -10,8 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FileUtils {
-	private static final String path = File.separator + "yamicode" + File.separator;
-
 	public static File moveAndStoreFile(MultipartFile file) {
 		File convertedFile = new File(file.getOriginalFilename());
 		try {

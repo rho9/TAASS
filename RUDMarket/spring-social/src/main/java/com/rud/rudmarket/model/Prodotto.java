@@ -1,7 +1,6 @@
 package com.rud.rudmarket.model;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.List;
 
 @Entity
