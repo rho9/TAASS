@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {addProdotto} from '../util/APIUtils';
 import './form-validation.css'
-import {ACCESS_TOKEN} from "../constants";
+import {ACCESS_TOKEN, API_BASE_URL} from "../constants";
 
 class AddProdotto extends Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class AddProdotto extends Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:8080/sezione/getSezioni")
+        fetch(API_BASE_URL + "/sezione/getSezioni")
             .then((response) => {
                 return response.json();
             })
@@ -51,7 +51,7 @@ class AddProdotto extends Component {
 
         const formData = new FormData();
         formData.append('file', this.state.selectedFile);
-        fetch('http://localhost:8080/prodotto/storeImage', {
+        fetch(API_BASE_URL + '/prodotto/storeImage', {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(ACCESS_TOKEN)
             },

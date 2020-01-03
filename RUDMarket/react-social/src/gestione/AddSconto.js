@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {addSconto, findUtenti, getSezioni} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
+import {API_BASE_URL} from "../constants";
 
 class AddSconto extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class AddSconto extends Component {
                 let sezioniFromApi = data.map(sezione => { return {value: sezione.id, display: sezione.nome} })
                 this.setState({ sezioni: [].concat(sezioniFromApi) });
                 this.setState({ selectedSezione: this.state.sezioni[0].value})
-                fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
+                fetch(API_BASE_URL + '/sezione/getProdottiByIdSezione', {
                     method: 'POST',
                     body: this.state.selectedSezione
                 })
@@ -46,7 +47,7 @@ class AddSconto extends Component {
 
     handleChangeSezione(event) {
         this.setState({selectedSezione: event.target.value})
-        fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
+        fetch(API_BASE_URL + '/sezione/getProdottiByIdSezione', {
             method: 'POST',
             body: event.target.value
         })

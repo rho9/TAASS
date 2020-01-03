@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import './Catalogo.css'
+import {API_BASE_URL} from "../constants";
 
 
 class ImmagineProdotto extends Component {
@@ -11,7 +12,7 @@ class ImmagineProdotto extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/prodotto/getImageProdottoByProdottoId', {
+        fetch(API_BASE_URL + '/prodotto/getImageProdottoByProdottoId', {
             method: 'POST',
             body: this.props.prodottoId
         })
