@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Sezione.css';
 import ProdottoList from "./ProdottoList";
+import {API_BASE_URL} from "../constants";
 
 class Sezione extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class Sezione extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/sezione/getProdottiByIdSezione', {
+        fetch(API_BASE_URL + '/sezione/getProdottiByIdSezione', {
             method: 'POST',
             body: this.props.location.idSezione
         })

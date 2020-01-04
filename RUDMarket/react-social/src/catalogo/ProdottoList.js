@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './Catalogo.css'
 import {Link} from "react-router-dom";
 import ImmagineProdotto from "./ImmagineProdotto";
+import {API_BASE_URL} from "../constants";
 
 
 class ProdottoList extends Component {
@@ -13,7 +14,7 @@ class ProdottoList extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/prodotto/getImageProdottoByProdottoId', {
+        fetch(API_BASE_URL + '/prodotto/getImageProdottoByProdottoId', {
             method: 'POST',
             body: 3
         })

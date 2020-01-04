@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Catalogo.css'
 
 import SezioniList from "./SezioniList";
+import {API_BASE_URL} from "../constants";
 
 class Catalogo extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class Catalogo extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/sezione/getSezioni')
+        fetch(API_BASE_URL + '/sezione/getSezioni')
             .then(res => res.json())
             .then((data) => {
                 this.setState({ sezioni: data })
