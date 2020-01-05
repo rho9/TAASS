@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addSconto, findScontiByUtente, findUtenti, removeSconto} from '../util/APIUtils';
+import {findScontiByUtente, findUtenti, removeSconto} from '../util/APIUtils';
 import Alert from 'react-s-alert';
 import './form-validation.css'
 
