@@ -14,7 +14,7 @@ const Ricette = ({ ricette, chiavi }) => {
                                 {
                                     ricette[chiave].map((ricetta) => (
                                         <tr>
-                                            <th>{ricetta}</th>
+                                            <th>{ricetta.title}</th>
                                         </tr>
                                     ))
                                 }

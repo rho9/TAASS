@@ -33,7 +33,10 @@ class Carrello extends Component {
                     fetch('https://spring-efp.herokuapp.com/recipeFromIngredient/' + prodotto)
                         .then(res => res.json())
                         .then((data) => {
-                            // TODO: parsifica i dati ricevuti ...
+                            let ricette = this.state.prodottiRicette;
+                            alert(data);
+                            ricette[prodotto] = data;
+                            this.setState({prodottiRicette: ricette})
                         })
                 }
 
