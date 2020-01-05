@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Ordine.css'
 
-import {getOrdiniAttivi, getScontiAttivi} from "../util/APIUtils";
+import {getOrdiniAttivi} from "../util/APIUtils";
 import OrdiniAttivi from "./OrdiniAttivi";
 
 class Ordine extends Component {
@@ -9,7 +9,7 @@ class Ordine extends Component {
         super(props);
         this.state = {
             ordiniAttivi: [],
-        }
+        };
 
         getOrdiniAttivi()
             .then(response => {
