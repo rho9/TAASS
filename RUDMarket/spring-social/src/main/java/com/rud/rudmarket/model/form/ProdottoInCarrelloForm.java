@@ -2,7 +2,7 @@ package com.rud.rudmarket.model.form;
 
 public class ProdottoInCarrelloForm {
     private String idProdotto;
-    private int quantita;
+    private float quantita;
 
     public String getIdProdotto() {
         return idProdotto;
@@ -12,11 +12,11 @@ public class ProdottoInCarrelloForm {
         this.idProdotto = idProdotto;
     }
 
-    public int getQuantita() {
+    public float getQuantita() {
         return quantita;
     }
 
-    public void setQuantita(int quantita) {
+    public void setQuantita(float quantita) {
         this.quantita = quantita;
     }
 }

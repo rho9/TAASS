@@ -52,7 +52,8 @@ class ProdottoList extends Component {
                                 {
                                     pathname: "/addCarrello",
                                     idProdotto: prodotto.id,
-                                    nomeProdotto: prodotto.nome
+                                    nomeProdotto: prodotto.nome,
+                                    atKg: prodotto.atKg
                                 }
                             }>Aggiungi al Carrello</Link>
                         </div>

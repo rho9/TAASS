@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api'
 import { GOOGLE_MAPS_API_KEY } from '../constants';
-import {findUtenti, getSupermercati} from "../util/APIUtils";
+import {getSupermercati} from "../util/APIUtils";
 
 class Mappa extends Component {
     constructor(props) {
@@ -32,7 +32,6 @@ class Mappa extends Component {
                     <LoadScript //TODO there's a better way to do this
                         id="script-loader"
                         googleMapsApiKey = {GOOGLE_MAPS_API_KEY}
-                        //language={"italian"}
                     >
                         <GoogleMap
                             id='rud-map'

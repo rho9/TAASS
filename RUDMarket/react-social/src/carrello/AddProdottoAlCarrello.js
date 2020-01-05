@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Carrello.css'
-import {Redirect} from "react-router-dom";
 import {addProdottoInCarrello} from "../util/APIUtils";
 import Alert from "react-s-alert";
 
@@ -36,12 +35,27 @@ class AddProdottoAlCarrello extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-md-6 mb-3">
-                            <h1>{this.props.location.nomeProdotto}</h1>
-                            <input type="number" className="form-control"
-                                   name="quantita"
-                                   value={this.state.quantita}
-                                   onChange={(e) => this.setState({quantita: e.target.value})}
-                                   required/>
+                            {this.props.location.atKg ? (
+                                <h1>{this.props.location.nomeProdotto} / kg</h1>
+                            ) : (
+                                <h1>{this.props.location.nomeProdotto}</h1>
+                            )}
+                            {this.props.location.atKg ? (
+                                <input type="number" className="form-control"
+                                       name="quantita"
+                                       min=".1"
+                                       step=".1"
+                                       value={this.state.quantita}
+                                       onChange={(e) => this.setState({quantita: e.target.value})}
+                                       required/>
+                            ) : (
+                                <input type="number" className="form-control"
+                                       name="quantita"
+                                       min="1"
+                                       value={this.state.quantita}
+                                       onChange={(e) => this.setState({quantita: e.target.value})}
+                                       required/>
+                            )}
                             <input type="hidden" className="form-control"
                                    name="idProdotto"
                                    value={this.props.location.idProdotto}
