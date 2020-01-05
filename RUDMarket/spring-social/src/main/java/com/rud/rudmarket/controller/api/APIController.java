@@ -1,12 +1,8 @@
 package com.rud.rudmarket.controller.api;
 
 import com.rud.rudmarket.model.Prodotto;
-import com.rud.rudmarket.model.Sezione;
 import com.rud.rudmarket.model.api.ProdottoAPI;
-import com.rud.rudmarket.model.form.SezioneForm;
 import com.rud.rudmarket.repository.ProdottoRepository;
-import com.rud.rudmarket.security.CurrentUser;
-import com.rud.rudmarket.security.UserPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

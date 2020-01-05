@@ -3,7 +3,7 @@ import './Carrello.css'
 
 const Ricette = ({ ricette, chiavi }) => {
     return(
-        <tbody>
+        <body>
             {
                 chiavi.map((chiave) => (
                     ricette[chiave].length > 0 ? (
@@ -28,7 +28,7 @@ const Ricette = ({ ricette, chiavi }) => {
                     )
                 ))
             }
-        </tbody>
+        </body>
     );
 };
 
