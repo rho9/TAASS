@@ -34,16 +34,10 @@ class Carrello extends Component {
                         .then(res => res.json())
                         .then((data) => {
                             let ricette = this.state.prodottiRicette;
-                            alert(data);
                             ricette[prodotto] = data;
                             this.setState({prodottiRicette: ricette})
                         })
                 }
-
-                /*let ricette = this.state.prodottiRicette;
-                ricette['Carota'] = ['Ricetta con Carota 1', 'Ricetta con Carota 2'];
-                //ricette['Cavolo'] = ['Ricetta con Cavolo 1'];
-                this.setState({prodottiRicette : ricette});*/
             });
 
         getCostoTotale()
