@@ -35,7 +35,11 @@ class AddProdottoAlCarrello extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col-md-6 mb-3">
-                            <h1>{this.props.location.nomeProdotto}</h1>
+                            {this.props.location.atKg ? (
+                                <h1>{this.props.location.nomeProdotto} / kg</h1>
+                            ) : (
+                                <h1>{this.props.location.nomeProdotto}</h1>
+                            )}
                             {this.props.location.atKg ? (
                                 <input type="number" className="form-control"
                                        name="quantita"
