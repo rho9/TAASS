@@ -7,6 +7,7 @@ import CostoTotale from "./CostoTotale";
 import {getCostoTotale} from "../util/APIUtils";
 import NavLink from "react-router-dom/NavLink";
 import Ricette from "./Ricette";
+import {API_BASE_URL} from "../constants";
 
 class Carrello extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Carrello extends Component {
             prodottiInCarrello: [],
             costoTotale: 0,
             prodottiRicette: {},
-        }
+        };
 
         getProdottiInCarrello()
             .then(response => {
@@ -25,10 +26,21 @@ class Carrello extends Component {
 
                 // TODO: chiama la funzione per ricevere le ricette e setta la map correttamente, per ora è uno stub
 
-                let ricette = this.state.prodottiRicette;
+                let i = 0;
+                for (i = 0; i < this.state.prodottiInCarrello.length; i++) {
+                    let prodotto = this.state.prodottiInCarrello[i].prodotto.nome;
+                    //alert(prodotto);
+                    fetch('https://spring-efp.herokuapp.com/recipeFromIngredient/' + prodotto)
+                        .then(res => res.json())
+                        .then((data) => {
+                            // TODO: parsifica i dati ricevuti ...
+                        })
+                }
+
+                /*let ricette = this.state.prodottiRicette;
                 ricette['Carota'] = ['Ricetta con Carota 1', 'Ricetta con Carota 2'];
                 //ricette['Cavolo'] = ['Ricetta con Cavolo 1'];
-                this.setState({prodottiRicette : ricette});
+                this.setState({prodottiRicette : ricette});*/
             });
 
         getCostoTotale()
