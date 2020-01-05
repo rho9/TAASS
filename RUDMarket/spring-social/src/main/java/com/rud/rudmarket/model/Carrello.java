@@ -17,13 +17,13 @@ public class Carrello {
 	@JoinColumn(name = "prodotto_id")
 	Prodotto prodotto;
 
-	private int quantita;
+	private float quantita;
 
-	public int getQuantita() {
+	public float getQuantita() {
 		return quantita;
 	}
 
-	public void setQuantita(int quantita) {
+	public void setQuantita(float quantita) {
 		this.quantita = quantita;
 	}
 

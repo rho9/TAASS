@@ -3,19 +3,19 @@ package com.rud.rudmarket.model;
 public class ProdottoInCarrello {
 	private Prodotto prodotto;
 	private int percSconto;
-	private int quantita;
+	private float quantita;
 
-	public ProdottoInCarrello(Prodotto prodotto, int percSconto, int quantita) {
+	public ProdottoInCarrello(Prodotto prodotto, int percSconto, float quantita) {
 		this.prodotto = prodotto;
 		this.percSconto = percSconto;
 		this.quantita = quantita;
 	}
 
-	public int getQuantita() {
+	public float getQuantita() {
 		return quantita;
 	}
 
-	public void setQuantita(int quantita) {
+	public void setQuantita(float quantita) {
 		this.quantita = quantita;
 	}
 

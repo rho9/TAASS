@@ -17,13 +17,13 @@ public class Ordine {
 	Prodotto prodotto;
 
 	private String nome, cognome, indirizzo, supermercatoNome;
-	private int quantita;
+	private float quantita;
 
-	public int getQuantita() {
+	public float getQuantita() {
 		return quantita;
 	}
 
-	public void setQuantita(int quantita) {
+	public void setQuantita(float quantita) {
 		this.quantita = quantita;
 	}
 
