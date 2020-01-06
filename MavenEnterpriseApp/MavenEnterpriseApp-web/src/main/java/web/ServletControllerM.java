@@ -5,14 +5,7 @@
  */
 package web;
 
-import com.google.gson.Gson;
-import ejb.Book;
-import ejb.BookManagerLocal;
 import java.io.IOException;
-import java.io.PrintWriter;
-import static java.lang.System.out;
-import java.util.List;
-import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

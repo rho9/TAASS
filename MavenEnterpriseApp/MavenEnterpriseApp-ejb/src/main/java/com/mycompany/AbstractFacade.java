@@ -13,6 +13,12 @@ import javax.persistence.EntityManager;
  * @author giovanna
  */
 public abstract class AbstractFacade<T> {
+    
+    /*
+        Questa classe permette di effettuare le operazioni di persistenza
+        delle diverse Entity. Deve essere estenza da un EntityFacade che gli
+        espone l'Entity vera e propria si cui operare
+    */
 
     private Class<T> entityClass;
 

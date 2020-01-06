@@ -16,6 +16,10 @@ import javax.persistence.Id;
  */
 @Entity
 public class Book implements Serializable {
+    
+    /*
+        Questa classe rappresenta una Entity
+    */
 
     private static final long serialVersionUID = 1L;
     @Id
