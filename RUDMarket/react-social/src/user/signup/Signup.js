@@ -40,11 +40,11 @@ class SocialSignup extends Component {
         return (
             <div className="social-signup">
                 <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
-                    <img src={googleLogo} alt="Google" /> Registrazione con Google</a>
+                    <img src={googleLogo} alt="Google" /> Accedi con Google</a>
                 <a className="btn btn-block social-btn facebook" href={FACEBOOK_AUTH_URL}>
-                    <img src={fbLogo} alt="Facebook" /> Registrazione con Facebook</a>
+                    <img src={fbLogo} alt="Facebook" /> Accedi con Facebook</a>
                 <a className="btn btn-block social-btn github" href={GITHUB_AUTH_URL}>
-                    <img src={githubLogo} alt="Github" /> Registrazione con Github</a>
+                    <img src={githubLogo} alt="Github" /> Accedi con Github</a>
             </div>
         );
     }
