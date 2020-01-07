@@ -9,11 +9,12 @@ class ProdottoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            immagine: ''
+            immagine: '',
+            prodotti: this.props.prodotti
         }
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch(API_BASE_URL + '/prodotto/getImageProdottoByProdottoId', {
             method: 'POST',
             body: 3
@@ -26,12 +27,12 @@ class ProdottoList extends Component {
                     this.setState({immagine: e.target.result})
                 };
             })
-    }
+    }*/
 
     render() {
         return (
             <div className="row">
-                {this.props.prodotti.map((prodotto) => (
+                {this.state.prodotti.map((prodotto) => (
                     <div className="card mb-4 box-shadow">
                         <div className="card-header">
                             <h4 className="my-0 font-weight-normal">{prodotto.nome}</h4>

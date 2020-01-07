@@ -6,14 +6,16 @@ import {API_BASE_URL} from "../constants";
 class Sezione extends Component {
     constructor(props) {
         super(props);
+        //alert(this.props.location.prodottoList);
         this.state = {
-            prodotti: []
+            prodotti: this.props.location.prodottoList
         }
 
-        this.componentDidMount.bind(this)
+        //this.componentDidMount.bind(this)
+        this.setState({prodotti : this.props.location.prodottoList})
     }
 
-    componentDidMount() {
+    /*componentDidMount() {
         fetch(API_BASE_URL + '/sezione/getProdottiByIdSezione', {
             method: 'POST',
             body: this.props.location.idSezione
@@ -22,7 +24,7 @@ class Sezione extends Component {
             .then((data) => {
                 this.setState({ prodotti: data })
             })
-    }
+    }*/
 
     render() {
         return(
