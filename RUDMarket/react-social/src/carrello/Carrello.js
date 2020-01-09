@@ -7,6 +7,8 @@ import CostoTotale from "./CostoTotale";
 import {getCostoTotale} from "../util/APIUtils";
 import NavLink from "react-router-dom/NavLink";
 import Ricette from "./Ricette";
+import Popup from "reactjs-popup";
+import PopupContent from "./PopupContent";
 
 class Carrello extends Component {
     constructor(props) {
@@ -74,6 +76,9 @@ class Carrello extends Component {
             </div>
             </section>
 
+            <Popup modal trigger={<button>Click Me</button>}>
+                {close => <PopupContent close={close} parametro={"CIAOCIAO"} />}
+            </Popup>
             {
                 Object.keys(this.state.prodottiRicette).length > 0 ? (
                     <Ricette ricette={this.state.prodottiRicette} chiavi={Object.keys(this.state.prodottiRicette)} />

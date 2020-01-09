@@ -8,7 +8,7 @@ class Mappa extends Component {
         super(props);
         this.state = {
             markers: []
-        }
+        };
         console.log(props);
 
         getSupermercati()
