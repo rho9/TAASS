@@ -27,12 +27,19 @@ class PopupContent extends Component {
                         <div className="table-responsive">
                             <table className="table table-striped table-sm">
                                 <tbody>
+
                                 {
-                                    this.state.ricette.map((ricetta) => (
+                                    this.state.ricette.length > 0 ? (
+                                        this.state.ricette.map((ricetta) => (
+                                            <tr>
+                                                <th>{ricetta.title}</th>
+                                            </tr>
+                                        ))
+                                    ) : (
                                         <tr>
-                                            <th>{ricetta.title}</th>
+                                            <th>Nessuna Ricetta Disponibile</th>
                                         </tr>
-                                    ))
+                                    )
                                 }
                                 </tbody>
                             </table>
@@ -45,25 +52,3 @@ class PopupContent extends Component {
 }
 
 export default PopupContent;
-
-/*export default ({ close, titoloRicetta, ricette }) => (
-    <div>
-        <a onClick={close}>
-            &times;
-        </a>
-        <h2 align="center">Ricette con {titoloRicetta} </h2>
-        <section className="jumbotron text-center">
-            <div className="table-responsive">
-                <div className="table-responsive">
-                    <table className="table table-striped table-sm">
-                        <tbody>
-                            <tr>
-                                <th>{ricette}</th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-    </div>
-);*/
