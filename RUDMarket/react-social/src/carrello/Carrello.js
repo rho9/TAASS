@@ -76,9 +76,6 @@ class Carrello extends Component {
             </div>
             </section>
 
-            <Popup modal trigger={<button>Click Me</button>}>
-                {close => <PopupContent close={close} parametro={"CIAOCIAO"} />}
-            </Popup>
             {
                 Object.keys(this.state.prodottiRicette).length > 0 ? (
                     <Ricette ricette={this.state.prodottiRicette} chiavi={Object.keys(this.state.prodottiRicette)} />

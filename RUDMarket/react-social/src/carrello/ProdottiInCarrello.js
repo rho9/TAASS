@@ -1,5 +1,7 @@
 import React from 'react'
 import './Carrello.css'
+import PopupContent from "./PopupContent";
+import Popup from "reactjs-popup";
 
 const ProdottiInCarrello = ({ prodottiInCarrello }) => {
     return(
@@ -17,6 +19,11 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
                         )
                     }
                     <th>{(prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)) * prodottoInCarrello.quantita}</th>
+                    <th>
+                        <Popup modal trigger={<button>Ricette con questo prodotto</button>}>
+                        {close => <PopupContent close={close} parametro={prodottoInCarrello.prodotto.nome} />}
+                        </Popup>
+                    </th>
                 </tr>
             ))}
         </tbody>
