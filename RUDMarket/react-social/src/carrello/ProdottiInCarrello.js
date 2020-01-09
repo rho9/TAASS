@@ -1,10 +1,20 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './Carrello.css'
+import PopupContent from "./PopupContent";
+import Popup from "reactjs-popup";
 
-const ProdottiInCarrello = ({ prodottiInCarrello }) => {
-    return(
-        <tbody>
-            {prodottiInCarrello.map((prodottoInCarrello) => (
+class ProdottiInCarrello extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
+
+    render() {
+        return (
+            <tbody>
+            {this.props.prodottiInCarrello.map((prodottoInCarrello) => (
                 <tr>
                     <th>{prodottoInCarrello.quantita}</th>
                     <th>{prodottoInCarrello.prodotto.nome}</th>
@@ -17,10 +27,16 @@ const ProdottiInCarrello = ({ prodottiInCarrello }) => {
                         )
                     }
                     <th>{(prodottoInCarrello.prodotto.prezzo - ((prodottoInCarrello.prodotto.prezzo * prodottoInCarrello.percSconto) / 100)) * prodottoInCarrello.quantita}</th>
+                    <th>
+                        <Popup modal trigger={<button className="btn btn-warning">Visualizza</button>}>
+                            {close => <PopupContent close={close} titoloRicetta={prodottoInCarrello.prodotto.nome} />}
+                        </Popup>
+                    </th>
                 </tr>
             ))}
-        </tbody>
-    );
-};
+            </tbody>
+        )
+    }
+}
 
-export default ProdottiInCarrello
+export default ProdottiInCarrello;

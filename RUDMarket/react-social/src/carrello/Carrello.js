@@ -46,44 +46,34 @@ class Carrello extends Component {
     render() {
         return (
             <body>
-            <section class="jumbotron text-center">
-            <h2>Il tuo RUDCarrello</h2>
-            <div className="table-responsive">
-                <table className="table table-striped table-sm">
-                    <thead>
-                    <tr>
-                        <th>Quantità</th>
-                        <th>Prodotto</th>
-                        <th>Marca</th>
-                        <th>Prezzo unitario</th>
-                        <th>Prezzo totale</th>
-                    </tr>
-                    </thead>
-                    <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
-                    <CostoTotale costoTotale={this.state.costoTotale}/>
-                </table>
-            </div>
-            <div className="text-right">
-                <form>
-                    { this.state.costoTotale !== 0 ? (
-                        <NavLink className="btn btn-warning" to="/pagamento">Paga</NavLink>
-                    ) :
-                        <button className="btn btn-warning" disabled>Paga</button>
-                    }
-                </form>
-            </div>
-            </section>
-
-            {
-                Object.keys(this.state.prodottiRicette).length > 0 ? (
-                    <Ricette ricette={this.state.prodottiRicette} chiavi={Object.keys(this.state.prodottiRicette)} />
-                ) : (
-                    <section className="jumbotron text-center">
-                        <h2>Nessuna Ricetta</h2>
-                    </section>
-                )
-            }
-
+                <section class="jumbotron text-center">
+                <h2>Il tuo RUDCarrello</h2>
+                <div className="table-responsive">
+                    <table className="table table-striped table-sm">
+                        <thead>
+                        <tr>
+                            <th>Quantità</th>
+                            <th>Prodotto</th>
+                            <th>Marca</th>
+                            <th>Prezzo unitario</th>
+                            <th>Prezzo totale</th>
+                            <th>Ricette con questo Prodotto</th>
+                        </tr>
+                        </thead>
+                        <ProdottiInCarrello prodottiInCarrello={this.state.prodottiInCarrello} />
+                        <CostoTotale costoTotale={this.state.costoTotale}/>
+                    </table>
+                </div>
+                <div className="text-right">
+                    <form>
+                        { this.state.costoTotale !== 0 ? (
+                            <NavLink className="btn btn-warning" to="/pagamento">Paga</NavLink>
+                        ) :
+                            <button className="btn btn-warning" disabled>Paga</button>
+                        }
+                    </form>
+                </div>
+                </section>
             </body>
         );
     }
