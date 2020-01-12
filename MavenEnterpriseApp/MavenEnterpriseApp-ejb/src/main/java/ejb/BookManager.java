@@ -16,6 +16,16 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class BookManager implements BookManagerLocal {
+    
+    /*
+        Implementazione vera e propria di un BookManager con la definizione 
+        delle diverse operazioni che possono essere effettuate
+    */
+    
+    /*
+        All'interno del Manager, viene utilizzato il BookFacade che espone
+        i vari metodi per la persistenza delle Entity
+    */
 
     @EJB
     private BookFacadeLocal bookFacade;

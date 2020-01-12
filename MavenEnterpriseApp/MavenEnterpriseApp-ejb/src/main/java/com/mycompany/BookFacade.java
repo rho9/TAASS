@@ -17,6 +17,12 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class BookFacade extends AbstractFacade<Book> implements BookFacadeLocal {
 
+    /*
+        Questa classe estende AbstractFacade passandogli la entity Book, qundi
+        effettua le operazioni di persistenza delle Entity sulla particolare
+        Entity Book
+    */
+    
     @PersistenceContext(unitName = "com.mycompany_MavenEnterpriseApp-ejb_ejb_1.0-SNAPSHOTPU")
     private EntityManager em;
 

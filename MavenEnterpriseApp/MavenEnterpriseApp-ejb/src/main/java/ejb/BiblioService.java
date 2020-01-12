@@ -9,9 +9,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.ejb.Stateless;
-import javax.jws.Oneway;
 import javax.jws.WebMethod;
-import javax.jws.WebParam;
 
 /**
  *
@@ -20,11 +18,19 @@ import javax.jws.WebParam;
 @WebService(serviceName = "BiblioService")
 @Stateless()
 public class BiblioService {
+    
+    // Questa classe rappresenta un Web Service
 
     @EJB
     private BookManagerLocal ejbRef;// Add business logic below. (Right-click in editor and choose
     // "Web Service > Add Operation"
 
+    /*
+        Viene definita una operazione che può essere richiamata dall'esterno:
+        in questo caso, viene recuperata la lista dei libri presenti nel
+        database
+    */
+ 
     @WebMethod(operationName = "getBooks")
     public List<Book> getBooks() {
         return ejbRef.getBooks();

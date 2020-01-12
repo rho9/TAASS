@@ -25,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "BookServlet", urlPatterns = {"/BookServlet"})
 public class BookServlet extends HttpServlet {
 
+    /*
+        Viene utilizzato un riferimento al BookManager locale per le
+        operazioni sui Book
+    */
     @EJB
     private BookManagerLocal bookManager;
     

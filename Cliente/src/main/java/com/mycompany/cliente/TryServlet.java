@@ -22,6 +22,10 @@ import javax.xml.ws.WebServiceRef;
 @WebServlet(name = "TryServlet", urlPatterns = {"/TryServlet"})
 public class TryServlet extends HttpServlet {
 
+    /*
+        Viene fatto riferimento ad un WebService di cui viene specificato il 
+        WSDL
+    */
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/BiblioService/BiblioService.wsdl")
     private BiblioService_Service service;
 
@@ -40,7 +44,7 @@ public class TryServlet extends HttpServlet {
             out.println("<h1>Servlet TryServlet at " + request.getContextPath() + "</h1>");
             try { // Call Web Service Operation
                 BiblioService port = service.getBiblioServicePort();
-                // TODO process result here
+                
                 List<Book> result = port.getBooks();
                 out.println("<table>");
                 out.println("<tr>");
@@ -54,7 +58,7 @@ public class TryServlet extends HttpServlet {
                 out.println("</table>");
                 
             } catch (Exception ex) {
-                // TODO handle custom exceptions here
+                ex.printStackTrace();
             }
             out.println("</body>");
             out.println("</html>");

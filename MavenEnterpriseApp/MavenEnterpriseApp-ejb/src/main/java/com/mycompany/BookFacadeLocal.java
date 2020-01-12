@@ -13,8 +13,12 @@ import javax.ejb.Local;
  *
  * @author giovanna
  */
-@Local
+@Local // questa annotazione serve per indicare che vi è una implementazione locale (e non remota)
 public interface BookFacadeLocal {
+    
+    /*
+        Viene utilizzata questa interfaccia per riferisi ad un BookFacade
+    */
 
     void create(Book book);
 
