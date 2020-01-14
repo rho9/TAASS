@@ -17,21 +17,6 @@ class ProdottoList extends Component {
         this.setState({prodotti: this.props.prodotti})
     }
 
-    /*componentDidMount() {
-        fetch(API_BASE_URL + '/prodotto/getImageProdottoByProdottoId', {
-            method: 'POST',
-            body: 3
-        })
-            .then(response => response.blob())
-            .then((data) => {
-                let reader = new FileReader();
-                reader.readAsDataURL(data);
-                reader.onload = (e) => {
-                    this.setState({immagine: e.target.result})
-                };
-            })
-    }*/
-
     render() {
         return (
             this.state.prodotti ? (
